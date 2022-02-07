@@ -8,8 +8,8 @@ import ReactLoading from 'react-loading'
 // import { setInputFlat } from '../redux/reducers/flat'
 
 // import { history } from '../redux'
-
-// import Countdown from './countdown'
+import { useRouter } from "next/router";
+import Countdown from './countdown'
 
 const Search = () => {
   const [value, setValue] = useState([])
@@ -19,9 +19,11 @@ const Search = () => {
   const [loading, setLoading] = useState(false)
   // const dispatch = useDispatch()
 
+
   const loadReesrt = async (subject = '') => {
-    const response = await axios.get(`/api/v1/search/${subject}`)
+    const response = await axios.get(`api/tooltips?text=${subject}`)
     setValue(response.data)
+    console.log('VALUE', value)
   }
 
   const onChange = (e) => {
@@ -93,6 +95,7 @@ const Search = () => {
               onChange={onChange}
             />
             <button
+            className="searchButton"
               type="button"
               disabled={enterText.length < 10}
               onClick={() => {
