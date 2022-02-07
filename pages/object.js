@@ -78,7 +78,7 @@ const InfoAppart = () => {
                   <Restriction />
                   {oksType === 'flat' && (typeof checker === 'undefined' ? (
                     <>
-                      <div className="searchTitle">Загружаем данные о квартире</div>
+                      <div className="searchTitle">Загружаем данные о  dct квартире</div>
                       <div className="spinner1" />
                     </>
                   ) : (
