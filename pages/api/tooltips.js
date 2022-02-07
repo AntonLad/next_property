@@ -9,7 +9,6 @@ export default async function tooltips(req, res) {
   const encodingUrl = encodeURI(url)
   const getAskByReestrByAdress = await axios(encodingUrl)
   .then(({ data }) => {
-    console.log('DATA', data)
     return data
   })
   .catch((e) => console.log('ERROR', e.status))
