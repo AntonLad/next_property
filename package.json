@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "2gis-maps": "^3.7.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "axios": "^0.25.0",
