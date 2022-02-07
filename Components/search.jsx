@@ -3,13 +3,11 @@ import axios from 'axios'
 import SearchIcon from '@material-ui/icons/Search'
 import CloseIcon from '@material-ui/icons/Close'
 import ReactLoading from 'react-loading'
-// import { useDispatch } from 'react-redux'
-// import { setInputCadastrResult, setInputId, setInputRights } from '../redux/reducers/common'
-// import { setInputFlat } from '../redux/reducers/flat'
+import { useDispatch } from 'react-redux'
+import { setInputCadastrResult, setInputId, setInputRights } from '../redux/reducers/common'
+import { setInputFlat } from '../redux/reducers/flat'
 
-// import { history } from '../redux'
-
-// import Countdown from './countdown'
+import Countdown from './countdown'
 
 const Search = () => {
   const [value, setValue] = useState([])
@@ -17,11 +15,13 @@ const Search = () => {
   const [cadNumber, setCadNumber] = useState('')
   const [data, setData] = useState('')
   const [loading, setLoading] = useState(false)
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
+
 
   const loadReesrt = async (subject = '') => {
-    const response = await axios.get(`/api/v1/search/${subject}`)
+    const response = await axios.get(`api/tooltips?text=${subject}`)
     setValue(response.data)
+    console.log('VALUE', value)
   }
 
   const onChange = (e) => {
@@ -37,18 +37,19 @@ const Search = () => {
 
   const askReestr = async () => {
     if (cadNumber.length > 10 || enterText.length > 10) {
-      const getAskReestrByCudNum = await axios(`/api/v1/findObject/${cadNumber || enterText}`)
+      const getAskReestrByCudNum = await axios.get(`api/findobject?cadNumber=${cadNumber || enterText}`)
         .then((result) => {
           setLoading(false)
+          console.log('SUPERRESULT', result.data)
           return result.data
         })
 
       dispatch(setInputCadastrResult(getAskReestrByCudNum))
-      const askObjectId = await axios(`/api/v1/findId/${cadNumber || enterText}`)
+      const askObjectId = await axios(`api/findId?cadNumber=${cadNumber || enterText}`)
       const objectId = askObjectId.data
       dispatch(setInputId(objectId))
 
-      const getAskRights = await axios(`/api/v1/findRights/${objectId.getAskId}`)
+      const getAskRights = await axios(`api/findRights?objectid=${objectId.getAskId}`)
       dispatch(setInputRights(getAskRights.data))
       localStorage.setItem(`${cadNumber || enterText}`, JSON.stringify({ ...getAskReestrByCudNum, getAskRights }))
       setData(getAskReestrByCudNum)
@@ -93,6 +94,7 @@ const Search = () => {
               onChange={onChange}
             />
             <button
+            className="searchButton"
               type="button"
               disabled={enterText.length < 10}
               onClick={() => {
