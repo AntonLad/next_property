@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useSelector } from 'react-redux'
 
-import './info.css'
+// import './info.css'
 
 const Price = () => {
   const { price } = useSelector((store) => store.flat?.getAskPrice?.stats ?? {})

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import DG from '2gis-maps'
-import './info.css'
+// import './info.css'
 
 let map
 const Map = () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-scroll'
-import './info.css'
+// import './info.css'
 
 const MenuLeft = () => {
   return (

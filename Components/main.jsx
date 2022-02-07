@@ -4,7 +4,7 @@ import Footer from './footer'
 import Header from './header'
 import Search from './search'
 
-import './main.css'
+// import './main.css'
 
 const Main = () => {
   return (
