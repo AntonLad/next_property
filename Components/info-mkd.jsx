@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import CloseIcon from '@material-ui/icons/Close'
 import { useSelector } from 'react-redux'
 
-import './info.css'
+// import './info.css'
 
 const Mkd = () => {
   const {

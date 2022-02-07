@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import './info.css'
+// import './info.css'
 
 const InfoMainObject = () => {
   const { addressNote } = useSelector((store) => store.common.getAskReestrByCudNum?.objectData ?? {})

@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "2gis-maps": "^3.7.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "axios": "^0.25.0",
@@ -16,6 +17,8 @@
     "react-dom": "17.0.2",
     "react-loading": "^2.0.3",
     "react-redux": "^7.2.6",
+    "react-router-dom": "^6.2.1",
+    "react-scroll": "^1.8.4",
     "redux": "^4.1.2"
   },
   "devDependencies": {

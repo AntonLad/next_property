@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import Search from "../Components/search"
 import Header from "../Components/header"
 import Footer from "../Components/footer"
@@ -181,6 +183,7 @@ export default function Main() {
           </div>
         </div>
       </div>
+      <Link href='/test'> TEst </Link>
       <Footer />
     </div>
   )
