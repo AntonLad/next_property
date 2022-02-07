@@ -1,8 +1,12 @@
-import Search from "../Components/search"
-import Header from "../Components/header"
-import Footer from "../Components/footer"
+import React from 'react'
 
-export default function Main() {
+import Footer from './footer'
+import Header from './header'
+import Search from './search'
+
+import './main.css'
+
+const Main = () => {
   return (
     <div className="first">
       <Header />
@@ -185,3 +189,5 @@ export default function Main() {
     </div>
   )
 }
+
+export default Main
