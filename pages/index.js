@@ -4,6 +4,7 @@ import Search from "../Components/search"
 import Header from "../Components/header"
 import Footer from "../Components/footer"
 
+
 export default function Main() {
   return (
     <div className="first">

@@ -1,4 +1,8 @@
 import axios from 'axios'
+import { useRouter } from 'next/router'
+
+import InfoAppart from '../../Components/info-building'
+
 
 const objectIdUrl = process.env.OBJECT_ID_URL
 const egrpUrl = process.env.EGRP_URL
@@ -8,22 +12,30 @@ const priceUrl = process.env.PRICE_URL
 const socialUrl = process.env.SOCIAL_URL
 
 export default function Object(props) {
-console.log('PROPS', props)
+const objectInfo = props
+console.log('PRPOPS', objectInfo )
+const router = useRouter()
+const cadNumber = router.query.cadnumber
+console.log('CADNMB', cadNumber)
+localStorage.setItem(`${cadNumber}`, JSON.stringify(objectInfo))
+
   return (
     <div>
       111
+      {props.reestrData.objectId}
+      <InfoAppart/>
     </div>
   )
 }
 
-export async function getStaticPaths() {
-  return {
-    paths: [], //indicates that no page needs be created at build time
-    fallback: 'blocking' //indicates the type of fallback
-  }
-}
+// export async function getStaticPaths() {
+//   return {
+//     paths: [], //indicates that no page needs be created at build time
+//     fallback: 'blocking' //indicates the type of fallback
+//   }
+// }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const info = context.params.cadnumber
   const getAskReestrByCudNum = await axios.get(`${cadastrUrl}${info}`)
   const reestrData = getAskReestrByCudNum.data

@@ -1,69 +1,79 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
+import React from 'react'
+// import { useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
+
+// import axios from 'axios'
 // import ReactLoading from 'react-loading'
 
 import Header from './header'
 import Footer from './footer'
-import InfoMainObject from './info-main-object'
 import MenuLeft from './menu-left'
 import Search from './search'
-import Cadastr from './info-cadastr'
-import Mkd from './info-mkd'
-import Owners from './info-owners'
-import Price from './info-price'
-import Restriction from './info-restrictions'
-import Map from './info-map'
+import InfoMainObject from './info-main-object'
+// import Cadastr from './info-cadastr'
+// import Mkd from './info-mkd'
+// import Owners from './info-owners'
+// import Price from './info-price'
+// import Restriction from './info-restrictions'
+// import Map from './info-map'
 
-import { setInputCadastrResult, setInputRights } from '../redux/reducers/common'
-import { setInputFlat } from '../redux/reducers/flat'
+// import { setInputCadastrResult, setInputRights } from '../redux/reducers/common'
+// import { setInputFlat } from '../redux/reducers/flat'
 
-import './info.css'
-import './main.css'
+// import './info.css'
+// import './main.css'
+
 
 const InfoAppart = () => {
-  const checker = useSelector((store) => store.flat?.getAskPrice?.address)
-  const oksType = useSelector((store) => store.common?.getAskReestrByCudNum?.parcelData?.oksType)
-  const address = useSelector((store) => store.common?.getAskReestrByCudNum?.objectData?.addressNote)
-  const price = useSelector((store) => store.flat?.getAskPrice?.stats?.price)
-  const rights = useSelector((store) => store.common.getAskRights?.realty?.rights)
-  const { info } = useParams()
-  const dispatch = useDispatch()
+  const router = useRouter()
+  const cadNumber = router.query.cadnumber
+  const localDataObject = JSON.parse(localStorage.getItem(`${cadNumber}`))
+  console.log('localDataObject', localDataObject)
+  const rights = localDataObject.rights.realty?.rights
+  const price = localDataObject.flatPrice.stats?.price
+  const address = localDataObject.reestrData.objectData.objectAddress?.addressNotes
+  const oksType = localDataObject.reestrData.objectData.parcelData?.oksType
+  const checker = localDataObject.flatPrice?.address
 
-  const askAboutRights = async () => {
-    const askObjectId = await axios(`api/findId?cadNumber=${info}`)
-    const objectId = askObjectId.data
-    const getAskRights = await axios(`api/findRights?objectid=${objectId.getAskId}`)
-    const rights = getAskRights.data
-    const localDataObject = JSON.parse(localStorage.getItem(`${info}`))
-    localStorage.setItem(`${info}`, JSON.stringify({ ...localDataObject, rights }))
-  }
-  askAboutRights()
+  // const checker = useSelector((store) => store.flat?.getAskPrice?.address)
+  // const oksType = useSelector((store) => store.common?.getAskReestrByCudNum?.parcelData?.oksType)
+  // const address = useSelector((store) => store.common?.getAskReestrByCudNum?.objectData?.addressNote)
+  // const price = useSelector((store) => store.flat?.getAskPrice?.stats?.price)
+  
+  
+  //   const askAboutRights = async () => {
+  //   const askObjectId = await axios(`api/findId?cadNumber=${info}`)
+  //   const objectId = askObjectId.data
+  //   const getAskRights = await axios(`api/findRights?objectid=${objectId.getAskId}`)
+  //   const rights = getAskRights.data
+  //   const localDataObject = JSON.parse(localStorage.getItem(`${info}`))
+  //   localStorage.setItem(`${info}`, JSON.stringify({ ...localDataObject, rights }))
+  // }
+  // askAboutRights()
 
-  const askAboutFlat = async () => {
-    if (oksType === 'flat') {
-      const localDatas = JSON.parse(localStorage.getItem(`${info}`))
-      const getAskFlat = await axios(`/api/v1/findFlat/${address}`)
-      dispatch(setInputFlat(getAskFlat.data))
-      localStorage.setItem(`${info}`, JSON.stringify({ ...localDatas, getAskFlat }))
-      const localDatass = JSON.parse(localStorage.getItem(`${info}`))
-      console.log('FULLLOCALDATA', localDatass)
-    }
-  }
-  askAboutFlat()
+  // const askAboutFlat = async () => {
+  //   if (oksType === 'flat') {
+  //     const localDatas = JSON.parse(localStorage.getItem(`${info}`))
+  //     const getAskFlat = await axios(`/api/v1/findFlat/${address}`)
+  //     dispatch(setInputFlat(getAskFlat.data))
+  //     localStorage.setItem(`${info}`, JSON.stringify({ ...localDatas, getAskFlat }))
+  //     const localDatass = JSON.parse(localStorage.getItem(`${info}`))
+  //     console.log('FULLLOCALDATA', localDatass)
+  //   }
+  // }
+  // askAboutFlat()
 
-  useEffect(() => {
-    const localData = JSON.parse(localStorage.getItem(`${info}`))
-    const LocalFlat = localData?.getAskFlat?.data
-    const LocalRights = localData?.getAskRights?.data
-    if (localData) {
-      dispatch(setInputCadastrResult(localData))
-      dispatch(setInputFlat(LocalFlat))
-      dispatch(setInputRights(LocalRights))
-      console.log('LocalFlat', LocalFlat)
-    }
-  }, [])
+  // useEffect(() => {
+  //   const localData = JSON.parse(localStorage.getItem(`${info}`))
+  //   const LocalFlat = localData?.getAskFlat?.data
+  //   const LocalRights = localData?.getAskRights?.data
+  //   if (localData) {
+  //     dispatch(setInputCadastrResult(localData))
+  //     dispatch(setInputFlat(LocalFlat))
+  //     dispatch(setInputRights(LocalRights))
+  //     console.log('LocalFlat', LocalFlat)
+  //   }
+  // }, [])
 
   return (
     <div className="first">
@@ -80,7 +90,7 @@ const InfoAppart = () => {
               <div className="object__contentWrap">
                 <div className="object__content">
                   <InfoMainObject />
-                  <Cadastr />
+                  {/* <Cadastr />
                   {rights && <Owners />}
                   <Restriction />
                   {oksType === 'flat' && (typeof checker === 'undefined' ? (
@@ -94,7 +104,13 @@ const InfoAppart = () => {
                       <Mkd />
                       <Map />
                     </>
-                  ))}
+                  ))} */}
+                  Временные данные для проверки:  
+                  {rights[0].clsDate}
+                  {price}
+                  {address}
+                  {oksType}
+                  {checker}
 
                 </div>
               </div>

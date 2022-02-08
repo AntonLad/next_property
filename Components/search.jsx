@@ -39,8 +39,7 @@ const Search = () => {
           console.log('SUPERRESULT', result.data)
           return result.data
         })
-
-      localStorage.setItem(`${cadNumber || enterText}`, JSON.stringify(getAskReestrByCudNum))
+      
       setData(getAskReestrByCudNum)
       if (typeof getAskReestrByCudNum.error === 'undefined') {
         router.push(`/object/${cadNumber || enterText}`)

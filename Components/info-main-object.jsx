@@ -1,14 +1,27 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
+// import { useSelector } from 'react-redux'
 
 // import './info.css'
 
 const InfoMainObject = () => {
-  const { addressNote } = useSelector((store) => store.common.getAskReestrByCudNum?.objectData ?? {})
-  const objectName = useSelector((store) => store.common.getAskReestrByCudNum?.objectData?.objectName[0])
-  const { objectId } = useSelector((store) => store.common.getAskReestrByCudNum ?? {})
-  const { areaValue, utilByDoc } = useSelector((store) => store.common.getAskReestrByCudNum.parcelData ?? {})
-  const { name } = useSelector((store) => store.common.flat?.getAskPrice?.flat ?? {})
+  const router = useRouter()
+  const cadNumber = router.query.cadnumber
+  const localDataObject = JSON.parse(localStorage.getItem(`${cadNumber}`))
+  const { addressNote } = localDataObject.reestrData.objectData?.objectAddress
+  const objectName = localDataObject.reestrData.objectData?.objectName ?? '0'
+  const objectNameLetter = objectName[0]
+  const { objectId } = localDataObject.reestrData
+  const { areaValue, utilByDoc } = localDataObject.reestrData.parcelData ?? {}
+  const { name } = localDataObject.flatPrice.flat ?? {}
+ 
+
+  // const { addressNote } = useSelector((store) => store.common.getAskReestrByCudNum?.objectData ?? {})
+  // const objectName = useSelector((store) => store.common.getAskReestrByCudNum?.objectData?.objectName ?? '0')
+  // const objectNameLetter = objectName[0]
+  // const { objectId } = useSelector((store) => store.common.getAskReestrByCudNum ?? {})
+  // const { areaValue, utilByDoc } = useSelector((store) => store.common.getAskReestrByCudNum.parcelData ?? {})
+  // const { name } = useSelector((store) => store.common.flat?.getAskPrice?.flat ?? {})
 
   return (
     <div>
@@ -42,7 +55,7 @@ const InfoMainObject = () => {
             <div className="object__blockTableTd">{objectId}</div>
           </div>
           )}
-          {objectName !== '0' && (
+          {objectNameLetter !== '0' && (
             <div className="object__blockTableTr">
               <div className="object__blockTableTd">Тип объекта:</div>
               <div className="object__blockTableTd">{name || objectName}</div>

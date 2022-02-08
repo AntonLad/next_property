@@ -23,9 +23,8 @@
     "react-router-dom": "^6.2.1",
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.4.1"
-    "react-router-dom": "^6.2.1",
-    "react-scroll": "^1.8.4",
+    "redux-thunk": "^2.4.1",
+    "react-scroll": "^1.8.4"
   },
   "devDependencies": {
     "eslint": "8.8.0",
