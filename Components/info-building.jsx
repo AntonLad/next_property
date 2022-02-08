@@ -29,12 +29,19 @@ const InfoAppart = () => {
   const price = useSelector((store) => store.flat?.getAskPrice?.stats?.price)
   const rights = useSelector((store) => store.common.getAskRights?.realty?.rights)
   const { info } = useParams()
-  const LocalFlatData = JSON.parse(localStorage.getItem(`${info}`))
-  console.log('LOCALDATA', LocalFlatData)
-  // const checkFlat = LocalFlatData.getAskFlat?.data
   const dispatch = useDispatch()
 
-  const askAboytFlat = async () => {
+  const askAboutRights = async () => {
+    const askObjectId = await axios(`api/findId?cadNumber=${info}`)
+    const objectId = askObjectId.data
+    const getAskRights = await axios(`api/findRights?objectid=${objectId.getAskId}`)
+    const rights = getAskRights.data
+    const localDataObject = JSON.parse(localStorage.getItem(`${info}`))
+    localStorage.setItem(`${info}`, JSON.stringify({ ...localDataObject, rights }))
+  }
+  askAboutRights()
+
+  const askAboutFlat = async () => {
     if (oksType === 'flat') {
       const localDatas = JSON.parse(localStorage.getItem(`${info}`))
       const getAskFlat = await axios(`/api/v1/findFlat/${address}`)
@@ -44,7 +51,7 @@ const InfoAppart = () => {
       console.log('FULLLOCALDATA', localDatass)
     }
   }
-  askAboytFlat()
+  askAboutFlat()
 
   useEffect(() => {
     const localData = JSON.parse(localStorage.getItem(`${info}`))
@@ -102,53 +109,3 @@ const InfoAppart = () => {
 
 export default InfoAppart
 
-//  {/* neaby start */}
-//  <div className="object__nearby">
-//  <div className="object__nearby-title">Объекты рядом:</div>
-//  <div className="object__nearby-wrap">
-//    <a href="/reestr/16-52-030505-3152" className="object__nearby-item">
-//      <div className="object__nearby-item-title">16:52:030505:3152</div>
-//      <div className="object__nearby-item-descr">
-//        Республика Татарстан (Татарстан), г.Набережные Челны, ул.Тан, д.203,
-//        кв.205 (19/13 блок В)
-//      </div>
-//    </a>
-//    <a href="/reestr/16-52-030505-1300" className="object__nearby-item">
-//      <div className="object__nearby-item-title">16:52:030505:1300</div>
-//      <div className="object__nearby-item-descr">
-//        г Набережные Челны, ул им Хади Такташа, д. 18, 56
-//      </div>
-//    </a>
-//    <a href="/reestr/16-52-030505-409" className="object__nearby-item">
-//      <div className="object__nearby-item-title">16:52:030505:409</div>
-//      <div className="object__nearby-item-descr">
-//        Республика Татарстан, г Набережные Челны, ул Тан, д 209, кв 27
-//      </div>
-//    </a>
-//    <a href="/reestr/16-52-030505-1496" className="object__nearby-item">
-//      <div className="object__nearby-item-title">16:52:030505:1496</div>
-//      <div className="object__nearby-item-descr">
-//        Республика Татарстан, г Набережные Челны, ул Тан, д 207А, кв 31
-//      </div>
-//    </a>
-//    <a href="/reestr/16-52-030505-2449" className="object__nearby-item">
-//      <div className="object__nearby-item-title">16:52:030505:2449</div>
-//      <div className="object__nearby-item-descr">
-//        Республика Татарстан, г Набережные Челны, ул им Хади Такташа, д 14Б, кв 58
-//      </div>
-//    </a>
-//    <a href="/reestr/16-52-030505-555" className="object__nearby-item">
-//      <div className="object__nearby-item-title">16:52:030505:555</div>
-//      <div className="object__nearby-item-descr">
-//        Республика Татарстан, г Набережные Челны, тракт Сармановский, д 6, кв 109
-//      </div>
-//    </a>
-//    <a href="/reestr/16-52-030505-2429" className="object__nearby-item">
-//      <div className="object__nearby-item-title">16:52:030505:2429</div>
-//      <div className="object__nearby-item-descr">
-//        г Набережные Челны, ул им Хади Такташа, д. 14Б, 108
-//      </div>
-//    </a>
-//  </div>
-// </div>
-// {/* neaby finish */}

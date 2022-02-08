@@ -3,10 +3,7 @@ import axios from 'axios'
 import SearchIcon from '@material-ui/icons/Search'
 import CloseIcon from '@material-ui/icons/Close'
 import ReactLoading from 'react-loading'
-import { useDispatch } from 'react-redux'
-import { setInputCadastrResult, setInputId, setInputRights } from '../redux/reducers/common'
-import { setInputFlat } from '../redux/reducers/flat'
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import Countdown from './countdown'
 
 const Search = () => {
@@ -16,8 +13,6 @@ const Search = () => {
   const [cadNumber, setCadNumber] = useState('')
   const [data, setData] = useState('')
   const [loading, setLoading] = useState(false)
-  const dispatch = useDispatch()
-
 
   const loadReesrt = async (subject = '') => {
     const response = await axios.get(`api/tooltips?text=${subject}`)
@@ -45,16 +40,7 @@ const Search = () => {
           return result.data
         })
 
-      dispatch(setInputCadastrResult(getAskReestrByCudNum))
-      const askObjectId = await axios(`api/findId?cadNumber=${cadNumber || enterText}`)
-      const objectId = askObjectId.data
-      dispatch(setInputId(objectId))
-
-      const getAskRights = await axios(`api/findRights?objectid=${objectId.getAskId}`)
-      dispatch(setInputRights(getAskRights.data))
-      console.log('RIGHTS', getAskRights.data)
-      const rights = getAskRights.data
-      localStorage.setItem(`${cadNumber || enterText}`, JSON.stringify({ ...getAskReestrByCudNum, rights }))
+      localStorage.setItem(`${cadNumber || enterText}`, JSON.stringify(getAskReestrByCudNum))
       setData(getAskReestrByCudNum)
       if (typeof getAskReestrByCudNum.error === 'undefined') {
         router.push(`/object/${cadNumber || enterText}`)
@@ -78,12 +64,6 @@ const Search = () => {
     return () => document.removeEventListener('click', clearToolTips)
   }, [])
 
-  // useEffect(() => {
-  //   if (document.querySelector('.dataItem')) {
-  //     console.log(document.querySelector('.dataItem').addEventListener('click'))
-  //   }
-  //   return () => document.querySelector('.dataItem').addEventListener('click')
-  // }, [])
 
   return (
     <div>
@@ -103,7 +83,6 @@ const Search = () => {
               onClick={() => {
                 askReestr()
                 setLoading(true)
-                dispatch(setInputFlat({}))
               }}
             >
               <div aria-hidden="true" className="searchIcon">
