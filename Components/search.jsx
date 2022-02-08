@@ -6,10 +6,11 @@ import ReactLoading from 'react-loading'
 import { useDispatch } from 'react-redux'
 import { setInputCadastrResult, setInputId, setInputRights } from '../redux/reducers/common'
 import { setInputFlat } from '../redux/reducers/flat'
-
+import Router, { useRouter } from 'next/router'
 import Countdown from './countdown'
 
 const Search = () => {
+  const router = useRouter()
   const [value, setValue] = useState([])
   const [enterText, setEnterText] = useState('')
   const [cadNumber, setCadNumber] = useState('')
@@ -51,10 +52,12 @@ const Search = () => {
 
       const getAskRights = await axios(`api/findRights?objectid=${objectId.getAskId}`)
       dispatch(setInputRights(getAskRights.data))
-      localStorage.setItem(`${cadNumber || enterText}`, JSON.stringify({ ...getAskReestrByCudNum, getAskRights }))
+      console.log('RIGHTS', getAskRights.data)
+      const rights = getAskRights.data
+      localStorage.setItem(`${cadNumber || enterText}`, JSON.stringify({ ...getAskReestrByCudNum, rights }))
       setData(getAskReestrByCudNum)
       if (typeof getAskReestrByCudNum.error === 'undefined') {
-        history.push(`/object/${cadNumber || enterText}`)
+        router.push(`/object/${cadNumber || enterText}`)
       }
     }
   }
