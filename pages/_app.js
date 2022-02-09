@@ -1,6 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { createWrapper } from 'next-redux-wrapper'
+import {createWrapper} from 'next-redux-wrapper'
 import store from '../redux/index'
 
 import '../styles/styles.css'

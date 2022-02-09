@@ -1,7 +1,9 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
+// import { Context } from '../../Components/context'
 
 import InfoAppart from '../../Components/info-building'
+// import { Component } from 'react'
 
 
 const objectIdUrl = process.env.OBJECT_ID_URL
@@ -12,18 +14,20 @@ const priceUrl = process.env.PRICE_URL
 const socialUrl = process.env.SOCIAL_URL
 
 export default function Object(props) {
-const objectInfo = props
-console.log('PRPOPS', objectInfo )
-const router = useRouter()
-const cadNumber = router.query.cadnumber
-console.log('CADNMB', cadNumber)
-localStorage.setItem(`${cadNumber}`, JSON.stringify(objectInfo))
+  const objectInfo = props
+  console.log('PRPOPS', objectInfo )
+  const router = useRouter()
+  const cadNumber = router.query.cadnumber
+  console.log('CADNMB', cadNumber)
+  localStorage.setItem(`${cadNumber}`, JSON.stringify(objectInfo))
 
   return (
     <div>
       111
       {props.reestrData.objectId}
-      <InfoAppart/>
+      
+      <InfoAppart />
+      
     </div>
   )
 }
