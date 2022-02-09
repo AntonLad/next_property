@@ -41,11 +41,12 @@ export default (state = initialState, action = {}) => {
   }
 }
 
-export function setInputCadastrResult(value) {
-  return {
+export const setInputCadastrResult = (value) => async dispatch => {
+  console.log('VALUE', value)
+  dispatch ({
     type: ASK_REESTR_BY_CADNUM,
     payload: value
-  }
+  })
 }
 
 export function setInputRights(value) {

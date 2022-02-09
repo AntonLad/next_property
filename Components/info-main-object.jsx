@@ -8,13 +8,13 @@ const InfoMainObject = () => {
   const router = useRouter()
   const cadNumber = router.query.cadnumber
   const localDataObject = JSON.parse(localStorage.getItem(`${cadNumber}`))
-  const { addressNote } = localDataObject.reestrData.objectData?.objectAddress
-  const objectName = localDataObject.reestrData.objectData?.objectName ?? '0'
+  const { addressNote } = localDataObject.objectData?.objectAddress
+  const objectName = localDataObject.objectData?.objectName ?? '0'
   const objectNameLetter = objectName[0]
-  const { objectId } = localDataObject.reestrData
-  const { areaValue, utilByDoc } = localDataObject.reestrData.parcelData ?? {}
-  const { name } = localDataObject.flatPrice.flat ?? {}
- 
+  const { objectId } = localDataObject
+  const { areaValue, utilByDoc } = localDataObject.parcelData ?? {}
+  // const { name } = localDataObject.flatPrice.flat ?? {}
+
 
   // const { addressNote } = useSelector((store) => store.common.getAskReestrByCudNum?.objectData ?? {})
   // const objectName = useSelector((store) => store.common.getAskReestrByCudNum?.objectData?.objectName ?? '0')
@@ -58,7 +58,7 @@ const InfoMainObject = () => {
           {objectNameLetter !== '0' && (
             <div className="object__blockTableTr">
               <div className="object__blockTableTd">Тип объекта:</div>
-              <div className="object__blockTableTd">{name || objectName}</div>
+              {/* <div className="object__blockTableTd">{name || objectName}</div> */}
             </div>
           )}
           {(utilByDoc) && (

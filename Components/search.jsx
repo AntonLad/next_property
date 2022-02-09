@@ -4,7 +4,10 @@ import SearchIcon from '@material-ui/icons/Search'
 import CloseIcon from '@material-ui/icons/Close'
 import ReactLoading from 'react-loading'
 import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
 import Countdown from './countdown'
+import { setInputCadastrResult} from '../redux/reducers/common'
+
 
 const Search = () => {
   const router = useRouter()
@@ -13,6 +16,8 @@ const Search = () => {
   const [cadNumber, setCadNumber] = useState('')
   const [data, setData] = useState('')
   const [loading, setLoading] = useState(false)
+  const dispatch = useDispatch()
+
 
   const loadReesrt = async (subject = '') => {
     const response = await axios.get(`api/tooltips?text=${subject}`)
@@ -30,22 +35,46 @@ const Search = () => {
     setCadNumber(number)
     setValue([])
   }
-
   const askReestr = async () => {
     if (cadNumber.length > 10 || enterText.length > 10) {
-      const getAskReestrByCudNum = await axios.get(`api/findobject?cadNumber=${cadNumber || enterText}`)
+      const getAskReestrByCudNum = await axios.get(`/api/findobject?cadNumber=${cadNumber || enterText}`)
         .then((result) => {
           setLoading(false)
           console.log('SUPERRESULT', result.data)
           return result.data
         })
-      
+      dispatch(setInputCadastrResult(getAskReestrByCudNum))
+      const askObjectId = await axios(`/api/findId?cadNumber=${cadNumber || enterText}`)
+      const objectId = askObjectId.data.getAskId
+      // dispatch(setInputId(objectId))
+
+      const getAskRights = await axios(`/api/findRights?objectid=${objectId.getAskId}`)
+      const rights = getAskRights.data
+      // dispatch(setInputRights(getAskRights.data))
+      // setAppState({...getAskReestrByCudNum, objectId, rights})
+      localStorage.setItem(`${cadNumber || enterText}`, JSON.stringify({ ...getAskReestrByCudNum, rights }))
       setData(getAskReestrByCudNum)
       if (typeof getAskReestrByCudNum.error === 'undefined') {
         router.push(`/object/${cadNumber || enterText}`)
       }
     }
   }
+
+  // const askReestr = async () => {
+  //   if (cadNumber.length > 10 || enterText.length > 10) {
+  //     const getAskReestrByCudNum = await axios.get(`api/findobject?cadNumber=${cadNumber || enterText}`)
+  //       .then((result) => {
+  //         setLoading(false)
+  //         console.log('SUPERRESULT', result.data)
+  //         return result.data
+  //       })
+
+  //     setData(getAskReestrByCudNum)
+  //     if (typeof getAskReestrByCudNum.error === 'undefined') {
+  //       router.push(`/object/${cadNumber || enterText}`)
+  //     }
+  //   }
+  // }
 
   const clearInput = () => {
     setValue([])

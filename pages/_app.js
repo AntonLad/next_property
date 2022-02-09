@@ -1,14 +1,15 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import {createWrapper} from 'next-redux-wrapper'
-import store from '../redux/index'
+
+import { createWrapper } from 'next-redux-wrapper'
+import store from '../redux'
 
 import '../styles/styles.css'
 
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+       <Component {...pageProps} />
     </Provider>
   )
 }
