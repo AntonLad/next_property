@@ -1,7 +1,9 @@
 // import axios from 'axios'
 import { useRouter } from 'next/router'
+// import { Context } from '../../Components/context'
 
 import InfoAppart from '../../Components/info-building'
+// import { Component } from 'react'
 
 
 // const objectIdUrl = process.env.OBJECT_ID_URL
