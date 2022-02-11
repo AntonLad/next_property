@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
+// import ReactLoading from 'react-loading'
 import Header from './header'
 import Footer from './footer'
 import MenuLeft from './menu-left'
@@ -20,8 +21,6 @@ import InfoMainObject from './info-main-object'
 const InfoAppart = ({ data }) => {
   const router = useRouter()
   const info = router.query.cadnumber
-
-
 
   // const localDataObject = JSON.parse(localStorage.getItem(`${info}`))
   // const rights = localDataObject.rights?.realty?.rights
@@ -47,19 +46,19 @@ const InfoAppart = ({ data }) => {
   // }
   // askAboutFlat()
 
-  useEffect(() => {
-    // const localData = JSON.parse(localStorage.getItem(`${info}`))
-    // const LocalFlat = localData?.getAskFlat?.data
-    // const LocalRights = localData?.getAskRights?.data
-    // if (localData) {
-    //   dispatch(setInputCadastrResult(localData))
-    //   dispatch(setInputFlat(LocalFlat))
-    //   dispatch(setInputRights(LocalRights))
-    //   console.log('LocalFlat', LocalFlat)
-    // }
-    // const ObjectData = JSON.parse(Cookie.get(info))
-    // console.log('NEWDATA', ObjectData)
-  }, [])
+//   useEffect(() => {
+//     const localData = JSON.parse(localStorage.getItem(`${info}`))
+//     const LocalFlat = localData?.getAskFlat?.data
+//     const LocalRights = localData?.getAskRights?.data
+//     if (localData) {
+//       dispatch(setInputCadastrResult(localData))
+//       dispatch(setInputFlat(LocalFlat))
+//       dispatch(setInputRights(LocalRights))
+//       console.log('LocalFlat', LocalFlat)
+//     }
+//     const ObjectData = JSON.parse(Cookie.get(info))
+//     console.log('NEWDATA', ObjectData)
+//   }, [])
 
   return (
     <div className="first">

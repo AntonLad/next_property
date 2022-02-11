@@ -14,7 +14,6 @@ const InfoMainObject = () => {
   // const { objectId } = localDataObject
   // const { areaValue, utilByDoc } = localDataObject.parcelData ?? {}
   // const { name } = localDataObject.flatPrice.flat ?? {}
-
   // const { addressNote } = useSelector((store) => store.common.getAskReestrByCudNum?.objectData ?? {})
   // const objectName = useSelector((store) => store.common.getAskReestrByCudNum?.objectData?.objectName ?? '0')
   // const objectNameLetter = objectName[0]
@@ -32,6 +31,7 @@ const InfoMainObject = () => {
   // }, [])
 
   return (
+
     <div>11111</div>
     // <div>
     //   <div className="object__content-top">
@@ -84,7 +84,6 @@ const InfoMainObject = () => {
     //       )}
     //     </div>
     //   </div>
-
     // </div>
   )
 }

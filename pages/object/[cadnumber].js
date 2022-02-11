@@ -15,8 +15,8 @@ import InfoAppart from '../../Components/info-building'
 // const socialUrl = process.env.SOCIAL_URL
 
 export default function Object({ cadastralObject }) {
-  console.log('DATAPROPS', JSON.parse(cadastralObject))
-// const objectInfo = props
+console.log('DATAPROPS', JSON.parse(cadastralObject))
+
 const router = useRouter()
 const cadNumber = router.query.cadnumber
 // console.log('CADNMB', cadNumber)
@@ -107,3 +107,4 @@ export async function getServerSideProps(context) {
     props: {cadastralObject: context.req.cookies[cadastr] || null}, // will be passed to the page component as props
   }
 }
+

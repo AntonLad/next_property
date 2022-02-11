@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import Countdown from './countdown'
 import Cookie from 'js-cookie'
 
+
 const Search = () => {
   const router = useRouter()
   const [value, setValue] = useState([])
@@ -14,6 +15,8 @@ const Search = () => {
   const [cadNumber, setCadNumber] = useState('')
   const [data, setData] = useState('')
   const [loading, setLoading] = useState(false)
+  const dispatch = useDispatch()
+
 
   const loadReesrt = async (subject = '') => {
     const response = await axios.get(`/api/tooltips?text=${subject}`)
@@ -39,6 +42,7 @@ const Search = () => {
           console.log('SUPERRESULT', result.data)
           return result.data
         })
+
       const askObjectId = await axios(`/api/findId?cadNumber=${cadNumber || enterText}`)
       const objectId = askObjectId.data.getAskId
 
@@ -48,11 +52,28 @@ const Search = () => {
       // str = str.replace(/[^0-9]/g, '')
       Cookie.set(`${cadNumber.replace(/[^0-9]/g, '') || enterText.replace(/[^0-9]/g, '')}`, {...getAskReestrByCudNum, objectId, rights }, { expires: 1000 })
        setData(getAskReestrByCudNum)
+
       if (typeof getAskReestrByCudNum.error === 'undefined') {
         router.push(`/object/${cadNumber || enterText}`)
       }
     }
   }
+
+  // const askReestr = async () => {
+  //   if (cadNumber.length > 10 || enterText.length > 10) {
+  //     const getAskReestrByCudNum = await axios.get(`api/findobject?cadNumber=${cadNumber || enterText}`)
+  //       .then((result) => {
+  //         setLoading(false)
+  //         console.log('SUPERRESULT', result.data)
+  //         return result.data
+  //       })
+
+  //     setData(getAskReestrByCudNum)
+  //     if (typeof getAskReestrByCudNum.error === 'undefined') {
+  //       router.push(`/object/${cadNumber || enterText}`)
+  //     }
+  //   }
+  // }
 
   const clearInput = () => {
     setValue([])
