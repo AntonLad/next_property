@@ -5,6 +5,7 @@ import CloseIcon from '@material-ui/icons/Close'
 import ReactLoading from 'react-loading'
 import { useRouter } from 'next/router'
 import Countdown from './countdown'
+import Cookie from 'js-cookie'
 
 const Search = () => {
   const router = useRouter()
@@ -15,7 +16,7 @@ const Search = () => {
   const [loading, setLoading] = useState(false)
 
   const loadReesrt = async (subject = '') => {
-    const response = await axios.get(`api/tooltips?text=${subject}`)
+    const response = await axios.get(`/api/tooltips?text=${subject}`)
     setValue(response.data)
     console.log('VALUE', value)
   }
@@ -30,17 +31,23 @@ const Search = () => {
     setCadNumber(number)
     setValue([])
   }
-
   const askReestr = async () => {
     if (cadNumber.length > 10 || enterText.length > 10) {
-      const getAskReestrByCudNum = await axios.get(`api/findobject?cadNumber=${cadNumber || enterText}`)
+      const getAskReestrByCudNum = await axios.get(`/api/findobject?cadNumber=${cadNumber || enterText}`)
         .then((result) => {
           setLoading(false)
           console.log('SUPERRESULT', result.data)
           return result.data
         })
-      
-      setData(getAskReestrByCudNum)
+      const askObjectId = await axios(`/api/findId?cadNumber=${cadNumber || enterText}`)
+      const objectId = askObjectId.data.getAskId
+
+      const getAskRights = await axios(`/api/findRights?objectid=${objectId.getAskId}`)
+      const rights = getAskRights.data
+      // const cookieName = Math.random().toString(36).slice(2)
+      // str = str.replace(/[^0-9]/g, '')
+      Cookie.set(`${cadNumber.replace(/[^0-9]/g, '') || enterText.replace(/[^0-9]/g, '')}`, {...getAskReestrByCudNum, objectId, rights }, { expires: 1000 })
+       setData(getAskReestrByCudNum)
       if (typeof getAskReestrByCudNum.error === 'undefined') {
         router.push(`/object/${cadNumber || enterText}`)
       }

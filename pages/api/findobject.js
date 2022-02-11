@@ -10,7 +10,7 @@ export default async function tooltips(req, res) {
   const cadNum = adress.trim()
 
   if (!checker) {
-    return res.json({ error: 'Не корректные условия поиска. Введите кадастровый номер или адрес объекта' })
+    res.json({ error: 'Не корректные условия поиска. Введите кадастровый номер или адрес объекта' })
   }
   const getAskReestrByCudNum = await axios({
     method: 'GET',
@@ -19,7 +19,7 @@ export default async function tooltips(req, res) {
   })
     .then(({ data }) => {
       if (data.errorCode) {
-        return { error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' }
+        res.json({ error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' })
       }
       return data
     })
@@ -28,6 +28,6 @@ export default async function tooltips(req, res) {
       res.json({ error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' })
     })
   console.log('REESTR', getAskReestrByCudNum)
-  return res.json(getAskReestrByCudNum)
+  res.json(getAskReestrByCudNum)
 
 }
