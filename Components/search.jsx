@@ -4,9 +4,8 @@ import SearchIcon from '@material-ui/icons/Search'
 import CloseIcon from '@material-ui/icons/Close'
 import ReactLoading from 'react-loading'
 import { useRouter } from 'next/router'
-import { useDispatch } from 'react-redux'
 import Countdown from './countdown'
-import { setInputCadastrResult} from '../redux/reducers/common'
+import Cookie from 'js-cookie'
 
 
 const Search = () => {
@@ -20,7 +19,7 @@ const Search = () => {
 
 
   const loadReesrt = async (subject = '') => {
-    const response = await axios.get(`api/tooltips?text=${subject}`)
+    const response = await axios.get(`/api/tooltips?text=${subject}`)
     setValue(response.data)
     console.log('VALUE', value)
   }
@@ -43,17 +42,17 @@ const Search = () => {
           console.log('SUPERRESULT', result.data)
           return result.data
         })
-      dispatch(setInputCadastrResult(getAskReestrByCudNum))
+
       const askObjectId = await axios(`/api/findId?cadNumber=${cadNumber || enterText}`)
       const objectId = askObjectId.data.getAskId
-      // dispatch(setInputId(objectId))
 
       const getAskRights = await axios(`/api/findRights?objectid=${objectId.getAskId}`)
       const rights = getAskRights.data
-      // dispatch(setInputRights(getAskRights.data))
-      // setAppState({...getAskReestrByCudNum, objectId, rights})
-      localStorage.setItem(`${cadNumber || enterText}`, JSON.stringify({ ...getAskReestrByCudNum, rights }))
-      setData(getAskReestrByCudNum)
+      // const cookieName = Math.random().toString(36).slice(2)
+      // str = str.replace(/[^0-9]/g, '')
+      Cookie.set(`${cadNumber.replace(/[^0-9]/g, '') || enterText.replace(/[^0-9]/g, '')}`, {...getAskReestrByCudNum, objectId, rights }, { expires: 1000 })
+       setData(getAskReestrByCudNum)
+
       if (typeof getAskReestrByCudNum.error === 'undefined') {
         router.push(`/object/${cadNumber || enterText}`)
       }

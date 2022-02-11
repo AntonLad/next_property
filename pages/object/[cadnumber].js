@@ -1,5 +1,6 @@
 // import axios from 'axios'
 import { useRouter } from 'next/router'
+import Cookie from 'js-cookie'
 // import { Context } from '../../Components/context'
 
 import InfoAppart from '../../Components/info-building'
@@ -13,8 +14,9 @@ import InfoAppart from '../../Components/info-building'
 // const priceUrl = process.env.PRICE_URL
 // const socialUrl = process.env.SOCIAL_URL
 
-export default function Object() {
-// const objectInfo = props
+export default function Object({ cadastralObject }) {
+console.log('DATAPROPS', JSON.parse(cadastralObject))
+
 const router = useRouter()
 const cadNumber = router.query.cadnumber
 // console.log('CADNMB', cadNumber)
@@ -92,3 +94,17 @@ const cadNumber = router.query.cadnumber
 //     props: {reestrData, objectId, rights}
 //   }
 // }
+
+
+export async function getServerSideProps(context) {
+  const cookieName = context.params.cadnumber
+  const cadastr = cookieName.replace(/[^0-9]/g, '')
+  const cookies = context.req.cookies
+  console.log('CADASTR', cadastr)
+  // console.log('CONTEXT', context)
+  console.log('COOKIES', cookies)
+  return {
+    props: {cadastralObject: context.req.cookies[cadastr] || null}, // will be passed to the page component as props
+  }
+}
+
