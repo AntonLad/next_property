@@ -15,13 +15,10 @@ const Search = () => {
   const [cadNumber, setCadNumber] = useState('')
   const [data, setData] = useState('')
   const [loading, setLoading] = useState(false)
-  const dispatch = useDispatch()
-
 
   const loadReesrt = async (subject = '') => {
     const response = await axios.get(`/api/tooltips?text=${subject}`)
     setValue(response.data)
-    console.log('VALUE', value)
   }
 
   const onChange = (e) => {
@@ -39,7 +36,6 @@ const Search = () => {
       const getAskReestrByCudNum = await axios.get(`/api/findobject?cadNumber=${cadNumber || enterText}`)
         .then((result) => {
           setLoading(false)
-          console.log('SUPERRESULT', result.data)
           return result.data
         })
 
@@ -49,31 +45,14 @@ const Search = () => {
       const getAskRights = await axios(`/api/findRights?objectid=${objectId.getAskId}`)
       const rights = getAskRights.data
       // const cookieName = Math.random().toString(36).slice(2)
-      // str = str.replace(/[^0-9]/g, '')
       Cookie.set(`${cadNumber.replace(/[^0-9]/g, '') || enterText.replace(/[^0-9]/g, '')}`, {...getAskReestrByCudNum, objectId, rights }, { expires: 1000 })
-       setData(getAskReestrByCudNum)
+      setData(getAskReestrByCudNum)
 
       if (typeof getAskReestrByCudNum.error === 'undefined') {
         router.push(`/object/${cadNumber || enterText}`)
       }
     }
   }
-
-  // const askReestr = async () => {
-  //   if (cadNumber.length > 10 || enterText.length > 10) {
-  //     const getAskReestrByCudNum = await axios.get(`api/findobject?cadNumber=${cadNumber || enterText}`)
-  //       .then((result) => {
-  //         setLoading(false)
-  //         console.log('SUPERRESULT', result.data)
-  //         return result.data
-  //       })
-
-  //     setData(getAskReestrByCudNum)
-  //     if (typeof getAskReestrByCudNum.error === 'undefined') {
-  //       router.push(`/object/${cadNumber || enterText}`)
-  //     }
-  //   }
-  // }
 
   const clearInput = () => {
     setValue([])

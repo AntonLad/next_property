@@ -99,11 +99,7 @@ const cadNumber = router.query.cadnumber
 export async function getServerSideProps(context) {
   const cookieName = context.params.cadnumber
   const cadastr = cookieName.replace(/[^0-9]/g, '')
-  const cookies = context.req.cookies
-  console.log('CADASTR', cadastr)
-  // console.log('CONTEXT', context)
-  console.log('COOKIES', cookies)
-  return {
+   return {
     props: {cadastralObject: context.req.cookies[cadastr] || null}, // will be passed to the page component as props
   }
 }
