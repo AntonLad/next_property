@@ -8,6 +8,7 @@ import Countdown from './countdown'
 import Cookie from 'js-cookie'
 
 
+
 const Search = () => {
   const router = useRouter()
   const [value, setValue] = useState([])
@@ -38,14 +39,15 @@ const Search = () => {
           setLoading(false)
           return result.data
         })
-
+      console.log('getAskReestrByCudNum', getAskReestrByCudNum)
       const askObjectId = await axios(`/api/findId?cadNumber=${cadNumber || enterText}`)
       const objectId = askObjectId.data.getAskId
-
-      const getAskRights = await axios(`/api/findRights?objectid=${objectId.getAskId}`)
+      console.log('objectId', objectId)
+      const getAskRights = await axios(`/api/findRights?objectid=${objectId}`)
       const rights = getAskRights.data
       // const cookieName = Math.random().toString(36).slice(2)
-      Cookie.set(`${cadNumber.replace(/[^0-9]/g, '') || enterText.replace(/[^0-9]/g, '')}`, {...getAskReestrByCudNum, objectId, rights }, { expires: 1000 })
+
+      // Cookie.set(`${cadNumber.replace(/[^0-9]/g, '') || enterText.replace(/[^0-9]/g, '')}`, {...getAskReestrByCudNum, objectId, rights }, { expires: 1000 })
       setData(getAskReestrByCudNum)
 
       if (typeof getAskReestrByCudNum.error === 'undefined') {
@@ -86,6 +88,7 @@ const Search = () => {
             className="searchButton"
               type="button"
               disabled={enterText.length < 10}
+              autoComplete="off"
               onClick={() => {
                 askReestr()
                 setLoading(true)

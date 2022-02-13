@@ -16,8 +16,8 @@ export default async function tooltips(req, res) {
       return data.length
     })
     .catch((e) => {
-      console.log('ERROR', e)
-      res.json({ error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' })
+      console.log('ERROR_FIND_ID', e)
+      return res.json({ error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' })
     })
   console.log('ID', getAskId)
   return res.json({ getAskId })

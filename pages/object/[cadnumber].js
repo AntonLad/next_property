@@ -1,11 +1,5 @@
-// import axios from 'axios'
 import { useRouter } from 'next/router'
-import Cookie from 'js-cookie'
-// import { Context } from '../../Components/context'
-
 import InfoAppart from '../../Components/info-building'
-// import { Component } from 'react'
-
 
 // const objectIdUrl = process.env.OBJECT_ID_URL
 // const egrpUrl = process.env.EGRP_URL
@@ -16,7 +10,8 @@ import InfoAppart from '../../Components/info-building'
 
 export default function Object({ cadastralObject }) {
 console.log('DATAPROPS', JSON.parse(cadastralObject))
-
+// const db = useIndexedDB('people');
+// console.log('DATABASE', db)
 const router = useRouter()
 const cadNumber = router.query.cadnumber
 // console.log('CADNMB', cadNumber)
@@ -24,7 +19,7 @@ const cadNumber = router.query.cadnumber
 
   return (
     <div>
-      <InfoAppart />
+      <InfoAppart props={JSON.parse(cadastralObject)}/>
       {cadNumber}
     </div>
   )
@@ -97,6 +92,7 @@ const cadNumber = router.query.cadnumber
 
 
 export async function getServerSideProps(context) {
+  // console.log('CONTEXT', context)
   const cookieName = context.params.cadnumber
   const cadastr = cookieName.replace(/[^0-9]/g, '')
    return {

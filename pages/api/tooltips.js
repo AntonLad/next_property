@@ -10,6 +10,6 @@ export default async function tooltips(req, res) {
   .then(({ data }) => {
     return data
   })
-  .catch((e) => console.log('ERROR', e.status))
-  res.json(getAskByReestrByAdress)
+  .catch((e) => console.log('ERROR_TOOLTIPS', e.status))
+  return res.json(getAskByReestrByAdress)
 }

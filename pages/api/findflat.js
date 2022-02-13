@@ -24,8 +24,8 @@ export default async function tooltips(req, res) {
       return data
     })
     .catch((e) => {
-      console.log('ERROR', e)
-      res.json({ error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' })
+      console.log('ERROR_FIND_FLAT', e)
+      return res.json({ error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' })
     })
 
   const lat = getAskPrice?.bld?.pos?.lat
@@ -48,9 +48,9 @@ export default async function tooltips(req, res) {
       return data
     })
     .catch((e) => {
-      console.log('ERROR', e)
-      res.json({ error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' })
+      console.log('ERROR_FIND_SOCIAL', e)
+      return res.json({ error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' })
     })
 
-  res.json({ ...getAskPrice, getAskStructure })
+  return res.json({ ...getAskPrice, getAskStructure })
 }

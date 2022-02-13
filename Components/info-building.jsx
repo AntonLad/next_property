@@ -18,7 +18,8 @@ import InfoMainObject from './info-main-object'
 // import './main.css'
 
 
-const InfoAppart = ({ data }) => {
+const InfoAppart = ({ props }) => {
+  console.log('PROPS', props)
   const router = useRouter()
   const info = router.query.cadnumber
 
@@ -108,14 +109,4 @@ const InfoAppart = ({ data }) => {
   )
 }
 
-
-// export async function getServerSideProps({ req, res }) {
-//   console.log('req', req.cookies)
-//   return {
-//     props: {data: req.cookies.primer || null}, // will be passed to the page component as props
-//   }
-// }
-
-
 export default InfoAppart
-
