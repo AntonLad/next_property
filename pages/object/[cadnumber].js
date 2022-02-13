@@ -1,5 +1,10 @@
 import { useRouter } from 'next/router'
+import { MongoClient } from 'mongodb'
+
 import InfoAppart from '../../Components/info-building'
+
+const url = 'mongodb://127.0.0.1/'
+const client = new MongoClient(url, { useUnifiedTopology: true })
 
 // const objectIdUrl = process.env.OBJECT_ID_URL
 // const egrpUrl = process.env.EGRP_URL
@@ -92,11 +97,17 @@ const cadNumber = router.query.cadnumber
 
 
 export async function getServerSideProps(context) {
-  // console.log('CONTEXT', context)
-  const cookieName = context.params.cadnumber
-  const cadastr = cookieName.replace(/[^0-9]/g, '')
-   return {
-    props: {cadastralObject: context.req.cookies[cadastr] || null}, // will be passed to the page component as props
+  console.log('CONTEXT', context.params)
+  const cadastr = context.params.cadnumber
+  await client.connect()
+  const db = client.db('cadastr')
+  const collection = db.collection('searchingObjects')
+  const res = await collection.find({'objectData.objectCn': cadastr}).toArray()
+  const cadastrObj = res[0]
+  
+  console.log('cadastrObj', cadastrObj)
+  return {
+    props: {cadastralObject: JSON.stringify(cadastrObj) || null}, // will be passed to the page component as props
   }
 }
 

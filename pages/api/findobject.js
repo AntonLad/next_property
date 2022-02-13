@@ -39,7 +39,7 @@ export default async function tooltips(req, res) {
     const db = client.db('cadastr')
     const collection = db.collection('searchingObjects')
     const object = await collection.find({'objectData.objectCn': cadNumber}).toArray()
-    console.log('OBJECT', object)
+    console.log('OBJECT', object.length)
     if (object.length === 0) {
       await collection.insertOne(getAskReestrByCudNum)
       await collection.updateOne

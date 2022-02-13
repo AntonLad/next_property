@@ -43,11 +43,13 @@ const Search = () => {
       const askObjectId = await axios(`/api/findId?cadNumber=${cadNumber || enterText}`)
       const objectId = askObjectId.data.getAskId
       console.log('objectId', objectId)
-      const getAskRights = await axios(`/api/findRights?objectid=${objectId}`)
-      const rights = getAskRights.data
+      if (objectId !== 0) {
+        await axios(`/api/findRights?objectid=${objectId}&cadNumber=${cadNumber || enterText}`)
+      }
+     
       // const cookieName = Math.random().toString(36).slice(2)
 
-      // Cookie.set(`${cadNumber.replace(/[^0-9]/g, '') || enterText.replace(/[^0-9]/g, '')}`, {...getAskReestrByCudNum, objectId, rights }, { expires: 1000 })
+      // Cookie.set(`${cadNumber.replace(/[^0-9]/g, '') || enterText.replace(/[^0-9]/g, '')}`, `${cadNumber || enterText}`, { expires: 1000 })
       setData(getAskReestrByCudNum)
 
       if (typeof getAskReestrByCudNum.error === 'undefined') {
