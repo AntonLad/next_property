@@ -18,17 +18,18 @@ import InfoMainObject from './info-main-object'
 // import './main.css'
 
 
-const InfoAppart = ({ props }) => {
-  console.log('PROPS', props)
+const InfoAppart = ({ cadastrObj }) => {
   const router = useRouter()
   const info = router.query.cadnumber
 
-  // const localDataObject = JSON.parse(localStorage.getItem(`${info}`))
-  // const rights = localDataObject.rights?.realty?.rights
-  // const price = localDataObject?.flatPrice?.stats?.price
-  // const address = localDataObject.objectData?.objectAddress?.addressNotes
-  // const oksType = localDataObject.parcelData?.oksType
-  // const checker = localDataObject.flatPrice?.address
+  console.log('cadastrObj', cadastrObj)
+  // const rights = cadastrObj.rights?.realty?.rights
+  // const price = cadastrObj?.flatPrice?.stats?.price
+  const address = cadastrObj.objectData?.objectAddress?.addressNotes
+  const oksType = cadastrObj.parcelData?.oksType
+  // const checker = cadastrObj.flatPrice?.address
+
+  
 
   // const askAboutFlat = async () => {
   //   if (oksType === 'flat') {
@@ -75,7 +76,7 @@ const InfoAppart = ({ props }) => {
               <MenuLeft />
               <div className="object__contentWrap">
                 <div className="object__content">
-                  <InfoMainObject />
+                  <InfoMainObject cadastrObj={cadastrObj}/>
                   {/* <Cadastr />
                   {rights && <Owners />}
                   <Restriction />

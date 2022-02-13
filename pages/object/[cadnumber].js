@@ -24,7 +24,7 @@ const cadNumber = router.query.cadnumber
 
   return (
     <div>
-      <InfoAppart props={JSON.parse(cadastralObject)}/>
+      <InfoAppart cadastrObj={JSON.parse(cadastralObject)}/>
       {cadNumber}
     </div>
   )
