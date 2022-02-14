@@ -1,4 +1,9 @@
 import axios from "axios"
+import { MongoClient } from 'mongodb'
+
+const url = 'mongodb://127.0.0.1/'
+const client = new MongoClient(url, { useUnifiedTopology: true })
+
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0
 const apiKey = process.env.API_KEY
 const priceUrl = process.env.PRICE_URL
@@ -6,8 +11,8 @@ const socialUrl = process.env.SOCIAL_URL
 
 export default async function tooltips(req, res) {
   const flat = req.query.address
+  const cadNumber = req.query.cadNumber
   const url = `${priceUrl}${flat}`
-  console.log('flatAddress', url)
   const encodingUrl = encodeURI(url)
   const getAskPrice = await axios({
     headers: {
@@ -52,5 +57,10 @@ export default async function tooltips(req, res) {
       return res.json({ error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' })
     })
 
+  client.connect(async () => {
+    const db = client.db('cadastr')
+    const collection = db.collection('searchingObjects')
+    await collection.updateOne({'objectData.objectCn': cadNumber}, { $set: {price: getAskPrice, structures: getAskStructure.social}}, { upsert: false })
+  })
   return res.json({ ...getAskPrice, getAskStructure })
 }

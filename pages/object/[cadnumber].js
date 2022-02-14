@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import { MongoClient } from 'mongodb'
 
 import InfoAppart from '../../Components/info-building'
@@ -14,18 +13,11 @@ const client = new MongoClient(url, { useUnifiedTopology: true })
 // const socialUrl = process.env.SOCIAL_URL
 
 export default function Object({ cadastralObject }) {
-console.log('DATAPROPS', JSON.parse(cadastralObject))
-// const db = useIndexedDB('people');
-// console.log('DATABASE', db)
-const router = useRouter()
-const cadNumber = router.query.cadnumber
-// console.log('CADNMB', cadNumber)
-// localStorage.setItem(`${cadNumber}`, JSON.stringify(objectInfo))
 
   return (
     <div>
       <InfoAppart cadastrObj={JSON.parse(cadastralObject)}/>
-      {cadNumber}
+
     </div>
   )
 }
@@ -97,15 +89,13 @@ const cadNumber = router.query.cadnumber
 
 
 export async function getServerSideProps(context) {
-  console.log('CONTEXT', context.params)
   const cadastr = context.params.cadnumber
   await client.connect()
   const db = client.db('cadastr')
   const collection = db.collection('searchingObjects')
   const res = await collection.find({'objectData.objectCn': cadastr}).toArray()
   const cadastrObj = res[0]
-  
-  console.log('cadastrObj', cadastrObj)
+
   return {
     props: {cadastralObject: JSON.stringify(cadastrObj) || null}, // will be passed to the page component as props
   }

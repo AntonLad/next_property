@@ -1,13 +1,9 @@
 import React from 'react'
 
-import { useSelector } from 'react-redux'
-
-// import './info.css'
-
-const Price = () => {
-  const { price } = useSelector((store) => store.flat?.getAskPrice?.stats ?? {})
-  const priceRange = useSelector((store) => store.flat?.getAskPrice?.stats?.priceRange)
-  const meterPrice = useSelector((store) => store.flat?.getAskPrice?.stats)
+const Price = ({ cadastrObj }) => {
+  const { price } = cadastrObj.price?.stats ?? {}
+  const priceRange = cadastrObj?.price?.stats?.priceRange
+  const meterPrice = cadastrObj?.price?.stats
 
   return (
     <div>

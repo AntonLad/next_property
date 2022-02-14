@@ -1,37 +1,34 @@
 import React, { useState } from 'react'
 import CloseIcon from '@material-ui/icons/Close'
-import { useSelector } from 'react-redux'
 
-// import './info.css'
+const Mkd = ({ cadastrObj }) => {
+  // const {
+  //   bldTitle, address, photos, wallMaterial, floorMaterial, elevatorCount, supplyTypeHeating,
+  //   stations, maxFloor, supplyTypeHotWater, supplyTypeVent, bldArea, bldLivingArea,
+  //   bldNonLivingArea, bldYear, supplyTypeGas, entranceCount, flatsCount, livingCount,
+  //   bldProject
+  // } = cadastrObj.price?.bld
 
-const Mkd = () => {
-  const {
-    bldTitle, address, photos, wallMaterial, floorMaterial, elevatorCount, supplyTypeHeating,
-    stations, maxFloor, supplyTypeHotWater, supplyTypeVent, bldArea, bldLivingArea,
-    bldNonLivingArea, bldYear, supplyTypeGas, entranceCount, flatsCount, livingCount,
-    bldProject
-  } = useSelector((store) => store.flat?.getAskPrice?.bld)
-
-  // const bldTitle = useSelector((store) => store.flat.getAskPrice?.bld?.bldTitle)
-  // const address = useSelector((store) => store.flat.getAskPrice?.bld?.address)
-  // const photos = useSelector((store) => store.flat.getAskPrice?.bld?.photos)
-  // const wallMaterial = useSelector((store) => store.flat.getAskPrice?.bld?.wallMaterial)
-  // const floorMaterial = useSelector((store) => store.flat.getAskPrice?.bld?.floorMaterial)
-  // const elevatorCount = useSelector((store) => store.flat.getAskPrice?.bld?.elevatorCount)
-  // const supplyTypeHeating = useSelector((store) => store.flat.getAskPrice?.bld?.supplyTypeHeating)
-  // const supplyTypeHotWater = useSelector((store) => store.flat.getAskPrice?.bld?.supplyTypeHotWater)
-  // const supplyTypeVent = useSelector((store) => store.flat.getAskPrice?.bld?.supplyTypeVent)
-  // const maxFloor = useSelector((store) => store.flat.getAskPrice?.bld?.maxFloor)
-  // const bldArea = useSelector((store) => store.flat.getAskPrice?.bld?.bldArea)
-  // const bldLivingArea = useSelector((store) => store.flat.getAskPrice?.bld?.bldLivingArea)
-  // const bldNonLivingArea = useSelector((store) => store.flat.getAskPrice?.bld?.bldNonLivingArea)
-  // const bldYear = useSelector((store) => store.flat.getAskPrice?.bld?.bldYear)
-  // const supplyTypeGas = useSelector((store) => store.flat.getAskPrice?.bld?.supplyTypeGas)
-  // const entranceCount = useSelector((store) => store.flat.getAskPrice?.bld?.entranceCount)
-  // const flatsCount = useSelector((store) => store.flat.getAskPrice?.bld?.flatsCount)
-  // const livingCount = useSelector((store) => store.flat.getAskPrice?.bld?.livingCount)
-  // const bldProject = useSelector((store) => store.flat.getAskPrice?.bld?.bldProject)
-  // const stations = useSelector((store) => store.flat.getAskPrice?.bld?.stations)
+  const bldTitle = cadastrObj.price?.bld?.bldTitle
+  const address = cadastrObj.price?.bld?.address
+  const photos = cadastrObj.price?.bld?.photos
+  const wallMaterial = cadastrObj.price?.bld?.wallMaterial
+  const floorMaterial = cadastrObj.price?.bld?.floorMaterial
+  const elevatorCount = cadastrObj.price?.bld?.elevatorCount
+  const supplyTypeHeating = cadastrObj.price?.bld?.supplyTypeHeating
+  const supplyTypeHotWater = cadastrObj.price?.bld?.supplyTypeHotWater
+  const supplyTypeVent = cadastrObj.price?.bld?.supplyTypeVent
+  const maxFloor = cadastrObj.price?.bld?.maxFloor
+  const bldArea = cadastrObj.price?.bld?.bldArea
+  const bldLivingArea = cadastrObj.price?.bld?.bldLivingArea
+  const bldNonLivingArea = cadastrObj.price?.bld?.bldNonLivingArea
+  const bldYear = cadastrObj.price?.bld?.bldYear
+  const supplyTypeGas = cadastrObj.price?.bld?.supplyTypeGas
+  const entranceCount = cadastrObj.price?.bld?.entranceCount
+  const flatsCount = cadastrObj.price?.bld?.flatsCount
+  const livingCount = cadastrObj.price?.bld?.livingCount
+  const bldProject = cadastrObj.price?.bld?.bldProject
+  const stations = cadastrObj.price?.bld?.stations
 
   const [model, setModel] = useState(false)
   const [tempImg, setTempImg] = useState('')

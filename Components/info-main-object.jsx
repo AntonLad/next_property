@@ -5,9 +5,6 @@ import { useRouter } from 'next/router'
 // import './info.css'
 
 const InfoMainObject = ({ cadastrObj }) => {
-  const router = useRouter()
-  const cadNumber = router.query.cadnumber
-  console.log('CADASTROBJ INFOMAIN', cadastrObj)
   const { id } = cadastrObj.objectData
   const { addressNotes } = cadastrObj.objectData?.objectAddress
   const objectName = cadastrObj.objectData?.objectName ?? '0'

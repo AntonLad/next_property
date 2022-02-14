@@ -1,14 +1,10 @@
 import React from 'react'
 
-import { useSelector } from 'react-redux'
-
-// import './info.css'
-
-const Owners = () => {
+const Owners = ({ cadastrObj }) => {
   // const { dateRegistration } = useSelector(
   //   (store) => store.common.inputText?.getAskRights?.realty ?? {}
   // )
-  const rights = useSelector((store) => store.common.getAskRights?.realty?.rights)
+  const rights = cadastrObj.rights?.realty?.rights
 
   return (
     <div id="owners-info">

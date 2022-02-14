@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
 import axios from 'axios'
 // import ReactLoading from 'react-loading'
 import Header from './header'
@@ -7,44 +8,37 @@ import Footer from './footer'
 import MenuLeft from './menu-left'
 import Search from './search'
 import InfoMainObject from './info-main-object'
-// import Cadastr from './info-cadastr'
-// import Mkd from './info-mkd'
-// import Owners from './info-owners'
-// import Price from './info-price'
-// import Restriction from './info-restrictions'
+import Cadastr from './info-cadastr'
+import Mkd from './info-mkd'
+import Owners from './info-owners'
+import Price from './info-price'
+import Restriction from './info-restrictions'
 // import Map from './info-map'
 
-// import './info.css'
-// import './main.css'
-
+const DynamicComponent = dynamic(
+  () => import('./info-map'),
+  { ssr: false }
+)
 
 const InfoAppart = ({ cadastrObj }) => {
-  const router = useRouter()
-  const info = router.query.cadnumber
 
-  console.log('cadastrObj', cadastrObj)
-  // const rights = cadastrObj.rights?.realty?.rights
-  // const price = cadastrObj?.flatPrice?.stats?.price
+  const router = useRouter()
+  const cadNumber = router.query.cadnumber
+
+  const rights = cadastrObj.rights?.realty?.rights
+  const price = cadastrObj?.flatPrice?.stats?.price
   const address = cadastrObj.objectData?.objectAddress?.addressNotes
   const oksType = cadastrObj.parcelData?.oksType
-  // const checker = cadastrObj.flatPrice?.address
+  const checker = cadastrObj.flatPrice?.address
 
-  
+
 
   // const askAboutFlat = async () => {
   //   if (oksType === 'flat') {
-  //     const localDatas = JSON.parse(localStorage.getItem(`${info}`))
-  //     const adressUrl = `/api/findflat?address=${address}`
-  //     console.log('URL', adressUrl)
+  //     const adressUrl = `/api/findflat?address=${address}&cadNumber=${cadNumber}`
   //     const getAskFlat = await axios(adressUrl)
   //     const flatData = getAskFlat.data
-  //     // dispatch(setInputFlat(getAskFlat.data))
-  //     // setAppState({...appState, flatData})
-
-  //     localStorage.setItem(`${info}`, JSON.stringify({ ...localDatas, flatData }))
-  //     const localDatass = JSON.parse(localStorage.getItem(`${info}`))
-  //     console.log('FULLLOCALDATA', localDatass)
-  //   }
+  //    }
   // }
   // askAboutFlat()
 
@@ -76,29 +70,25 @@ const InfoAppart = ({ cadastrObj }) => {
               <MenuLeft />
               <div className="object__contentWrap">
                 <div className="object__content">
-                  <InfoMainObject cadastrObj={cadastrObj}/>
-                  {/* <Cadastr />
-                  {rights && <Owners />}
-                  <Restriction />
-                  {oksType === 'flat' && (typeof checker === 'undefined' ? (
+                  <InfoMainObject cadastrObj={cadastrObj} />
+                  <Cadastr cadastrObj={cadastrObj} />
+                  {rights && <Owners cadastrObj={cadastrObj} />}
+                  <Restriction cadastrObj={cadastrObj} />
+                  <Price cadastrObj={cadastrObj} />
+                  <Mkd cadastrObj={cadastrObj} />
+                  <DynamicComponent cadastrObj={cadastrObj} />
+                  {/* {oksType === 'flat' && (typeof checker === 'undefined' ? (
                     <>
                       <div className="searchTitle">Загружаем данные о квартире</div>
                       <div className="spinner1" />
                     </>
                   ) : (
                     <>
-                      {price && <Price />}
-                      <Mkd />
-                      <Map />
+                      {price && <Price cadastrObj={cadastrObj} />}
+                      <Mkd cadastrObj={cadastrObj} />
+                      <Map cadastrObj={cadastrObj} />
                     </>
                   ))} */}
-                  Временные данные для проверки:
-                  {/* {rights[0].clsDate}
-                  {price}
-                  {address}
-                  {oksType}
-                  {checker} */}
-
                 </div>
               </div>
             </div>

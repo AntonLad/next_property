@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
 import DG from '2gis-maps'
-// import './info.css'
 
 let map
-const Map = () => {
-  const { info } = useParams()
+const Map = ({ cadastrObj }) => {
+  console.log('MAPPROPS', cadastrObj)
+  const router = useRouter()
+  const info = router.query.cadnumber
   console.log('INFO', info)
   const [range, setRange] = useState(200)
-  const lat = (useSelector((store) => store.flat.getAskPrice?.bld?.pos?.lat))
-  const lng = (useSelector((store) => store.flat.getAskPrice?.bld?.pos?.lng))
-  const address = useSelector((store) => store.flat.getAskPrice?.bld?.address)
-  const social = useSelector((store) => store.flat.getAskPrice.getAskStructure?.social)
+  const lat = cadastrObj.price?.bld?.pos?.lat
+  const lng = cadastrObj.price?.bld?.pos?.lng
+  const address = cadastrObj.price?.bld?.address
+  const social = cadastrObj?.structures
   // const [mapInitialized, setMapInitialized] = useState('')
 
   // function mapping(value, distance) {
@@ -194,7 +194,7 @@ const Map = () => {
       </div>
       <div id="mapContainer" className="mapContainer" />
       {/* добавление объектов инфраструктуры - начало */}
-      {social.slice(0, 4).map((it, ind) => {
+      {social.map((it, ind) => {
         return (
           <div key={ind}>
             {it?.items[0]?.distance < range && (

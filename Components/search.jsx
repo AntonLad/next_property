@@ -5,8 +5,6 @@ import CloseIcon from '@material-ui/icons/Close'
 import ReactLoading from 'react-loading'
 import { useRouter } from 'next/router'
 import Countdown from './countdown'
-import Cookie from 'js-cookie'
-
 
 
 const Search = () => {
@@ -46,7 +44,13 @@ const Search = () => {
       if (objectId !== 0) {
         await axios(`/api/findRights?objectid=${objectId}&cadNumber=${cadNumber || enterText}`)
       }
-     
+      const oksType = getAskReestrByCudNum.parcelData.oksType
+      const address = getAskReestrByCudNum.objectData.addressNote
+
+      if (oksType === 'flat') {
+        const adressUrl = `/api/findflat?address=${address}&cadNumber=${cadNumber || enterText}`
+        await axios(adressUrl)
+      }
       // const cookieName = Math.random().toString(36).slice(2)
 
       // Cookie.set(`${cadNumber.replace(/[^0-9]/g, '') || enterText.replace(/[^0-9]/g, '')}`, `${cadNumber || enterText}`, { expires: 1000 })

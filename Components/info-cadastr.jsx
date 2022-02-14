@@ -1,22 +1,18 @@
 import React from 'react'
 
-import { useSelector } from 'react-redux'
-
-// import './info.css'
-
-const Cadastr = () => {
-  const { objectId, firActualDate } = useSelector((store) => store.common.getAskReestrByCudNum ?? {})
-  const { addressNote } = useSelector((store) => store.common.getAskReestrByCudNum?.objectData ?? {})
-  const objectName = useSelector((store) => store.common.getAskReestrByCudNum?.objectData?.objectName[0])
-  const { name, floor } = useSelector((store) => store.common.flat?.getAskPrice?.flat ?? {})
-  const rightType = useSelector((store) => store.common.getAskRights?.realty?.rights)
+const Cadastr = ({ cadastrObj }) => {
+  const { objectId, firActualDate } = cadastrObj ?? {}
+  const { addressNote } = cadastrObj?.objectData ?? {}
+  const objectName = cadastrObj?.objectData?.objectName[0]
+  const { name, floor } = cadastrObj.flat?.getAskPrice?.flat ?? {}
+  const rightType = cadastrObj.rights?.realty?.rights
   const {
     dateCreate, cadCost, dateCost, oksElementsConstructStr, oksFloors, oksUFloors, oksYearBuilt
-  } = useSelector((store) => store.common.getAskReestrByCudNum?.parcelData ?? {})
+  } = cadastrObj?.parcelData ?? {}
 
   // const { regDate, infoUpdateDate } = useSelector((store) => store.common.getAskReestrByCudNum)
 
-  const { areaValue } = useSelector((store) => store.common.getAskReestrByCudNum.parcelData ?? {})
+  const { areaValue } = cadastrObj?.parcelData ?? {}
 
   // console.log('+OBJ', objectName[0], 'TYPE', typeof objectName, '1 буква')
   return (
