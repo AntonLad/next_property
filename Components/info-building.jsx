@@ -9,14 +9,26 @@ import MenuLeft from './menu-left'
 import Search from './search'
 import InfoMainObject from './info-main-object'
 import Cadastr from './info-cadastr'
-import Mkd from './info-mkd'
+// import Mkd from './info-mkd'
 import Owners from './info-owners'
-import Price from './info-price'
+// import Price from './info-price'
 import Restriction from './info-restrictions'
 // import Map from './info-map'
 
-const DynamicComponent = dynamic(
+const DynamicMap = dynamic(
   () => import('./info-map'),
+  { ssr: false,
+    loading: () => 'ЗАГРУЗКА'
+  }
+)
+
+const DynamicMkd = dynamic(
+  () => import('./info-mkd'),
+  { ssr: false }
+)
+
+const DynamicPrice = dynamic(
+  () => import('./info-price'),
   { ssr: false }
 )
 
@@ -74,9 +86,9 @@ const InfoAppart = ({ cadastrObj }) => {
                   <Cadastr cadastrObj={cadastrObj} />
                   {rights && <Owners cadastrObj={cadastrObj} />}
                   <Restriction cadastrObj={cadastrObj} />
-                  <Price cadastrObj={cadastrObj} />
-                  <Mkd cadastrObj={cadastrObj} />
-                  <DynamicComponent cadastrObj={cadastrObj} />
+                  <DynamicPrice cadastrObj={cadastrObj} />
+                  <DynamicMkd cadastrObj={cadastrObj} />
+                  <DynamicMap cadastrObj={cadastrObj} />
                   {/* {oksType === 'flat' && (typeof checker === 'undefined' ? (
                     <>
                       <div className="searchTitle">Загружаем данные о квартире</div>
