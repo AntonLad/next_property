@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import DG from '2gis-maps'
+// import foto from '../.next/static/media/marker1.png'
 
 let map
 const Map = ({ cadastrObj }) => {
