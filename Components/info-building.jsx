@@ -37,11 +37,11 @@ const InfoAppart = ({ cadastrObj }) => {
   const router = useRouter()
   const cadNumber = router.query.cadnumber
 
-  const rights = cadastrObj.rights?.realty?.rights
+  const rights = cadastrObj?.rights?.realty?.rights
   const price = cadastrObj?.price?.stats?.price
-  const address = cadastrObj.objectData?.objectAddress?.addressNotes
-  const oksType = cadastrObj.parcelData?.oksType
-  const checker = cadastrObj.price?.address
+  const address = cadastrObj?.objectData?.objectAddress?.addressNotes
+  const oksType = cadastrObj?.parcelData?.oksType
+  const checker = cadastrObj?.price?.address
 
   console.log('CHECK', checker)
 

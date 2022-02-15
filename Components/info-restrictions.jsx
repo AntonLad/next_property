@@ -4,7 +4,7 @@ import React from 'react'
 
 // import './info.css'
 
-const Restriction = () => {
+const Restriction = (cadastrObj) => {
   return (
     <div data-content="arrest" id="restrictions-info" className="object__block">
       <div className="object__block-wrap">

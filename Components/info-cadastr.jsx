@@ -3,10 +3,10 @@ import React from 'react'
 const Cadastr = ({ cadastrObj }) => {
   const { objectId, firActualDate } = cadastrObj ?? {}
   const { addressNote } = cadastrObj?.objectData ?? {}
-  const objectName = cadastrObj.objectData?.objectName ?? '0'
+  const objectName = cadastrObj?.objectData?.objectName ?? '0'
   const objectNameLetter = objectName[0]
-  const { name, floor } = cadastrObj.flat?.price?.flat ?? {}
-  const rightType = cadastrObj.rights?.realty?.rights
+  const { name, floor } = cadastrObj?.flat?.price?.flat ?? {}
+  const rightType = cadastrObj?.rights?.realty?.rights
   const {
     dateCreate, cadCost, dateCost, oksElementsConstructStr, oksFloors, oksUFloors, oksYearBuilt
   } = cadastrObj?.parcelData ?? {}
