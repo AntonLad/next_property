@@ -18,33 +18,41 @@ export default async function tooltips(req, res) {
   if (!checker) {
     return res.json({ error: 'Не корректные условия поиска. Введите кадастровый номер или адрес объекта' })
   }
-  const getAskReestrByCudNum = await axios({
-    method: 'GET',
-    timeout: 1000 * 15,
-    url: `${cadastrUrl}${cadNum}`,
-  })
-    .then(({ data }) => {
-      if (data.errorCode) {
+
+  await client.connect()
+  const db = client.db('cadastr')
+  const collection = db.collection('searchingObjects')
+  const resultOfCheckObject = await collection.find({'objectData.objectCn': cadNumber}).toArray()
+
+  if (resultOfCheckObject.length === 0) {
+    const getAskReestrByCudNum = await axios({
+      method: 'GET',
+      timeout: 1000 * 15,
+      url: `${cadastrUrl}${cadNum}`,
+    })
+      .then(({ data }) => {
+        if (data.errorCode) {
+          return res.json({ error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' })
+        }
+        return data
+      })
+      .catch((e) => {
+        console.log('ERROR_FIND_OBJECT', e)
         return res.json({ error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' })
+      })
+    console.log('REESTR', getAskReestrByCudNum)
+
+    client.connect(async () => {
+      const db = client.db('cadastr')
+      const collection = db.collection('searchingObjects')
+      const object = await collection.find({'objectData.objectCn': cadNumber}).toArray()
+      console.log('OBJECT', object.length)
+      if (object.length === 0) {
+        await collection.insertOne(getAskReestrByCudNum)
+        await collection.updateOne
       }
-      return data
     })
-    .catch((e) => {
-      console.log('ERROR_FIND_OBJECT', e)
-      return res.json({ error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' })
-    })
-  console.log('REESTR', getAskReestrByCudNum)
-
-  client.connect(async () => {
-    const db = client.db('cadastr')
-    const collection = db.collection('searchingObjects')
-    const object = await collection.find({'objectData.objectCn': cadNumber}).toArray()
-    console.log('OBJECT', object.length)
-    if (object.length === 0) {
-      await collection.insertOne(getAskReestrByCudNum)
-      await collection.updateOne
-    }
-  })
-  return res.json(getAskReestrByCudNum)
-
+    return res.json(getAskReestrByCudNum)
+  }
+  return res.json(resultOfCheckObject)
 }

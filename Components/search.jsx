@@ -34,7 +34,6 @@ const Search = () => {
     if (cadNumber.length > 10 || enterText.length > 10) {
       const getAskReestrByCudNum = await axios.get(`/api/findobject?cadNumber=${cadNumber || enterText}`)
         .then((result) => {
-          setLoading(false)
           return result.data
         })
       console.log('getAskReestrByCudNum', getAskReestrByCudNum)
@@ -58,6 +57,11 @@ const Search = () => {
 
       if (typeof getAskReestrByCudNum.error === 'undefined') {
         router.push(`/object/${cadNumber || enterText}`)
+        setLoading(false)
+      }
+
+      if (typeof getAskReestrByCudNum.error !== 'undefined') {
+        setLoading(false)
       }
     }
   }

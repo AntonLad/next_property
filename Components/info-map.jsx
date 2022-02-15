@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import DG from '2gis-maps'
+// import foto from '../.next/static/media/marker1.png'
 
 let map
 const Map = ({ cadastrObj }) => {
@@ -108,7 +109,7 @@ const Map = ({ cadastrObj }) => {
     })
 
     const icon = DG.icon({
-      iconUrl: '../assets/images/marker1.png',
+      iconUrl: '../images/marker1.png',
       iconSize: [21, 32]
     })
     DG.marker([`${lat}`, `${lng}`], { icon }).addTo(map).bindPopup(`${address}`)
@@ -140,7 +141,7 @@ const Map = ({ cadastrObj }) => {
       */
       Object.keys(socialObjects).forEach((categoryName) => {
         const marker = DG.icon({
-          iconUrl: `../assets/images/${socialObjects[categoryName].icon}.png`,
+          iconUrl: `../images/${socialObjects[categoryName].icon}.png`,
           iconSize: [21, 32]
         })
         socialObjects[categoryName].list.forEach((it) => {

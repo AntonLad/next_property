@@ -123,6 +123,10 @@ a {
   width: 100%;
  }
 
+ input {
+   outline:none;
+  }
+
  .searchButton{
    border:none;
  }
@@ -485,6 +489,7 @@ a {
   line-height: 26px;
   letter-spacing: .02em;
   color: #485364;
+  background: #E4FFE6;
 }
 
 .main__videoBlock-wrap {
@@ -924,6 +929,7 @@ a {
     width:100%;
     margin-bottom: 10px;
     margin-left: 50px;
+    background: none !important;
   }
 
   .object__block-title._h1::before {
@@ -943,6 +949,8 @@ a {
     font-size: 24px;
     line-height: 36px;
     margin-left: 50px;
+    padding-left: 10px;
+    background-color: #F4FBF5;
   }
   .object__block-title:before {
     width: 34px;
@@ -1266,7 +1274,7 @@ a {
   .object__block-title._price:before {
     width: 30px;
     height: 30px;
-    background-image: url(../images/cost.png);
+    background-image: url(../images/cost3.png);
     top: 5px;
     left: 4px
   }

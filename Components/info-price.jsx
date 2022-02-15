@@ -8,7 +8,7 @@ const Price = ({ cadastrObj }) => {
   return (
     <div>
       <div data-content="main" className="object__block" id="price-info">
-        <div className="object__block-title _h1">
+        <div className="object__block-title _price">
           Рыночная стоимость обекта недвижемости
         </div>
         <div className="clearfix"> </div>
