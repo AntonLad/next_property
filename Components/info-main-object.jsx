@@ -73,13 +73,6 @@ const InfoMainObject = ({ cadastrObj }) => {
             <div className="object__blockTableTd">{`${areaValue} кв. м.`}</div>
           </div>
           )}
-          <div>
-          <img
-                      src="/favinco.ico"
-                      alt='map'
-                      
-                    />
-          </div>
         </div>
       </div>
     </div>

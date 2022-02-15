@@ -47,7 +47,7 @@ a {
 
 .header__logo-img {
   background-size: cover;
-  background-image: url(../images/geraldika_small.png);
+  background-image: url(../public/images/geraldika_small.png);
   width: 40px;
   height: 48px;
   margin-right: 15px;
@@ -372,7 +372,7 @@ a {
   height: 265.71px;
   display: block;
   position: absolute;
-  background-image: url(../images/geraldika.png);
+  background-image: url(../public/images/geraldika.png);
   background-size: cover;
   bottom: 40px;
   right: 0;
@@ -411,27 +411,27 @@ a {
 }
 
 .main__blockItem:nth-child(1)::before {
-  background-image: url(../images/check2.png);
+  background-image: url(../public/images/check2.png);
 }
 
 .main__blockItem:nth-child(2)::before {
-  background-image: url(../images/doc2.png);
+  background-image: url(../public/images/doc2.png);
 }
 
 .main__blockItem:nth-child(3)::before {
-  background-image: url(../images/mgk2.png);
+  background-image: url(../public/images/mgk2.png);
 }
 
 .main__blockItem:nth-child(4)::before {
-  background-image: url(../images/arest3.png);
+  background-image: url(../public/images/arest3.png);
 }
 
 .main__blockItem:nth-child(5)::before {
-  background-image: url(../images/state2.png);
+  background-image: url(../public/images/state2.png);
 }
 
 .main__blockItem:nth-child(6)::before {
-  background-image: url(../images/cost2.png);
+  background-image: url(../public/images/cost2.png);
 }
 
 .main__blockItem-title {
@@ -808,7 +808,7 @@ a {
   }
 
   .spinner1{
-    background-image: url(../images/spinner4.gif);
+    background-image: url(../public/images/spinner4.gif);
     width: 75px;
     display: block;
     height: 75px;
@@ -937,7 +937,7 @@ a {
     height: 34px;
     content: "";
     background-size: cover;
-    background-image: url(../images/check.png);
+    background-image: url(../public/images/check.png);
     position: absolute;
     display: inline-block;
     left: 5px;
@@ -1244,7 +1244,7 @@ a {
   .object__block-title._kadastr:before {
     width: 30px;
     height: 30px;
-    background-image: url(../images/state.png);
+    background-image: url(../public/images/state.png);
     top: 5px;
     left: 4px
   }
@@ -1252,7 +1252,7 @@ a {
   .object__block-title._mkd:before {
     width: 30px;
     height: 30px;
-    background-image: url(../images/house1.png);
+    background-image: url(../public/images/house1.png);
     top: 5px;
     left: 4px
   }
@@ -1266,7 +1266,7 @@ a {
   .object__block-title._map:before {
     width: 30px;
     height: 30px;
-    background-image: url(../images/mgk1.png);
+    background-image: url(../public/images/mgk1.png);
     top: 5px;
     left: 4px
   }
@@ -1274,7 +1274,7 @@ a {
   .object__block-title._price:before {
     width: 30px;
     height: 30px;
-    background-image: url(../images/cost3.png);
+    background-image: url(../public/images/cost3.png);
     top: 5px;
     left: 4px
   }
@@ -1282,7 +1282,7 @@ a {
   .object__block-title._restriction:before {
     width: 30px;
     height: 30px;
-    background-image: url(../images/arest.png);
+    background-image: url(../public/images/arest.png);
     top: 5px;
     left: 4px
   }
@@ -1290,7 +1290,7 @@ a {
   .object__block-title._owner:before {
     width: 30px;
     height: 30px;
-    background-image: url(../images/doc1.png);
+    background-image: url(../public/images/doc1.png);
     top: 5px;
     left: 4px
   }
@@ -1314,7 +1314,7 @@ a {
 
   .object__block-title-2:before {
     width: 22px;
-    background-image: url(../images/shopMarker.png);
+    background-image: url(../public/images/shopMarker.png);
     top: 5px;
     left: 4px;
 }
@@ -1689,7 +1689,7 @@ a {
     width: 75px;
     height: 93px;
     background-size: cover;
-    background-image: url(../images/geraldika_middle.png);
+    background-image: url(../public/images/geraldika_middle.png);
   }
 
   .footer__small-slog {
@@ -1730,28 +1730,28 @@ a {
   .footer__top-contacts-soc._vk {
     width: 27px;
     height: 27px;
-    background-image: url(../images/vk_small.png);
+    background-image: url(../public/images/vk_small.png);
     margin: 0 5px;
   }
 
   .footer__top-contacts-soc._ok {
     width: 27px;
     height: 27px;
-    background-image: url(../images/twitter_small.png);
+    background-image: url(../public/images/twitter_small.png);
     margin: 0 5px;
   }
 
   .footer__top-contacts-soc._yt {
     width: 27px;
     height: 27px;
-    background-image: url(../images/yt_small1.png);
+    background-image: url(../public/images/yt_small1.png);
     margin: 0 5px;
   }
 
   .footer__top-contacts-soc._fb {
     width: 27px;
     height: 27px;
-    background-image: url(../images/fb.png);
+    background-image: url(../public/images/fb.png);
     margin: 0 5px;
   }
 

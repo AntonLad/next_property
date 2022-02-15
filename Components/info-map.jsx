@@ -109,7 +109,7 @@ const Map = ({ cadastrObj }) => {
     })
 
     const icon = DG.icon({
-      iconUrl: '../images/marker1.png',
+      iconUrl: '/images/marker1.png',
       iconSize: [21, 32]
     })
     DG.marker([`${lat}`, `${lng}`], { icon }).addTo(map).bindPopup(`${address}`)
@@ -141,7 +141,7 @@ const Map = ({ cadastrObj }) => {
       */
       Object.keys(socialObjects).forEach((categoryName) => {
         const marker = DG.icon({
-          iconUrl: `../images/${socialObjects[categoryName].icon}.png`,
+          iconUrl: `/images/${socialObjects[categoryName].icon}.png`,
           iconSize: [21, 32]
         })
         socialObjects[categoryName].list.forEach((it) => {
