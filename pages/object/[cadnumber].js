@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb'
-
 import InfoAppart from '../../Components/info-building'
+import Meta from '../../Components/meta'
 
 const url = 'mongodb://127.0.0.1/'
 const client = new MongoClient(url, { useUnifiedTopology: true })
@@ -15,10 +15,12 @@ const client = new MongoClient(url, { useUnifiedTopology: true })
 export default function Object({ cadastralObject }) {
 
   return (
-    <div>
-      <InfoAppart cadastrObj={JSON.parse(cadastralObject)}/>
 
-    </div>
+      <div>
+        <Meta title={'START PAGE'} />
+        <InfoAppart cadastrObj={JSON.parse(cadastralObject)}/>
+      </div>
+
   )
 }
 
