@@ -52,7 +52,7 @@ const Mkd = ({ cadastrObj }) => {
           </div>
         </div>
         <div className="object__block-wrap">
-          <div className="object__block-title _mkd">Информация о МКД:</div>
+          <div className="object__block-title _mkd">Информация о МКД</div>
           <div className="clearfix"> </div>
           <div className="object__blockTable _first">
             {bldTitle && (

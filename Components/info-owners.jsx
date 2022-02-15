@@ -7,7 +7,7 @@ const Owners = ({ cadastrObj }) => {
   const rights = cadastrObj.rights?.realty?.rights
 
   return (
-    <div id="owners-info">
+    <div data-content="main" className="object__block" id="owners-info">
       <div className="object__block-wrap">
         <div className="object__block-title _owner">
           Информация о собственности
