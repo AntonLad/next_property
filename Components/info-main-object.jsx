@@ -68,11 +68,11 @@ const InfoMainObject = ({ cadastrObj }) => {
               <div className="object__blockTableTd">{utilByDoc}</div>
             </div>
           )}
-          {areaValue !== 0 && (
-          <div className="object__blockTableTr">
-            <div className="object__blockTableTd">Площадь:</div>
-            <div className="object__blockTableTd">{`${areaValue} кв. м.`}</div>
-          </div>
+          {areaValue !== 0 && areaValue && (
+            <div className="object__blockTableTr">
+              <div className="object__blockTableTd">Площадь:</div>
+              <div className="object__blockTableTd">{`${areaValue} кв. м.`}</div>
+            </div>
           )}
         </div>
       </div>

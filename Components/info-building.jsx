@@ -37,15 +37,13 @@ const InfoAppart = ({ cadastrObj }) => {
   const router = useRouter()
   const cadNumber = router.query.cadnumber
 
-  const rights = cadastrObj?.rights?.realty?.rights
+  const rights = cadastrObj?.rights?.realty?.rights[0]
+  const encumbrances = cadastrObj?.rights?.realty?.encumbrances
   const price = cadastrObj?.price?.stats?.price
   const address = cadastrObj?.objectData?.objectAddress?.addressNotes
   const oksType = cadastrObj?.parcelData?.oksType
   const checker = cadastrObj?.price?.address
-
-  console.log('CHECK', checker)
-
-
+    
   // const askAboutFlat = async () => {
   //   if (oksType === 'flat') {
   //     const adressUrl = `/api/findflat?address=${address}&cadNumber=${cadNumber}`
@@ -93,14 +91,12 @@ const InfoAppart = ({ cadastrObj }) => {
                 <div className="object__content">
                   <InfoMainObject cadastrObj={cadastrObj} />
                   <Cadastr cadastrObj={cadastrObj} />
-                  {rights && <Owners cadastrObj={cadastrObj} />}
-                  <Restriction cadastrObj={cadastrObj} />
+                  {rights && rights.rightState === 1 && <Owners cadastrObj={cadastrObj} />}
+                  {encumbrances && <Restriction cadastrObj={cadastrObj} />}
                   {price &&<DynamicPrice cadastrObj={cadastrObj} />}
                   {checker && <DynamicMkd cadastrObj={cadastrObj} />}
                   {checker && <DynamicMap cadastrObj={cadastrObj} />}
-                  {/* <DynamicPrice cadastrObj={cadastrObj} />
-                  <DynamicMkd cadastrObj={cadastrObj} />
-                  <DynamicMap cadastrObj={cadastrObj} /> */}
+
                   {/* {oksType === 'flat' && (typeof checker === 'undefined' ? (
                     <>
                       <div className="searchTitle">Загружаем данные о квартире</div>
