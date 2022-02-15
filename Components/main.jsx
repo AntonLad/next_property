@@ -5,11 +5,10 @@ import Header from './header'
 import Search from './search'
 import Meta from './meta'
 
-// import './main.css'
-
 const Main = () => {
   return (
-    <Meta title={'START PAGE'}>
+    <>
+      <Meta title={'START PAGE'} />
       <div className="first">
         <Header />
         <div className="main">
@@ -189,7 +188,7 @@ const Main = () => {
         </div>
         <Footer />
       </div>
-    </Meta>
+    </>
   )
 }
 
