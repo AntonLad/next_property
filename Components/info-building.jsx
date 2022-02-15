@@ -38,21 +38,30 @@ const InfoAppart = ({ cadastrObj }) => {
   const cadNumber = router.query.cadnumber
 
   const rights = cadastrObj.rights?.realty?.rights
-  const price = cadastrObj?.flatPrice?.stats?.price
+  const price = cadastrObj?.price?.stats?.price
   const address = cadastrObj.objectData?.objectAddress?.addressNotes
   const oksType = cadastrObj.parcelData?.oksType
-  const checker = cadastrObj.flatPrice?.address
+  const checker = cadastrObj.price?.address
+
+  console.log('CHECK', checker)
+
+
+  const askAboutFlat = async () => {
+    if (oksType === 'flat') {
+      const adressUrl = `/api/findflat?address=${address}&cadNumber=${cadNumber}`
+      const getAskFlat = await axios(adressUrl)
+      const flatData = getAskFlat.data
+    }
+  }
+  askAboutFlat()
+    
+    // axios.get('https://jsonplaceholder.typicode.com/users/1').then(it => {  
+    //   setUser(it.data)  
+    // })  
 
 
 
-  // const askAboutFlat = async () => {
-  //   if (oksType === 'flat') {
-  //     const adressUrl = `/api/findflat?address=${address}&cadNumber=${cadNumber}`
-  //     const getAskFlat = await axios(adressUrl)
-  //     const flatData = getAskFlat.data
-  //    }
-  // }
-  // askAboutFlat()
+
 
 //   useEffect(() => {
 //     const localData = JSON.parse(localStorage.getItem(`${info}`))
@@ -86,6 +95,10 @@ const InfoAppart = ({ cadastrObj }) => {
                   <Cadastr cadastrObj={cadastrObj} />
                   {rights && <Owners cadastrObj={cadastrObj} />}
                   <Restriction cadastrObj={cadastrObj} />
+                    {/* вывод с проверками временно закоменчен */}
+                  {/* {price &&<DynamicPrice cadastrObj={cadastrObj} />}
+                  {checker && <DynamicMkd cadastrObj={cadastrObj} />}
+                  {checker && <DynamicMap cadastrObj={cadastrObj} />} */}
                   <DynamicPrice cadastrObj={cadastrObj} />
                   <DynamicMkd cadastrObj={cadastrObj} />
                   <DynamicMap cadastrObj={cadastrObj} />

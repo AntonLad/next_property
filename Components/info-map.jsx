@@ -13,6 +13,7 @@ const Map = ({ cadastrObj }) => {
   const lng = cadastrObj.price?.bld?.pos?.lng
   const address = cadastrObj.price?.bld?.address
   const social = cadastrObj?.structures
+  console.log('SOCIAL', social)
   // const [mapInitialized, setMapInitialized] = useState('')
 
   // function mapping(value, distance) {

@@ -3,8 +3,9 @@ import React from 'react'
 const Cadastr = ({ cadastrObj }) => {
   const { objectId, firActualDate } = cadastrObj ?? {}
   const { addressNote } = cadastrObj?.objectData ?? {}
-  const objectName = cadastrObj?.objectData?.objectName[0]
-  const { name, floor } = cadastrObj.flat?.getAskPrice?.flat ?? {}
+  const objectName = cadastrObj.objectData?.objectName ?? '0'
+  const objectNameLetter = objectName[0]
+  const { name, floor } = cadastrObj.flat?.price?.flat ?? {}
   const rightType = cadastrObj.rights?.realty?.rights
   const {
     dateCreate, cadCost, dateCost, oksElementsConstructStr, oksFloors, oksUFloors, oksYearBuilt
@@ -39,7 +40,7 @@ const Cadastr = ({ cadastrObj }) => {
             <div className="object__blockTableTd">Адрес по документам:</div>
             <div className="object__blockTableTd">{addressNote}</div>
           </div>
-          {objectName !== '0' && (
+          {objectNameLetter !== '0' && (
           <div className="object__blockTableTr">
             <div className="object__blockTableTd">Тип:</div>
             <div className="object__blockTableTd">{name || objectName}</div>

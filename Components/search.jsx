@@ -47,10 +47,10 @@ const Search = () => {
       const oksType = getAskReestrByCudNum.parcelData.oksType
       const address = getAskReestrByCudNum.objectData.addressNote
 
-      if (oksType === 'flat') {
-        const adressUrl = `/api/findflat?address=${address}&cadNumber=${cadNumber || enterText}`
-        await axios(adressUrl)
-      }
+      // if (oksType === 'flat') {
+      //   const adressUrl = `/api/findflat?address=${address}&cadNumber=${cadNumber || enterText}`
+      //   await axios(adressUrl)
+      // }
       // const cookieName = Math.random().toString(36).slice(2)
 
       // Cookie.set(`${cadNumber.replace(/[^0-9]/g, '') || enterText.replace(/[^0-9]/g, '')}`, `${cadNumber || enterText}`, { expires: 1000 })

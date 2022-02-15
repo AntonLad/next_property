@@ -10,7 +10,7 @@ const InfoMainObject = ({ cadastrObj }) => {
   const objectName = cadastrObj.objectData?.objectName ?? '0'
   const objectNameLetter = objectName[0]
   const { areaValue, utilByDoc } = cadastrObj.parcelData ?? {}
-
+  const { name } = cadastrObj.price?.flat ?? {}
 
 
   // const localDataObject = JSON.parse(localStorage.getItem(`${cadNumber}`))
@@ -71,7 +71,7 @@ const InfoMainObject = ({ cadastrObj }) => {
           {objectNameLetter !== '0' && (
             <div className="object__blockTableTr">
               <div className="object__blockTableTd">Тип объекта:</div>
-              {/* <div className="object__blockTableTd">{name || objectName}</div> */}
+              <div className="object__blockTableTd">{name || objectName}</div>
             </div>
           )}
           {(utilByDoc) && (
