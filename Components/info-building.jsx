@@ -46,18 +46,18 @@ const InfoAppart = ({ cadastrObj }) => {
   console.log('CHECK', checker)
 
 
-  const askAboutFlat = async () => {
-    if (oksType === 'flat') {
-      const adressUrl = `/api/findflat?address=${address}&cadNumber=${cadNumber}`
-      const getAskFlat = await axios(adressUrl)
-      const flatData = getAskFlat.data
-    }
-  }
-  askAboutFlat()
-    
-    // axios.get('https://jsonplaceholder.typicode.com/users/1').then(it => {  
-    //   setUser(it.data)  
-    // })  
+  // const askAboutFlat = async () => {
+  //   if (oksType === 'flat') {
+  //     const adressUrl = `/api/findflat?address=${address}&cadNumber=${cadNumber}`
+  //     const getAskFlat = await axios(adressUrl)
+  //     const flatData = getAskFlat.data
+  //   }
+  // }
+  // askAboutFlat()
+
+    // axios.get('https://jsonplaceholder.typicode.com/users/1').then(it => {
+    //   setUser(it.data)
+    // })
 
 
 
@@ -95,13 +95,12 @@ const InfoAppart = ({ cadastrObj }) => {
                   <Cadastr cadastrObj={cadastrObj} />
                   {rights && <Owners cadastrObj={cadastrObj} />}
                   <Restriction cadastrObj={cadastrObj} />
-                    {/* вывод с проверками временно закоменчен */}
-                  {/* {price &&<DynamicPrice cadastrObj={cadastrObj} />}
+                  {price &&<DynamicPrice cadastrObj={cadastrObj} />}
                   {checker && <DynamicMkd cadastrObj={cadastrObj} />}
-                  {checker && <DynamicMap cadastrObj={cadastrObj} />} */}
-                  <DynamicPrice cadastrObj={cadastrObj} />
+                  {checker && <DynamicMap cadastrObj={cadastrObj} />}
+                  {/* <DynamicPrice cadastrObj={cadastrObj} />
                   <DynamicMkd cadastrObj={cadastrObj} />
-                  <DynamicMap cadastrObj={cadastrObj} />
+                  <DynamicMap cadastrObj={cadastrObj} /> */}
                   {/* {oksType === 'flat' && (typeof checker === 'undefined' ? (
                     <>
                       <div className="searchTitle">Загружаем данные о квартире</div>
