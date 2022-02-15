@@ -2,7 +2,6 @@ import React from 'react'
 import Head from 'next/head'
 
 const Meta = ({ title }) => {
-  console.log('TITLE', title)
   return (
     <>
     <Head>

@@ -10,7 +10,6 @@ const cadastrUrl = process.env.CADASTR_URL
 
 export default async function tooltips(req, res) {
   const cadNumber = req.query.cadNumber
-  console.log('CADNUMBER', cadNumber)
   const regexp = /\d+:\d+:\d+:\d+/g
   const checker = regexp.test(cadNumber)
   const cadNum = cadNumber.trim()
@@ -23,7 +22,6 @@ export default async function tooltips(req, res) {
   const db = client.db('cadastr')
   const collection = db.collection('searchingObjects')
   const resultOfCheckObject = await collection.find({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}).toArray()
-  console.log('CHECKOBJECT', resultOfCheckObject.length)
 
   if (resultOfCheckObject.length === 0) {
     const getAskReestrByCudNum = await axios({

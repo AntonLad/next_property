@@ -5,16 +5,13 @@ import DG from '2gis-maps'
 
 let map
 const Map = ({ cadastrObj }) => {
-  console.log('MAPPROPS', cadastrObj)
   const router = useRouter()
   const info = router.query.cadnumber
-  console.log('INFO', info)
   const [range, setRange] = useState(200)
   const lat = cadastrObj.price?.bld?.pos?.lat
   const lng = cadastrObj.price?.bld?.pos?.lng
   const address = cadastrObj.price?.bld?.address
   const social = cadastrObj?.structures
-  console.log('SOCIAL', social)
   // const [mapInitialized, setMapInitialized] = useState('')
 
   // function mapping(value, distance) {
@@ -99,7 +96,6 @@ const Map = ({ cadastrObj }) => {
     })
   }, [])
   useEffect(() => {
-    console.log('MAP', map)
     if (map !== null || map === undefined) {
       map.remove()
     }
@@ -164,7 +160,7 @@ const Map = ({ cadastrObj }) => {
   const uniqueKey = () => (+new Date())
   return (
     <div className="object__block">
-      <div className="mapTitle">Социальная инфраструктура</div>
+      <div className="object__block-title _map">Социальная инфраструктура</div>
       <div className="mapButtons">
         <button
           type="button"

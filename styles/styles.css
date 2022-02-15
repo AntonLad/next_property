@@ -1484,6 +1484,7 @@ a {
 
   .mapButtons{
     display: flex;
+    margin-top: 20px;
   }
 
   .mapBtn {
