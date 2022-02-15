@@ -86,7 +86,7 @@ const InfoAppart = ({ cadastrObj }) => {
           <div className="content">
             <Search />
             <div className="object__wrap">
-              <MenuLeft />
+              <MenuLeft cadastrObj={cadastrObj}/>
               <div className="object__contentWrap">
                 <div className="object__content">
                   <InfoMainObject cadastrObj={cadastrObj} />
