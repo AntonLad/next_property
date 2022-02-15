@@ -1,8 +1,8 @@
 import React from 'react'
 
 const Cadastr = ({ cadastrObj }) => {
-  const { objectId, firActualDate } = cadastrObj ?? {}
-  const { addressNote } = cadastrObj?.objectData ?? {}
+  const { firActualDate } = cadastrObj ?? {}
+  const { addressNote, objectCn } = cadastrObj?.objectData ?? {}
   const objectName = cadastrObj?.objectData?.objectName ?? '0'
   const objectNameLetter = objectName[0]
   const { name, floor } = cadastrObj?.flat?.price?.flat ?? {}
@@ -25,7 +25,7 @@ const Cadastr = ({ cadastrObj }) => {
           <div className="object__blockTableTr">
             <div className="object__blockTableTd">Кадастровый номер:</div>
             <div className="object__blockTableTd">
-              <b>{objectId}</b>
+              <b>{objectCn}</b>
             </div>
           </div>
           {/* <div className="object__blockTableTr">

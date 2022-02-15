@@ -5,8 +5,8 @@ import { useRouter } from 'next/router'
 
 
 const InfoMainObject = ({ cadastrObj }) => {
-  const { id } = cadastrObj?.objectData ?? {}
-  const { addressNotes } = cadastrObj?.objectData?.objectAddress
+  const { objectCn } = cadastrObj?.objectData ?? {}
+  const addressNotes = cadastrObj?.objectData?.objectAddress?.addressNotes
   const objectName = cadastrObj?.objectData?.objectName ?? '0'
   const objectNameLetter = objectName[0]
   const { areaValue, utilByDoc } = cadastrObj?.parcelData ?? {}
@@ -39,7 +39,7 @@ const InfoMainObject = ({ cadastrObj }) => {
       </div>
       <div data-content="main" className="object__block" id="main">
         <div className="object__block-title _h1">
-          Объект недвижимости № {id}
+          Объект недвижимости № {objectCn}
         </div>
         <div className="clearfix"> </div>
         <div className="object__blockTable">
@@ -49,10 +49,10 @@ const InfoMainObject = ({ cadastrObj }) => {
             <div className="object__blockTableTd">{addressNotes}</div>
           </div>
           )}
-          {id && (
+          {objectCn && (
           <div className="object__blockTableTr">
             <div className="object__blockTableTd">Кадастровый номер:</div>
-            <div className="object__blockTableTd">{id}</div>
+            <div className="object__blockTableTd">{objectCn}</div>
           </div>
           )}
           {objectNameLetter !== '0' && (
