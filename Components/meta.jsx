@@ -7,6 +7,8 @@ const Meta = ({ title }) => {
     <>
     <Head>
       <title>{title}</title>
+      <meta name="description" content="abracadabra descriptoin"/>
+      <meta name="keywords" content="abracadabra keywords"/>
     </Head>
     </>
   )

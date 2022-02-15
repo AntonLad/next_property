@@ -25,7 +25,7 @@ export default async function tooltips(req, res) {
     url: encodingUrl
   })
     .then(({ data }) => {
-      console.log('PRICE', data)
+      console.log('PRICE', data.address)
       return data
     })
     .catch((e) => {
@@ -49,7 +49,6 @@ export default async function tooltips(req, res) {
     url: encodingInfraUrl
   })
     .then(({ data }) => {
-      console.log('SOCIAL', data)
       return data
     })
     .catch((e) => {

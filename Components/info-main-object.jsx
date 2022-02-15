@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 
 
 const InfoMainObject = ({ cadastrObj }) => {
+  console.log('MAINPROPS', cadastrObj)
   const { objectCn } = cadastrObj?.objectData ?? {}
   const addressNotes = cadastrObj?.objectData?.objectAddress?.addressNotes
   const objectName = cadastrObj?.objectData?.objectName ?? '0'

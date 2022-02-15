@@ -13,7 +13,7 @@ const client = new MongoClient(url, { useUnifiedTopology: true })
 // const socialUrl = process.env.SOCIAL_URL
 
 export default function Object({ cadastralObject }) {
-
+  console.log('CADNUMBERPROPS', cadastralObject)
   return (
 
       <div>
@@ -95,8 +95,9 @@ export async function getServerSideProps(context) {
   await client.connect()
   const db = client.db('cadastr')
   const collection = db.collection('searchingObjects')
-  const res = await collection.find({'objectData.objectCn': cadastr}).toArray()
+  const res = await collection.find({ $or : [{'objectData.objectCn': cadastr}, {'objectData.id':cadastr}]}).toArray()
   const cadastrObj = res[0]
+  // console.log('CADASRTOBJECT', cadastrObj)
 
   return {
     props: {cadastralObject: JSON.stringify(cadastrObj) || null}, // will be passed to the page component as props

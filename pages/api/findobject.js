@@ -22,7 +22,8 @@ export default async function tooltips(req, res) {
   await client.connect()
   const db = client.db('cadastr')
   const collection = db.collection('searchingObjects')
-  const resultOfCheckObject = await collection.find({'objectData.objectCn': cadNumber}).toArray()
+  const resultOfCheckObject = await collection.find({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}).toArray()
+  console.log('CHECKOBJECT', resultOfCheckObject.length)
 
   if (resultOfCheckObject.length === 0) {
     const getAskReestrByCudNum = await axios({
@@ -40,19 +41,15 @@ export default async function tooltips(req, res) {
         console.log('ERROR_FIND_OBJECT', e)
         return res.json({ error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' })
       })
-    console.log('REESTR', getAskReestrByCudNum)
 
     client.connect(async () => {
       const db = client.db('cadastr')
       const collection = db.collection('searchingObjects')
-      const object = await collection.find({'objectData.objectCn': cadNumber}).toArray()
-      console.log('OBJECT', object.length)
-      if (object.length === 0) {
-        await collection.insertOne(getAskReestrByCudNum)
-        await collection.updateOne
-      }
+      await collection.insertOne(getAskReestrByCudNum)
+      await collection.updateOne
+
     })
     return res.json(getAskReestrByCudNum)
   }
-  return res.json(resultOfCheckObject)
+  return res.json(resultOfCheckObject[0])
 }
