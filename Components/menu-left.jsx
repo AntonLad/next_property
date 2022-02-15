@@ -45,7 +45,7 @@ const MenuLeft = ({cadastrObj}) => {
           )}
           {checker && (
             <li data-type="map" className="object__leftMenu-link _success">
-              <Link to="mapContainer" smooth="true" activeClass="active" spy="true" duration={500}>Инфраструктура</Link>
+              <Link to="infrastructura" smooth="true" activeClass="active" spy="true" duration={500}>Инфраструктура</Link>
               {/* по максимуму поля bld из getask , фотки */}
             </li>
           )}

@@ -160,7 +160,7 @@ const Map = ({ cadastrObj }) => {
   const uniqueKey = () => (+new Date())
   return (
     <div className="object__block">
-      <div className="object__block-title _map">Социальная инфраструктура</div>
+      <div id="infrastructura" className="object__block-title _map">Социальная инфраструктура</div>
       <div className="mapButtons">
         <button
           type="button"
