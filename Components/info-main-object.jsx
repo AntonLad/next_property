@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
+import React from 'react'
+import { Link } from 'react-scroll'
 // import { useSelector } from 'react-redux'
 
 
@@ -12,17 +12,6 @@ const InfoMainObject = ({ cadastrObj }) => {
   const { areaValue, utilByDoc } = cadastrObj?.parcelData ?? {}
   const { name } = cadastrObj?.price?.flat ?? {}
   const encumbrances = cadastrObj?.rights?.realty?.encumbrances
-
-
-
-  // useEffect(() => {
-  //   const localData = JSON.parse(localStorage.getItem(`${cadNumber}`))
-  //   console.log('SUPERSTORE', store)
-  //   // dispatch(setInputCadastrResult(localData))
-  //   // dispatch(setInputFlat(LocalFlat))
-  //   // dispatch(setInputRights(LocalRights))
-  //   // console.log('LocalFlat', LocalFlat)
-  // }, [])
 
   return (
     <div>
@@ -44,7 +33,7 @@ const InfoMainObject = ({ cadastrObj }) => {
         </div>
         {encumbrances && (
         <div className="attention">
-          Внимание! Объект имеет обременения. 
+          <Link to="restrictions-info" smooth="true" activeClass="active" spy="true" duration={500}>Внимание! Найдены ограничения или обременения</Link>
         </div>
         )}
         <div className="clearfix"> </div>

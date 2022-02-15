@@ -929,7 +929,6 @@ a {
     padding-right: 0;
     display: flex;
     width:100%;
-    margin-bottom: 10px;
     margin-left: 50px;
     background: none !important;
   }
@@ -1767,6 +1766,8 @@ a {
 
   .attention {
     color: red;
-    padding: 5px 20px 5px 60px
+    padding: 5px 20px 5px 60px;
+    font-weight: 600;
+    cursor: pointer;
   }
 
