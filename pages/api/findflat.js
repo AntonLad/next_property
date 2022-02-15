@@ -33,7 +33,7 @@ export default async function findFlat(req, res) {
       url: encodingUrl
     })
       .then(({ data }) => {
-        console.log('PRICE', data.address)
+        console.log('PRICE', data)
         return data
       })
       .catch((e) => {
@@ -57,6 +57,7 @@ export default async function findFlat(req, res) {
       url: encodingInfraUrl
     })
       .then(({ data }) => {
+        console.log('SOCIAL', data)
         return data
       })
       .catch((e) => {

@@ -362,9 +362,10 @@ a {
   font-size: 13px;
   line-height: 16px;
   margin-top: 16px;
-  color: #a3acc2;
+  color: #c2cbe1;;
   text-align: justify;
   padding: 0 25px;
+  font-weight: 600;
 }
 
 .main__first-eagle {
@@ -774,6 +775,7 @@ a {
 
 .faqText{
   padding: 20px 30px 20px 30px;
+  font-weight: 600;
 }
 
 
@@ -950,7 +952,8 @@ a {
     line-height: 36px;
     margin-left: 50px;
     padding-left: 10px;
-    background-color: #F4FBF5;
+    text-decoration: 2px underline;
+    /* background-color: #DFFCE1; */
   }
   .object__block-title:before {
     width: 34px;
@@ -1279,12 +1282,18 @@ a {
     left: 4px
   }
 
-  .object__block-title._restriction:before {
+  .object__block-title._restrictions:before {
     width: 30px;
     height: 30px;
     background-image: url(../public/images/arest.png);
     top: 5px;
     left: 4px
+  }
+
+  .object__block-title._restrictions {
+    /* background: rgb(255, 202, 202) !important; */
+    text-decoration: 2px underline red;
+    color: red;
   }
 
   .object__block-title._owner:before {

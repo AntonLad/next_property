@@ -6,11 +6,11 @@ import React from 'react'
 
 const Restriction = ({ cadastrObj }) => {
   const encumbrances = cadastrObj?.rights?.realty?.encumbrances
-  
+
   return (
-    <div id="owners-info">
+    <div id="restrictions-info">
       <div className="object__block-wrap">
-        <div className="object__block-title _owner">
+        <div className="object__block-title _restrictions">
           Обременения и ограничения
         </div>
         {encumbrances?.map((it, ind) => {
@@ -38,7 +38,7 @@ const Restriction = ({ cadastrObj }) => {
                       <div className="object__blockTableTd">{it?.dateStop}</div>
                     </div>
                   )}
-                  
+
                 </div>
               </>
             )
