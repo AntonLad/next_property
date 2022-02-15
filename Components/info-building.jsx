@@ -39,7 +39,7 @@ const InfoAppart = ({ cadastrObj }) => {
 
   const rights = cadastrObj?.rights?.realty?.rights[0]
   const encumbrances = cadastrObj?.rights?.realty?.encumbrances
-  const price = cadastrObj?.price?.stats?.price
+  const stats = cadastrObj?.price?.stats
   const address = cadastrObj?.objectData?.objectAddress?.addressNotes
   const oksType = cadastrObj?.parcelData?.oksType
   const checker = cadastrObj?.price?.address
@@ -93,7 +93,7 @@ const InfoAppart = ({ cadastrObj }) => {
                   <Cadastr cadastrObj={cadastrObj} />
                   {rights && rights.rightState === 1 && <Owners cadastrObj={cadastrObj} />}
                   {encumbrances && <Restriction cadastrObj={cadastrObj} />}
-                  {price &&<DynamicPrice cadastrObj={cadastrObj} />}
+                  {stats &&<DynamicPrice cadastrObj={cadastrObj} />}
                   {checker && <DynamicMkd cadastrObj={cadastrObj} />}
                   {checker && <DynamicMap cadastrObj={cadastrObj} />}
 

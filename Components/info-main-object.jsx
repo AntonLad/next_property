@@ -11,6 +11,7 @@ const InfoMainObject = ({ cadastrObj }) => {
   const objectNameLetter = objectName[0]
   const { areaValue, utilByDoc } = cadastrObj?.parcelData ?? {}
   const { name } = cadastrObj?.price?.flat ?? {}
+  const encumbrances = cadastrObj?.rights?.realty?.encumbrances
 
 
 
@@ -41,6 +42,11 @@ const InfoMainObject = ({ cadastrObj }) => {
         <div className="object__block-title _h1">
           Объект недвижимости № {objectCn}
         </div>
+        {encumbrances && (
+        <div className="attention">
+          Внимание! Объект имеет обременения. 
+        </div>
+        )}
         <div className="clearfix"> </div>
         <div className="object__blockTable">
           {addressNotes && (
