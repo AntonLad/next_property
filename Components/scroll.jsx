@@ -24,13 +24,11 @@ const Scroll = () => {
         scroll.scrollToTop()
       }}>
         <div class="object__arrows-btn-arrow" />
-        наверх
       </div>
       <div class="object__arrows-btn _bottom" onClick={() => {
         scroll.scrollToBottom()
       }}>
         <div class="object__arrows-btn-arrow" />
-        вниз
       </div>
   </div>
   )

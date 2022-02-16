@@ -1771,17 +1771,16 @@ a {
   .object__arrows-btn {
     width: 60px;
     height: 60px;
-    background: #F8F8F8;
-    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    background: #d8d8d8;
     display: block;
-    border-radius: 50px;
     cursor: pointer;
     transition: all .1s linear;
     text-align: center;
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: 600;
     line-height: 14px;
-    color: #8194aa;
-    padding-top: 13px;
+    color: #000000;
+    padding-top: 20px;
     position: fixed;
     left: 95%;
     top: 80%;
@@ -1792,12 +1791,11 @@ a {
   height: 16.16px;
   display: block;
   margin: 0 auto;
-  background-image: url(../public/images/moreup.png);
+  background: url(../public/images/moreup.png) no-repeat scroll center center / auto 39px;
 }
 
 .object__arrows-btn:hover {
-  background: #fafdff;
-  border: 1px solid #0157ba;;
+  background: #a4a4a5;
 }
 
 .object__arrows-btn._bottom .object__arrows-btn-arrow {
