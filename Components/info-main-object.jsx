@@ -13,7 +13,10 @@ const InfoMainObject = ({ cadastrObj }) => {
   const { name } = cadastrObj?.price?.flat ?? {}
   const encumbrances = cadastrObj?.rights?.realty?.encumbrances
   const encumbrancesCheck = encumbrances?.filter((it) =>  it?.encmbState === 1)
-
+  const data = new Date()
+  const year = data.getFullYear()
+  const month = data.getMonth()
+  const day = data.getDate()
   return (
     <div>
       <div className="object__content-top">
@@ -23,7 +26,7 @@ const InfoMainObject = ({ cadastrObj }) => {
         <div className="object__content-top-link _favorite ob">
           <span>В избранное</span>
         </div>
-        <div className="object__content-top-link">Дата запроса:&nbsp;&nbsp;27.01.2022</div>
+        <div className="object__content-top-link">{`Дата запроса:  ${day}.${month}.${year}`}</div>
         <div className="object__content-top-link ob">
           <span>Обновить</span>
         </div>
