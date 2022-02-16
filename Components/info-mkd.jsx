@@ -41,21 +41,13 @@ const Mkd = ({ cadastrObj }) => {
     setTempImg(img)
     setModel(true)
   }
- const buildingState = (value) => {
-    console.log('ВОЗРАСТ ДОМА', value)
-    if ( value <= 20 ) {
-      return 'Хорошее'
-    }
-    else if ( 20 < value <= 40 ) {
-      return 'Удовлетворительное'
-    }
-    else if ( 40 < value <= 60 ) {
-      return 'Неудовлетворительное'
-    }
-    else {
-      return 'Критическое'
-    }
+  const buildingState = (value) => {
+    if ( value <= 20 ) { return 'Хорошее' }
+    if ( value <= 40 ) { return 'Удовлетворительное' }
+    if ( value <= 60 ) { return 'Неудовлетворительное' }
+    return 'Критическое'
  }
+
 
 
 
