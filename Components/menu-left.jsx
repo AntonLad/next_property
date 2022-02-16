@@ -9,6 +9,7 @@ const MenuLeft = ({cadastrObj}) => {
   const encumbrancesCheck = encumbrances?.filter((it) =>  it?.encmbState === 1)
   const stats = cadastrObj?.price?.stats
   const checker = cadastrObj?.price?.address
+  const oksType = cadastrObj?.parcelData?.oksType
 
   return (
     <div className="object__leftMenu">
@@ -41,8 +42,10 @@ const MenuLeft = ({cadastrObj}) => {
           )}
           {checker && (
             <li data-type="mkd" className="object__leftMenu-link _success">
-              <Link to="mkd-info" smooth="true" activeClass="active" spy="true" duration={500}>Сведения о МКД</Link>
-              {/* по максимуму поля bld из getask , фотки */}
+              {oksType === 'flat' ?
+                <Link to="mkd-info" smooth="true" activeClass="active" spy="true" duration={500}>Сведения о МКД</Link> :
+                <Link to="mkd-info" smooth="true" activeClass="active" spy="true" duration={500}>Дополнительные сведения об объекте</Link> 
+              }
             </li>
           )}
           {checker && (

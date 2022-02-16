@@ -14,7 +14,7 @@ const Restriction = ({ cadastrObj }) => {
           Обременения и ограничения
         </div>
         {encumbrances?.filter((it) => it.encmbState === 1 )
-          .filter((it, index, array) => it.typeName.indexOf(it.typeName) === index )
+          .filter((item, i, arr) => arr.findIndex((it) => it.typeName === item.typeName) === i)
           .map((it, ind) => {
             return (
               <>
