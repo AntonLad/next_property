@@ -6,6 +6,7 @@ const MenuLeft = ({cadastrObj}) => {
   const rights = cadastrObj?.rights?.realty?.rights
   const rightsCheck = rights?.filter((it) =>  it?.rightState === 1)
   const encumbrances = cadastrObj?.rights?.realty?.encumbrances
+  const encumbrancesCheck = encumbrances?.filter((it) =>  it?.encmbState === 1)
   const stats = cadastrObj?.price?.stats
   const checker = cadastrObj?.price?.address
 
@@ -26,7 +27,7 @@ const MenuLeft = ({cadastrObj}) => {
               {/* кол-во собств-в, тип(ипотека), дата регистрации rightRegDate, номер регистрации права rightNumber   */}
             </li>
           )}
-          {encumbrances && (
+          {encumbrances && encumbrancesCheck.length !== 0 && (
             <li data-type="arrest" className="object__leftMenu-link _success">
               <Link to="restrictions-info" smooth="true" activeClass="active" spy="true" duration={500}>Обременения, аресты</Link>
               {/* арест обременеия залог ипотека запере на регистрацию и ные ограничения или обременения  */}

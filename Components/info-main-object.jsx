@@ -12,6 +12,7 @@ const InfoMainObject = ({ cadastrObj }) => {
   const { areaValue, utilByDoc } = cadastrObj?.parcelData ?? {}
   const { name } = cadastrObj?.price?.flat ?? {}
   const encumbrances = cadastrObj?.rights?.realty?.encumbrances
+  const encumbrancesCheck = encumbrances?.filter((it) =>  it?.encmbState === 1)
 
   return (
     <div>
@@ -31,7 +32,7 @@ const InfoMainObject = ({ cadastrObj }) => {
         <div className="object__block-title _h1">
           Объект недвижимости № {objectCn}
         </div>
-        {encumbrances && (
+        {encumbrances && encumbrancesCheck.length !== 0 && (
         <div className="attention">
           <Link to="restrictions-info" smooth="true" activeClass="active" spy="true" duration={500}>Внимание! Найдены ограничения или обременения</Link>
         </div>
