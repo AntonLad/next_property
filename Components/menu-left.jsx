@@ -4,6 +4,7 @@ import { Link } from 'react-scroll'
 
 const MenuLeft = ({cadastrObj}) => {
   const rights = cadastrObj?.rights?.realty?.rights
+  const rightsCheck = rights?.filter((it) =>  it?.rightState === 1)
   const encumbrances = cadastrObj?.rights?.realty?.encumbrances
   const stats = cadastrObj?.price?.stats
   const checker = cadastrObj?.price?.address
@@ -19,7 +20,7 @@ const MenuLeft = ({cadastrObj}) => {
             <Link to="kadastr-info" smooth="true" activeClass="active" spy="true" duration={500}>Кадастровые сведения</Link>
             {/* данные из ключа address+: кадастр номер, тип объекта, адрес, площадь, дата утверждения кадастр стоимость, кадастр стоимость, этаж , кол-ком, infoUpdateDate - время обновления инфо */}
           </li>
-          {rights && rights.rightState === 1 && (
+          {rights && rightsCheck.length !== 0 && (
             <li data-type="zalog" className="object__leftMenu-link _success">
               <Link to="owners-info" smooth="true" activeClass="active" spy="true" duration={500}>Количество собственников</Link>
               {/* кол-во собств-в, тип(ипотека), дата регистрации rightRegDate, номер регистрации права rightNumber   */}

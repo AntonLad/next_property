@@ -38,6 +38,7 @@ const InfoAppart = ({ cadastrObj }) => {
   const cadNumber = router.query.cadnumber
 
   const rights = cadastrObj?.rights?.realty?.rights
+  const rightsCheck = rights?.filter((it) =>  it?.rightState === 1)
   const encumbrances = cadastrObj?.rights?.realty?.encumbrances
   const stats = cadastrObj?.price?.stats
   const address = cadastrObj?.objectData?.objectAddress?.addressNotes
@@ -91,7 +92,7 @@ const InfoAppart = ({ cadastrObj }) => {
                 <div className="object__content">
                   <InfoMainObject cadastrObj={cadastrObj} />
                   <Cadastr cadastrObj={cadastrObj} />
-                  {rights && rights.rightState === 1 && <Owners cadastrObj={cadastrObj} />}
+                  {rights && rightsCheck.length !== 0 && <Owners cadastrObj={cadastrObj} />}
                   {encumbrances && <Restriction cadastrObj={cadastrObj} />}
                   {stats &&<DynamicPrice cadastrObj={cadastrObj} />}
                   {checker && <DynamicMkd cadastrObj={cadastrObj} />}
