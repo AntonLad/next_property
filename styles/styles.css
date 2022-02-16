@@ -1768,3 +1768,43 @@ a {
     cursor: pointer;
   }
 
+  .object__arrows-btn {
+    width: 60px;
+    height: 60px;
+    background: #F8F8F8;
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    display: block;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all .1s linear;
+    text-align: center;
+    font-size: 10px;
+    line-height: 14px;
+    color: #8194aa;
+    padding-top: 13px;
+    position: fixed;
+    left: 95%;
+    top: 80%;
+}
+
+.object__arrows-btn-arrow {
+  width: 30px;
+  height: 16.16px;
+  display: block;
+  margin: 0 auto;
+  background-image: url(../public/images/moreup.png);
+}
+
+.object__arrows-btn:hover {
+  background: #fafdff;
+  border: 1px solid #0157ba;;
+}
+
+.object__arrows-btn._bottom .object__arrows-btn-arrow {
+  margin-top: 5px;
+  transform: rotate(180deg);
+}
+
+.object__arrows-btn._bottom {
+  margin-top: 80px;
+}

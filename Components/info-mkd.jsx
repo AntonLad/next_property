@@ -34,12 +34,30 @@ const Mkd = ({ cadastrObj }) => {
   // const isAlarm = cadastrObj.price?.bld?.isAlarm
 
   const date = new Date().getFullYear()
+  const buildingDamage = date - bldYear
   const [model, setModel] = useState(false)
   const [tempImg, setTempImg] = useState('')
   const getImg = (img) => {
     setTempImg(img)
     setModel(true)
   }
+ const buildingState = (value) => {
+    console.log('ВОЗРАСТ ДОМА', value)
+    if ( value <= 20 ) {
+      return 'Хорошее'
+    }
+    else if ( 20 < value <= 40 ) {
+      return 'Удовлетворительное'
+    }
+    else if ( 40 < value <= 60 ) {
+      return 'Неудовлетворительное'
+    }
+    else {
+      return 'Критическое'
+    }
+ }
+
+
 
   return (
     <>
@@ -49,8 +67,8 @@ const Mkd = ({ cadastrObj }) => {
       </div>
       <div data-content="mkd" id="mkd-info" className="object__block">
         <div className="object__block-wrap">
-          {oksType === 'flat' ? 
-            <div className="object__block-title _mkd">Информация о МКД</div> : 
+          {oksType === 'flat' ?
+            <div className="object__block-title _mkd">Информация о МКД</div> :
             <div className="object__block-title _mkd">Дополнительные сведения об объекте</div>
           }
           {isAlarm && (
@@ -82,7 +100,11 @@ const Mkd = ({ cadastrObj }) => {
                 </div>
                 <div className="object__blockTableTr">
                   <div className="object__blockTableTd">Физический износ здания: </div>
-                  <div className="object__blockTableTd">{date - bldYear}%</div>
+                  <div className="object__blockTableTd">{buildingDamage}%</div>
+                </div>
+                <div className="object__blockTableTr">
+                  <div className="object__blockTableTd">Оценка фактического состояния: </div>
+                  <div className="object__blockTableTd">{buildingState(buildingDamage)}</div>
                 </div>
               </>
             )}
