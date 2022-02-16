@@ -927,6 +927,7 @@ a {
     display: flex;
     width:100%;
     margin-left: 50px;
+    align-items: flex-end;
     background: none !important;
   }
 
@@ -943,7 +944,7 @@ a {
 
   .object__block-title {
     font-weight: 800;
-    color: #313e51;
+    color: #0157ba;
     font-size: 24px;
     line-height: 36px;
     margin-left: 50px;
@@ -1257,7 +1258,6 @@ a {
   }
   .object__block-title._map {
     font-weight: 800;
-    color: #313e51;
     font-size: 24px;
     line-height: 36px;
     margin-left: 50px;
@@ -1358,6 +1358,7 @@ a {
   .object__blockTableTd {
     display: table-cell;
     padding-bottom: 12px;
+    padding-top: 12px;
   }
 
   .object__content-top {

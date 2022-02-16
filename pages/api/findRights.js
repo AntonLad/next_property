@@ -17,6 +17,7 @@ export default async function tooltips(req, res) {
     url: url
   })
     .then(({ data }) => {
+      console.log('RIGHTS', data)
       return data
     })
     .catch((e) => {
@@ -27,7 +28,7 @@ export default async function tooltips(req, res) {
   client.connect(async () => {
     const db = client.db('cadastr')
     const collection = db.collection('searchingObjects')
-    await collection.updateOne({'objectData.objectCn': cadNumber}, { $set: {rights: getAskRights}}, { upsert: false })
+    await collection.updateOne({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}, { $set: {rights: getAskRights}}, { upsert: false })
   })
   return res.json(getAskRights)
 }

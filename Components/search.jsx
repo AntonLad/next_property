@@ -46,7 +46,7 @@ const Search = () => {
       const oksType = getAskReestrByCudNum?.parcelData?.oksType
 
       if (oksType === 'flat') {
-        const address = getAskReestrByCudNum.objectData.addressNote
+        const address = getAskReestrByCudNum.objectData?.objectAddress?.addressNotes || getAskReestrByCudNum.objectData?.objectAddress?.mergedAddress
         const adressUrl = `/api/findflat?address=${address}&cadNumber=${cadNumber || enterText}`
         await axios(adressUrl)
       }

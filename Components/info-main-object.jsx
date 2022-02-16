@@ -6,7 +6,7 @@ import { Link } from 'react-scroll'
 
 const InfoMainObject = ({ cadastrObj }) => {
   const { objectCn } = cadastrObj?.objectData ?? {}
-  const addressNotes = cadastrObj?.objectData?.objectAddress?.addressNotes
+  const addressNotes = cadastrObj?.objectData?.objectAddress?.addressNotes || cadastrObj?.objectData?.objectAddress?.mergedAddress
   const objectName = cadastrObj?.objectData?.objectName ?? '0'
   const objectNameLetter = objectName[0]
   const { areaValue, utilByDoc } = cadastrObj?.parcelData ?? {}

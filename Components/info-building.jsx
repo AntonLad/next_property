@@ -37,13 +37,13 @@ const InfoAppart = ({ cadastrObj }) => {
   const router = useRouter()
   const cadNumber = router.query.cadnumber
 
-  const rights = cadastrObj?.rights?.realty?.rights[0]
+  const rights = cadastrObj?.rights?.realty?.rights
   const encumbrances = cadastrObj?.rights?.realty?.encumbrances
   const stats = cadastrObj?.price?.stats
   const address = cadastrObj?.objectData?.objectAddress?.addressNotes
   const oksType = cadastrObj?.parcelData?.oksType
   const checker = cadastrObj?.price?.address
-    
+
   // const askAboutFlat = async () => {
   //   if (oksType === 'flat') {
   //     const adressUrl = `/api/findflat?address=${address}&cadNumber=${cadNumber}`

@@ -3,7 +3,7 @@ import { Link } from 'react-scroll'
 // import './info.css'
 
 const MenuLeft = ({cadastrObj}) => {
-  const rights = cadastrObj?.rights?.realty?.rights[0]
+  const rights = cadastrObj?.rights?.realty?.rights
   const encumbrances = cadastrObj?.rights?.realty?.encumbrances
   const stats = cadastrObj?.price?.stats
   const checker = cadastrObj?.price?.address

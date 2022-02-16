@@ -29,7 +29,7 @@ export default async function findFlat(req, res) {
         'Referer': 'https://xn--h1alcedd.xn--d1aqf.xn--p1ai/',
       },
       method: 'GET',
-      timeout: 1000 * 10,
+      timeout: 1000 * 15,
       url: encodingUrl
     })
       .then(({ data }) => {
@@ -53,7 +53,7 @@ export default async function findFlat(req, res) {
         'Referer': 'https://xn--h1alcedd.xn--d1aqf.xn--p1ai/',
       },
       method: 'GET',
-      timeout: 1000 * 10,
+      timeout: 1000 * 15,
       url: encodingInfraUrl
     })
       .then(({ data }) => {
@@ -68,7 +68,7 @@ export default async function findFlat(req, res) {
     client.connect(async () => {
       const db = client.db('cadastr')
       const collection = db.collection('searchingObjects')
-      await collection.updateOne({'objectData.objectCn': cadNumber}, { $set: {price: getAskPrice, structures: getAskStructure.social}}, { upsert: false })
+      await collection.updateOne({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}, { $set: {price: getAskPrice, structures: getAskStructure.social}}, { upsert: false })
     })
     return res.json({ ...getAskPrice, getAskStructure })
   }
