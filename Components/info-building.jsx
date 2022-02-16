@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react'
-import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
-import axios from 'axios'
-// import ReactLoading from 'react-loading'
 import Header from './header'
 import Footer from './footer'
 import MenuLeft from './menu-left'
 import Search from './search'
+import Scroll from './scroll'
 import InfoMainObject from './info-main-object'
 import Cadastr from './info-cadastr'
 // import Mkd from './info-mkd'
@@ -40,9 +38,6 @@ const DynamicPrice = dynamic(
 )
 
 const InfoAppart = ({ cadastrObj }) => {
-
-  const router = useRouter()
-  const cadNumber = router.query.cadnumber
 
   const rights = cadastrObj?.rights?.realty?.rights
   const rightsCheck = rights?.filter((it) =>  it?.rightState === 1)
@@ -102,7 +97,7 @@ const InfoAppart = ({ cadastrObj }) => {
                   <Cadastr cadastrObj={cadastrObj} />
                   {rights && rightsCheck.length !== 0 && <Owners cadastrObj={cadastrObj} />}
                   {encumbrances && encumbrancesCheck.length !== 0 && <Restriction cadastrObj={cadastrObj} />}
-                  {(stats.price && stats.priceRange && stats.min) && <DynamicPrice cadastrObj={cadastrObj} />}
+                  {(stats?.price && stats?.priceRange && stats?.min) && <DynamicPrice cadastrObj={cadastrObj} />}
                   {checker && <DynamicMkd cadastrObj={cadastrObj} />}
                   {checker && <DynamicMap cadastrObj={cadastrObj} />}
 
@@ -118,6 +113,7 @@ const InfoAppart = ({ cadastrObj }) => {
                       <Map cadastrObj={cadastrObj} />
                     </>
                   ))} */}
+                  <Scroll />
                 </div>
               </div>
             </div>
