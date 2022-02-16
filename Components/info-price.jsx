@@ -27,7 +27,7 @@ const Price = ({ cadastrObj }) => {
             </div>
           </>
         )}
-        <div className="object__block-title-2">Стоимость квадратного метра:</div>
+        <div className="object__block-title-2">Стоимость квадратного метра аналогичных объектов:</div>
         <div className="blockInfo">
           {meterPrice && (
             <>

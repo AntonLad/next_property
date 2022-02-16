@@ -29,7 +29,9 @@ const Mkd = ({ cadastrObj }) => {
   const livingCount = cadastrObj.price?.bld?.livingCount
   const bldProject = cadastrObj.price?.bld?.bldProject
   const stations = cadastrObj.price?.bld?.stations
+  const isAlarm = cadastrObj.price?.bld?.isAlarm
 
+  const date = new Date().getFullYear()
   const [model, setModel] = useState(false)
   const [tempImg, setTempImg] = useState('')
   const getImg = (img) => {
@@ -44,15 +46,13 @@ const Mkd = ({ cadastrObj }) => {
         <CloseIcon onClick={() => setModel(false)} />
       </div>
       <div data-content="mkd" id="mkd-info" className="object__block">
-        <div className="object__block-load">
-          <div className="loader__table">
-            <div className="loader__td">
-              <div className="loader__img"> </div>
-            </div>
-          </div>
-        </div>
         <div className="object__block-wrap">
           <div className="object__block-title _mkd">Информация о МКД</div>
+          {isAlarm && (
+            <div className="attention">
+              Внимание! дом признан аварийным
+            </div>
+          )}
           <div className="clearfix"> </div>
           <div className="object__blockTable _first">
             {bldTitle && (
@@ -68,10 +68,16 @@ const Mkd = ({ cadastrObj }) => {
               <div className="object__blockTableTd">{address}</div>
             </div>
             {bldYear && (
-              <div className="object__blockTableTr">
-                <div className="object__blockTableTd">Год постройки: </div>
-                <div className="object__blockTableTd">{bldYear} </div>
-              </div>
+              <>
+                <div className="object__blockTableTr">
+                  <div className="object__blockTableTd">Год постройки: </div>
+                  <div className="object__blockTableTd">{bldYear} </div>
+                </div>
+                <div className="object__blockTableTr">
+                  <div className="object__blockTableTd">Физический износ здания: </div>
+                  <div className="object__blockTableTd">{date - bldYear}%</div>
+                </div>
+              </>
             )}
             {bldProject && (
               <div className="object__blockTableTr">
