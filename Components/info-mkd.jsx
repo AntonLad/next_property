@@ -9,6 +9,7 @@ const Mkd = ({ cadastrObj }) => {
     bldProject, isAlarm
   } = cadastrObj.price?.bld
   const oksType = cadastrObj?.parcelData?.oksType
+  const addresSspare = cadastrObj?.price?.address
 
   // const bldTitle = cadastrObj.price?.bld?.bldTitle
   // const address = cadastrObj.price?.bld?.address
@@ -85,10 +86,12 @@ const Mkd = ({ cadastrObj }) => {
               </div>
             </div>
             )}
+            {(address || addresSspare) && (
             <div className="object__blockTableTr">
               <div className="object__blockTableTd">Адрес</div>
-              <div className="object__blockTableTd">{address}</div>
+              <div className="object__blockTableTd">{address || addresSspare}</div>
             </div>
+            )}
             {bldYear && (
               <>
                 <div className="object__blockTableTr">
