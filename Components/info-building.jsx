@@ -22,6 +22,13 @@ const DynamicMap = dynamic(
   }
 )
 
+const NoFlatMap = dynamic(
+  () => import('./noFlatMap'),
+  { ssr: false,
+    loading: () => 'ЗАГРУЗКА'
+  }
+)
+
 const DynamicMkd = dynamic(
   () => import('./info-mkd'),
   { ssr: false }
@@ -95,7 +102,7 @@ const InfoAppart = ({ cadastrObj }) => {
                   <Cadastr cadastrObj={cadastrObj} />
                   {rights && rightsCheck.length !== 0 && <Owners cadastrObj={cadastrObj} />}
                   {encumbrances && encumbrancesCheck.length !== 0 && <Restriction cadastrObj={cadastrObj} />}
-                  {stats &&<DynamicPrice cadastrObj={cadastrObj} />}
+                  {(stats.price && stats.priceRange && stats.min) && <DynamicPrice cadastrObj={cadastrObj} />}
                   {checker && <DynamicMkd cadastrObj={cadastrObj} />}
                   {checker && <DynamicMap cadastrObj={cadastrObj} />}
 

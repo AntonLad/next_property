@@ -92,7 +92,7 @@ const Map = ({ cadastrObj }) => {
   useEffect(() => {
     map = DG.map('mapContainer', {
       center: [`${lat}`, `${lng}`],
-      zoom: 14
+      zoom: 16
     })
   }, [])
   useEffect(() => {

@@ -45,11 +45,11 @@ const Search = () => {
       }
       const oksType = getAskReestrByCudNum?.parcelData?.oksType
 
-      if (oksType === 'flat') {
+      // if (oksType === 'flat') {
         const address = getAskReestrByCudNum.objectData?.objectAddress?.addressNotes || getAskReestrByCudNum.objectData?.objectAddress?.mergedAddress
         const adressUrl = `/api/findflat?address=${address}&cadNumber=${cadNumber || enterText}`
         await axios(adressUrl)
-      }
+      // }
       // const cookieName = Math.random().toString(36).slice(2)
 
       // Cookie.set(`${cadNumber.replace(/[^0-9]/g, '') || enterText.replace(/[^0-9]/g, '')}`, `${cadNumber || enterText}`, { expires: 1000 })

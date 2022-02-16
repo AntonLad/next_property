@@ -2,34 +2,35 @@ import React, { useState } from 'react'
 import CloseIcon from '@material-ui/icons/Close'
 
 const Mkd = ({ cadastrObj }) => {
-  // const {
-  //   bldTitle, address, photos, wallMaterial, floorMaterial, elevatorCount, supplyTypeHeating,
-  //   stations, maxFloor, supplyTypeHotWater, supplyTypeVent, bldArea, bldLivingArea,
-  //   bldNonLivingArea, bldYear, supplyTypeGas, entranceCount, flatsCount, livingCount,
-  //   bldProject
-  // } = cadastrObj.price?.bld
+  const {
+    bldTitle, address, photos, wallMaterial, floorMaterial, elevatorCount, supplyTypeHeating,
+    stations, maxFloor, supplyTypeHotWater, supplyTypeVent, bldArea, bldLivingArea,
+    bldNonLivingArea, bldYear, supplyTypeGas, entranceCount, flatsCount, livingCount,
+    bldProject, isAlarm
+  } = cadastrObj.price?.bld
+  const oksType = cadastrObj?.parcelData?.oksType
 
-  const bldTitle = cadastrObj.price?.bld?.bldTitle
-  const address = cadastrObj.price?.bld?.address
-  const photos = cadastrObj.price?.bld?.photos
-  const wallMaterial = cadastrObj.price?.bld?.wallMaterial
-  const floorMaterial = cadastrObj.price?.bld?.floorMaterial
-  const elevatorCount = cadastrObj.price?.bld?.elevatorCount
-  const supplyTypeHeating = cadastrObj.price?.bld?.supplyTypeHeating
-  const supplyTypeHotWater = cadastrObj.price?.bld?.supplyTypeHotWater
-  const supplyTypeVent = cadastrObj.price?.bld?.supplyTypeVent
-  const maxFloor = cadastrObj.price?.bld?.maxFloor
-  const bldArea = cadastrObj.price?.bld?.bldArea
-  const bldLivingArea = cadastrObj.price?.bld?.bldLivingArea
-  const bldNonLivingArea = cadastrObj.price?.bld?.bldNonLivingArea
-  const bldYear = cadastrObj.price?.bld?.bldYear
-  const supplyTypeGas = cadastrObj.price?.bld?.supplyTypeGas
-  const entranceCount = cadastrObj.price?.bld?.entranceCount
-  const flatsCount = cadastrObj.price?.bld?.flatsCount
-  const livingCount = cadastrObj.price?.bld?.livingCount
-  const bldProject = cadastrObj.price?.bld?.bldProject
-  const stations = cadastrObj.price?.bld?.stations
-  const isAlarm = cadastrObj.price?.bld?.isAlarm
+  // const bldTitle = cadastrObj.price?.bld?.bldTitle
+  // const address = cadastrObj.price?.bld?.address
+  // const photos = cadastrObj.price?.bld?.photos
+  // const wallMaterial = cadastrObj.price?.bld?.wallMaterial
+  // const floorMaterial = cadastrObj.price?.bld?.floorMaterial
+  // const elevatorCount = cadastrObj.price?.bld?.elevatorCount
+  // const supplyTypeHeating = cadastrObj.price?.bld?.supplyTypeHeating
+  // const supplyTypeHotWater = cadastrObj.price?.bld?.supplyTypeHotWater
+  // const supplyTypeVent = cadastrObj.price?.bld?.supplyTypeVent
+  // const maxFloor = cadastrObj.price?.bld?.maxFloor
+  // const bldArea = cadastrObj.price?.bld?.bldArea
+  // const bldLivingArea = cadastrObj.price?.bld?.bldLivingArea
+  // const bldNonLivingArea = cadastrObj.price?.bld?.bldNonLivingArea
+  // const bldYear = cadastrObj.price?.bld?.bldYear
+  // const supplyTypeGas = cadastrObj.price?.bld?.supplyTypeGas
+  // const entranceCount = cadastrObj.price?.bld?.entranceCount
+  // const flatsCount = cadastrObj.price?.bld?.flatsCount
+  // const livingCount = cadastrObj.price?.bld?.livingCount
+  // const bldProject = cadastrObj.price?.bld?.bldProject
+  // const stations = cadastrObj.price?.bld?.stations
+  // const isAlarm = cadastrObj.price?.bld?.isAlarm
 
   const date = new Date().getFullYear()
   const [model, setModel] = useState(false)
@@ -47,7 +48,10 @@ const Mkd = ({ cadastrObj }) => {
       </div>
       <div data-content="mkd" id="mkd-info" className="object__block">
         <div className="object__block-wrap">
-          <div className="object__block-title _mkd">Информация о МКД</div>
+          {oksType === 'flat' ? 
+            <div className="object__block-title _mkd">Информация о МКД</div> : 
+            <div className="object__block-title _mkd">Дополнительные сведения об объекте</div>
+          }
           {isAlarm && (
             <div className="attention">
               Внимание! дом признан аварийным

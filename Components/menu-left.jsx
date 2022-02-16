@@ -33,7 +33,7 @@ const MenuLeft = ({cadastrObj}) => {
               {/* арест обременеия залог ипотека запере на регистрацию и ные ограничения или обременения  */}
             </li>
           )}
-          {stats && (
+          {(stats.price && stats.priceRange && stats.min) && (
             <li data-type="fnp" className="object__leftMenu-link _success">
               <Link to="price-info" smooth="true" activeClass="active" spy="true" duration={500}>Оценка стоимости</Link>
               {/* по максимуму поля stat из getask , рыночная стоимость, quality, площадь, квартиры проадеются в диапазоне () */}

@@ -29,7 +29,7 @@ const Price = ({ cadastrObj }) => {
         )}
         <div className="object__block-title-2">Стоимость квадратного метра аналогичных объектов:</div>
         <div className="blockInfo">
-          {meterPrice && (
+          {meterPrice.min && (
             <>
               <div className="minimalPrice">{`Минимум ${meterPrice.min} руб`}</div>
               <div className="middlePrice">{`В среднем ${meterPrice.average} руб`}</div>

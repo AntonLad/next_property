@@ -6,6 +6,7 @@ let map
 const NoFlatMap = ({ cadastrObj }) => {
   const lat = cadastrObj.price?.bld?.pos?.lat
   const lng = cadastrObj.price?.bld?.pos?.lng
+  const address = cadastrObj.price?.bld?.address
 
   // useEffect(() => {
   //   map = DG.map('mapContainer', {
@@ -19,7 +20,7 @@ const NoFlatMap = ({ cadastrObj }) => {
     // }
     map = DG.map('mapContainer', {
       center: [`${lat}`, `${lng}`],
-      zoom: 14
+      zoom: 18
     })
 
     const icon = DG.icon({
