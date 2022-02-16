@@ -13,7 +13,8 @@ const Restriction = ({ cadastrObj }) => {
         <div className="object__block-title _restrictions">
           Обременения и ограничения
         </div>
-        {encumbrances?.map((it, ind) => {
+        {encumbrances?.filter((it) => it.encmbState === 1 )
+          .map((it, ind) => {
             return (
               <>
                 <div key={ind} className="object__block-title-2 products">
