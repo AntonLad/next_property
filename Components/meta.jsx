@@ -1,14 +1,14 @@
 import React from 'react'
 import Head from 'next/head'
 
-const Meta = ({ title }) => {
+const Meta = ({ title, descritoin, keywords }) => {
   return (
     <>
-    <Head>
-      <title>{title}</title>
-      <meta name="description" content="abracadabra descriptoin"/>
-      <meta name="keywords" content="abracadabra keywords"/>
-    </Head>
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content={descritoin} />
+        <meta name="keywords" content={keywords} />
+      </Head>
     </>
   )
 }

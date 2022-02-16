@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb'
 import InfoAppart from '../../Components/info-building'
 import Meta from '../../Components/meta'
-
+import { useRouter } from 'next/router'
 const url = 'mongodb://127.0.0.1/'
 const client = new MongoClient(url, { useUnifiedTopology: true })
 
@@ -13,9 +13,18 @@ const client = new MongoClient(url, { useUnifiedTopology: true })
 // const socialUrl = process.env.SOCIAL_URL
 
 export default function Object({ cadastralObject }) {
+  const router = useRouter()
+  const cadNumber = router.query.cadnumber
+  const props = JSON.parse(cadastralObject)
+  const addressNotes = props?.objectData?.objectAddress?.addressNotes || props?.objectData?.objectAddress?.mergedAddress
+  console.log('addressNotes', addressNotes)
   return (
       <div>
-        <Meta title={'START PAGE'} />
+        <Meta
+          title={`Проверка объекта недвижимости онлайн. Кадастровый номер: ${cadNumber}, адрес: ${addressNotes}`}
+          descritoin={`Проверка объекта недвижимости онлайн по кадастровому номеру ${cadNumber} | Проверка объекта недвижимости онлайн по адресу: ${addressNotes}`}
+          keywords={`${cadNumber}, проверка недвижимости, ЕГРН, Росреестр`}
+        />
         <InfoAppart cadastrObj={JSON.parse(cadastralObject)}/>
       </div>
   )
