@@ -2,6 +2,8 @@ import { MongoClient } from 'mongodb'
 import InfoAppart from '../../Components/info-building'
 import Meta from '../../Components/meta'
 import { useRouter } from 'next/router'
+import regions from '../../Components/files/regions'
+
 const url = 'mongodb://127.0.0.1/'
 const client = new MongoClient(url, { useUnifiedTopology: true })
 
@@ -103,8 +105,18 @@ export async function getServerSideProps(context) {
   const collection = db.collection('searchingObjects')
   const res = await collection.find({ $or : [{'objectData.objectCn': cadastr}, {'objectData.id':cadastr}]}).toArray()
   const cadastrObj = res[0]
-  // console.log('CADASRTOBJECT', cadastrObj)
-  return {
+  const searchAdress = res[0].objectData?.objectAddress?.addressNotes || res[0].objectData?.objectAddress?.mergedAddress
+  const searchFlat = res[0].dadata?.flat_type
+  if (searchFlat !== null && searchAdress) {
+    const regionFiasCode = res[0].dadata?.region_fias_id
+    const houseFiasCode = res[0].dadata?.house_fias_id
+    const needRegionsForBase = regions[regionFiasCode]
+    const regionBase = client.db('dataHousePassports')
+    const regionCollection = regionBase.collection(`${needRegionsForBase}`)
+    const findBuildingFromBase = await regionCollection.find({houseguid: houseFiasCode}).toArray()
+    console.log('НАШЕЛ ДОМ В БАЗЕ', findBuildingFromBase[0])
+  }
+ return {
     props: {cadastralObject: JSON.stringify(cadastrObj) || null}, // will be passed to the page component as props
   }
 }
