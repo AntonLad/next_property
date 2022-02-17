@@ -9,12 +9,11 @@ import Countdown from './countdown'
 
 const Search = () => {
   const router = useRouter()
-  const [value, setValue] = useState([])
+  const [value, setValue] = useState('')
   const [enterText, setEnterText] = useState('')
   const [cadNumber, setCadNumber] = useState('')
   const [data, setData] = useState('')
   const [loading, setLoading] = useState(false)
-
   const loadReesrt = async (subject = '') => {
     const response = await axios.get(`/api/tooltips?text=${subject}`)
     setValue(response.data)
@@ -39,19 +38,22 @@ const Search = () => {
       console.log('getAskReestrByCudNum', getAskReestrByCudNum)
       const askObjectId = await axios(`/api/findId?cadNumber=${cadNumber || enterText}`)
       const objectId = askObjectId.data.getAskId
-      console.log('objectId', objectId)
+
       if (objectId !== 0) {
         await axios(`/api/findRights?objectid=${objectId}&cadNumber=${cadNumber || enterText}`)
       }
-      const oksType = getAskReestrByCudNum?.parcelData?.oksType
 
       // const cookieName = Math.random().toString(36).slice(2)
 
       // Cookie.set(`${cadNumber.replace(/[^0-9]/g, '') || enterText.replace(/[^0-9]/g, '')}`, `${cadNumber || enterText}`, { expires: 1000 })
       setData(getAskReestrByCudNum)
+      const address = getAskReestrByCudNum.objectData?.objectAddress?.addressNotes || getAskReestrByCudNum.objectData?.objectAddress?.mergedAddress
+
+      if (address) {
+        await axios(`/api/askdadata?cadNumber=${cadNumber || enterText}`)
+      }
 
       if (typeof getAskReestrByCudNum.error === 'undefined') {
-        const address = getAskReestrByCudNum.objectData?.objectAddress?.addressNotes || getAskReestrByCudNum.objectData?.objectAddress?.mergedAddress
         if (address) {
           const adressUrl = `/api/findflat?address=${address}&cadNumber=${cadNumber || enterText}`
           await axios(adressUrl)

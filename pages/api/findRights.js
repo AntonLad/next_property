@@ -17,7 +17,6 @@ export default async function tooltips(req, res) {
     url: url
   })
     .then(({ data }) => {
-      console.log('RIGHTS', data)
       return data
     })
     .catch((e) => {

@@ -12,7 +12,6 @@ const socialUrl = process.env.SOCIAL_URL
 export default async function findFlat(req, res) {
   const flat = req.query.address
   const cadNumber = req.query.cadNumber
-  console.log('CADNUMBER', cadNumber)
   const url = `${priceUrl}${flat}`
   const encodingUrl = encodeURI(url)
 
@@ -20,7 +19,6 @@ export default async function findFlat(req, res) {
   const db = client.db('cadastr')
   const collection = db.collection('searchingObjects')
   const resultOfCheckObject = await collection.find({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}).toArray()
-  console.log('CHECKOBJECT', resultOfCheckObject[0].price)
   if (!resultOfCheckObject[0].price) {
     const getAskPrice = await axios({
       headers: {
@@ -33,7 +31,7 @@ export default async function findFlat(req, res) {
       url: encodingUrl
     })
       .then(({ data }) => {
-        console.log('PRICE', data)
+        console.log('DATAFLAT', data)
         return data
       })
       .catch((e) => {
@@ -57,7 +55,6 @@ export default async function findFlat(req, res) {
       url: encodingInfraUrl
     })
       .then(({ data }) => {
-        console.log('SOCIAL', data)
         return data
       })
       .catch((e) => {
