@@ -100,19 +100,6 @@ const InfoAppart = ({ cadastrObj }) => {
                   {(stats?.price && stats?.priceRange && stats?.min) && <DynamicPrice cadastrObj={cadastrObj} />}
                   {checker && <DynamicMkd cadastrObj={cadastrObj} />}
                   {checker && <DynamicMap cadastrObj={cadastrObj} />}
-
-                  {/* {oksType === 'flat' && (typeof checker === 'undefined' ? (
-                    <>
-                      <div className="searchTitle">Загружаем данные о квартире</div>
-                      <div className="spinner1" />
-                    </>
-                  ) : (
-                    <>
-                      {price && <Price cadastrObj={cadastrObj} />}
-                      <Mkd cadastrObj={cadastrObj} />
-                      <Map cadastrObj={cadastrObj} />
-                    </>
-                  ))} */}
                   <Scroll />
                 </div>
               </div>

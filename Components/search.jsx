@@ -54,10 +54,10 @@ const Search = () => {
       }
 
       if (typeof getAskReestrByCudNum.error === 'undefined') {
-        if (address) {
-          const adressUrl = `/api/findflat?address=${address}&cadNumber=${cadNumber || enterText}`
-          await axios(adressUrl)
-        }
+        // if (address) {
+        //   const adressUrl = `/api/findflat?address=${address}&cadNumber=${cadNumber || enterText}`
+        //   await axios(adressUrl)
+        // }
         router.push(`/object/${cadNumber || enterText}`)
         setLoading(false)
       }

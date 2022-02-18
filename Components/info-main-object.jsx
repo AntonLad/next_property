@@ -5,13 +5,15 @@ import { Link } from 'react-scroll'
 
 
 const InfoMainObject = ({ cadastrObj }) => {
-  const { objectCn } = cadastrObj?.objectData ?? {}
-  const addressNotes = cadastrObj?.objectData?.objectAddress?.addressNotes || cadastrObj?.objectData?.objectAddress?.mergedAddress
-  const objectName = cadastrObj?.objectData?.objectName ?? '0'
+  const cadObj = JSON.parse(cadastrObj)
+  const { objectCn } = cadObj?.objectData ?? {}
+  const addressNotes = cadObj?.objectData?.objectAddress?.addressNotes || cadObj?.objectData?.objectAddress?.mergedAddress
+  console.log('ADRESSFROMPROPS', addressNotes)
+  const objectName = cadObj?.objectData?.objectName ?? '0'
   const objectNameLetter = objectName[0]
-  const { areaValue, utilByDoc } = cadastrObj?.parcelData ?? {}
-  const { name } = cadastrObj?.price?.flat ?? {}
-  const encumbrances = cadastrObj?.rights?.realty?.encumbrances
+  const { areaValue, utilByDoc } = cadObj?.parcelData ?? {}
+  const { name } = cadObj?.price?.flat ?? {}
+  const encumbrances = cadObj?.rights?.realty?.encumbrances
   const encumbrancesCheck = encumbrances?.filter((it) =>  it?.encmbState === 1)
   const data = new Date()
   const year = data.getFullYear()

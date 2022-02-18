@@ -14,7 +14,8 @@ export default async function findFlat(req, res) {
   const cadNumber = req.query.cadNumber
   const url = `${priceUrl}${flat}`
   const encodingUrl = encodeURI(url)
-
+  console.log('FLAT', flat)
+  console.log('CADNUMBER', cadNumber)
   await client.connect()
   const db = client.db('cadastr')
   const collection = db.collection('searchingObjects')

@@ -1,37 +1,55 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import CloseIcon from '@material-ui/icons/Close'
 
 const Mkd = ({ cadastrObj }) => {
-  const {
-    bldTitle, address, photos, wallMaterial, floorMaterial, elevatorCount, supplyTypeHeating,
-    stations, maxFloor, supplyTypeHotWater, supplyTypeVent, bldArea, bldLivingArea,
-    bldNonLivingArea, bldYear, supplyTypeGas, entranceCount, flatsCount, livingCount,
-    bldProject, isAlarm
-  } = cadastrObj.price?.bld
-  const oksType = cadastrObj?.parcelData?.oksType
-  const addresSspare = cadastrObj?.price?.address
+  const router = useRouter()
+  const cadNumber = router.query.cadnumber
+  const [value, setValue] = useState('')
+  console.log('VALUE', value)
+  console.log('MKDPROPS', cadastrObj)
+  // const traTaTa = cadastrObj
+  // .then((result) => {
+  //   // localStorage.setItem(`${cadNumber}`, JSON.stringify(result))
+  //   return result
+  // })
 
-  // const bldTitle = cadastrObj.price?.bld?.bldTitle
-  // const address = cadastrObj.price?.bld?.address
-  // const photos = cadastrObj.price?.bld?.photos
-  // const wallMaterial = cadastrObj.price?.bld?.wallMaterial
-  // const floorMaterial = cadastrObj.price?.bld?.floorMaterial
-  // const elevatorCount = cadastrObj.price?.bld?.elevatorCount
-  // const supplyTypeHeating = cadastrObj.price?.bld?.supplyTypeHeating
-  // const supplyTypeHotWater = cadastrObj.price?.bld?.supplyTypeHotWater
-  // const supplyTypeVent = cadastrObj.price?.bld?.supplyTypeVent
-  // const maxFloor = cadastrObj.price?.bld?.maxFloor
-  // const bldArea = cadastrObj.price?.bld?.bldArea
-  // const bldLivingArea = cadastrObj.price?.bld?.bldLivingArea
-  // const bldNonLivingArea = cadastrObj.price?.bld?.bldNonLivingArea
-  // const bldYear = cadastrObj.price?.bld?.bldYear
-  // const supplyTypeGas = cadastrObj.price?.bld?.supplyTypeGas
-  // const entranceCount = cadastrObj.price?.bld?.entranceCount
-  // const flatsCount = cadastrObj.price?.bld?.flatsCount
-  // const livingCount = cadastrObj.price?.bld?.livingCount
-  // const bldProject = cadastrObj.price?.bld?.bldProject
-  // const stations = cadastrObj.price?.bld?.stations
-  // const isAlarm = cadastrObj.price?.bld?.isAlarm
+  const tryTouchPromise = async () => {
+    const a = await cadastrObj
+    setValue(a)
+  }
+  tryTouchPromise()
+  // const {
+  //   bldTitle, address, photos, wallMaterial, floorMaterial, elevatorCount, supplyTypeHeating,
+  //   stations, maxFloor, supplyTypeHotWater, supplyTypeVent, bldArea, bldLivingArea,
+  //   bldNonLivingArea, bldYear, supplyTypeGas, entranceCount, flatsCount, livingCount,
+  //   bldProject, isAlarm
+  // } = cadastrObj.price?.bld
+
+  const oksType = value?.parcelData?.oksType
+  const addresSspare = value?.price?.address
+
+  const bldTitle = value?.price?.bld?.bldTitle
+  const address = value?.price?.bld?.address
+  const photos = value?.price?.bld?.photos
+  const wallMaterial = value?.price?.bld?.wallMaterial
+  const floorMaterial = value?.price?.bld?.floorMaterial
+  const elevatorCount = value?.price?.bld?.elevatorCount
+  const supplyTypeHeating = value?.price?.bld?.supplyTypeHeating
+  const supplyTypeHotWater = value?.price?.bld?.supplyTypeHotWater
+  const supplyTypeVent = value?.price?.bld?.supplyTypeVent
+  const maxFloor = value?.price?.bld?.maxFloor
+  const bldArea = value?.price?.bld?.bldArea
+  const bldLivingArea = value?.price?.bld?.bldLivingArea
+  const bldNonLivingArea = value?.price?.bld?.bldNonLivingArea
+  const bldYear = value?.price?.bld?.bldYear
+  const supplyTypeGas = value?.price?.bld?.supplyTypeGas
+  const entranceCount = value?.price?.bld?.entranceCount
+  const flatsCount = value?.price?.bld?.flatsCount
+  const livingCount = value?.price?.bld?.livingCount
+  const bldProject = value?.price?.bld?.bldProject
+  const stations = value?.price?.bld?.stations
+  const isAlarm = value?.price?.bld?.isAlarm
 
   const date = new Date().getFullYear()
   const buildingDamage = date - bldYear
@@ -48,7 +66,9 @@ const Mkd = ({ cadastrObj }) => {
     return 'Критическое'
  }
 
-
+ useEffect(() => {
+  setValue(value)
+ }, [value])
 
 
   return (
