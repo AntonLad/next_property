@@ -15,9 +15,15 @@ import InfoMainObject from '../../Components/info-main-object'
 import Cadastr from '../../Components/info-cadastr'
 import Mkd from '../../Components/info-mkd'
 import Owners from '../../Components/info-owners'
-// import Price from '../../Components/info-price'
+import Price from '../../Components/info-price'
 import Restriction from '../../Components/info-restrictions'
 // import Map from '../../Components/info-map'
+const DynamicMap = dynamic(
+  () => import('../../Components/info-map'),
+  { ssr: false,
+    loading: () => 'ЗАГРУЗКА'
+  }
+)
 
 const url = 'mongodb://127.0.0.1/'
 const client = new MongoClient(url, { useUnifiedTopology: true })
@@ -68,11 +74,20 @@ export default function Object({ cadastralObject }) {
                   <div className="object__content">
                     <InfoMainObject cadastrObj={cadastralObject} />
                     <Cadastr cadastrObj={cadastralObject} />
-                    {rights && rightsCheck.length !== 0 && <Owners cadastrObj={cadastralObject} />}
-                    {encumbrances && encumbrancesCheck.length !== 0 && <Restriction cadastrObj={cadastralObject} />}
-                    {(stats?.price && stats?.priceRange && stats?.min) && <DynamicPrice cadastrObj={askAboutFlat} />}
+                     {/* пока выводы без условий, надо поправить */}
+                   
+                    {/* {rights && rightsCheck.length !== 0 && <Owners cadastrObj={cadastralObject} />} */}
+                    {/* {encumbrances && encumbrancesCheck.length !== 0 && <Restriction cadastrObj={cadastralObject} />} */}
+                    {/* {(stats?.price && stats?.priceRange && stats?.min) && <Price cadastrObj={askAboutFlat} />} */}
+                    
+                    <Owners cadastrObj={askAboutFlat} />
+                    <Restriction cadastrObj={askAboutFlat} />
+                    <Price cadastrObj={askAboutFlat} />
                     <Mkd cadastrObj={askAboutFlat} />
-                    {checker && <DynamicMap cadastrObj={askAboutFlat} />}
+
+                    {/* карте вернул динамическую загрузку иначе window is not defined */}
+                    {/* <DynamicMap cadastrObj={askAboutFlat} /> */}
+                    
                     <Scroll />
                   </div>
                 </div>

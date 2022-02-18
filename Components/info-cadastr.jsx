@@ -1,16 +1,17 @@
 import React from 'react'
 
 const Cadastr = ({ cadastrObj }) => {
+  const cadObj = JSON.parse(cadastrObj)
   const { firActualDate } = cadastrObj ?? {}
-  const { objectCn } = cadastrObj?.objectData ?? {}
-  const addressNotes = cadastrObj?.objectData?.objectAddress?.addressNotes || cadastrObj?.objectData?.objectAddress?.mergedAddress
-  const objectName = cadastrObj?.objectData?.objectName ?? '0'
+  const { objectCn } = cadObj?.objectData ?? {}
+  const addressNotes = cadObj?.objectData?.objectAddress?.addressNotes || cadastrObj?.objectData?.objectAddress?.mergedAddress
+  const objectName = cadObj?.objectData?.objectName ?? '0'
   const objectNameLetter = objectName[0]
-  const { name, floor } = cadastrObj?.flat?.price?.flat ?? {}
-  const rightType = cadastrObj?.rights?.realty?.rights
+  const { name, floor } = cadObj?.flat?.price?.flat ?? {}
+  const rightType = cadObj?.rights?.realty?.rights
   const {
     dateCreate, cadCost, dateCost, oksElementsConstructStr, oksFloors, oksUFloors, oksYearBuilt
-  } = cadastrObj?.parcelData ?? {}
+  } = cadObj?.parcelData ?? {}
 
   // const { regDate, infoUpdateDate } = useSelector((store) => store.common.getAskReestrByCudNum)
 
@@ -29,14 +30,6 @@ const Cadastr = ({ cadastrObj }) => {
               <b>{objectCn}</b>
             </div>
           </div>
-          {/* <div className="object__blockTableTr">
-            <div className="object__blockTableTd">Регион:</div>
-            <div className="object__blockTableTd">{regionKey}</div>
-          </div>
-          <div className="object__blockTableTr">
-            <div className="object__blockTableTd">Кадастровый район:</div>
-            <div className="object__blockTableTd">{regionKey || 'Нет информации'}</div>
-          </div> */}
           <div className="object__blockTableTr">
             <div className="object__blockTableTd">Адрес по документам:</div>
             <div className="object__blockTableTd">{addressNotes}</div>

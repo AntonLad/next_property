@@ -5,13 +5,20 @@ import DG from '2gis-maps'
 
 let map
 const Map = ({ cadastrObj }) => {
+  const [value, setValue] = useState(false)
   const router = useRouter()
   const info = router.query.cadnumber
   const [range, setRange] = useState(200)
-  const lat = cadastrObj.price?.bld?.pos?.lat
-  const lng = cadastrObj.price?.bld?.pos?.lng
-  const address = cadastrObj.price?.bld?.address
-  const social = cadastrObj?.structures
+  const lat = value.price?.bld?.pos?.lat
+  const lng = value.price?.bld?.pos?.lng
+  const address = value.price?.bld?.address
+  const social = value?.structures
+
+  const tryTouchPromise = async () => {
+    const a = await cadastrObj
+    setValue(a)
+  }
+  tryTouchPromise()
   // const [mapInitialized, setMapInitialized] = useState('')
 
   // function mapping(value, distance) {
@@ -159,70 +166,78 @@ const Map = ({ cadastrObj }) => {
 
   const uniqueKey = () => (+new Date())
   return (
-    <div className="object__block">
-      <div id="infrastructura" className="object__block-title _map">Социальная инфраструктура</div>
-      <div className="mapButtons">
-        <button
-          type="button"
-          className="mapBtn green"
-          onClick={() => {
-            setRange(200)
-          }}
-        >
-          200м
-        </button>
-        <button
-          type="button"
-          className="mapBtn yellow"
-          onClick={() => {
-            setRange(500)
-          }}
-        >
-          500м
-        </button>
-        <button
-          type="button"
-          className="mapBtn red"
-          onClick={() => {
-            setRange(1000)
-          }}
-        >
-          1000м
-        </button>
-      </div>
-      <div id="mapContainer" className="mapContainer" />
-      {/* добавление объектов инфраструктуры - начало */}
-      {social.map((it, ind) => {
-        return (
-          <div key={ind}>
-            {it?.items[0]?.distance < range && (
-              <div>
-                <div key={uniqueKey()} className="object__block-title-2 products">{it.category}</div>
-                <div className="object__blockTable">
-                  {it.items.filter((distance) => distance.distance <= range).map((item, index) => {
-                    return (
-                      <div key={`${index + uniqueKey()}`} className="object__blockTableTr">
-                        <div className="object__blockTableTd map">
-                          <span className="titleOfitem">
-                            {`"${item.title}"`}
-                          </span>
-                          <span>
-                            {`   ${item.subtitle}`}
-                          </span>
-                        </div>
-                        <div className="object__blockTableTd map">{item?.address}</div>
-                        <div className="object__blockTableTd map">{`${item?.distance}м`}</div>
-                        {/* временная строчка для проверки */}
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
+    <>
+      {!value ? (
+        <>
+          <div className="searchTitle">Загружаем данные о квартире</div>
+          <div className="spinner1" />
+        </>
+      ) : (
+        <div className="object__block">
+          <div id="infrastructura" className="object__block-title _map">Социальная инфраструктура</div>
+          <div className="mapButtons">
+            <button
+              type="button"
+              className="mapBtn green"
+              onClick={() => {
+                setRange(200)
+              }}
+            >
+              200м
+            </button>
+            <button
+              type="button"
+              className="mapBtn yellow"
+              onClick={() => {
+                setRange(500)
+              }}
+            >
+              500м
+            </button>
+            <button
+              type="button"
+              className="mapBtn red"
+              onClick={() => {
+                setRange(1000)
+              }}
+            >
+              1000м
+            </button>
           </div>
-        )
-      })}
-    </div>
+          <div id="mapContainer" className="mapContainer" />
+          {/* добавление объектов инфраструктуры - начало */}
+          {social.map((it, ind) => {
+            return (
+              <div key={ind}>
+                {it?.items[0]?.distance < range && (
+                  <div>
+                    <div key={uniqueKey()} className="object__block-title-2 products">{it.category}</div>
+                    <div className="object__blockTable">
+                      {it.items.filter((distance) => distance.distance <= range).map((item, index) => {
+                        return (
+                          <div key={`${index + uniqueKey()}`} className="object__blockTableTr">
+                            <div className="object__blockTableTd map">
+                              <span className="titleOfitem">
+                                {`"${item.title}"`}
+                              </span>
+                              <span>
+                                {`   ${item.subtitle}`}
+                              </span>
+                            </div>
+                            <div className="object__blockTableTd map">{item?.address}</div>
+                            <div className="object__blockTableTd map">{`${item?.distance} м.`}</div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )
+          })}
+        </div>
+      )}
+    </>  
   )
 }
 export default Map
