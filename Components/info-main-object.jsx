@@ -8,7 +8,6 @@ const InfoMainObject = ({ cadastrObj }) => {
   const cadObj = JSON.parse(cadastrObj)
   const { objectCn } = cadObj?.objectData ?? {}
   const addressNotes = cadObj?.objectData?.objectAddress?.addressNotes || cadObj?.objectData?.objectAddress?.mergedAddress
-  console.log('ADRESSFROMPROPS', addressNotes)
   const objectName = cadObj?.objectData?.objectName ?? '0'
   const objectNameLetter = objectName[0]
   const { areaValue, utilByDoc } = cadObj?.parcelData ?? {}

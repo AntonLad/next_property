@@ -19,30 +19,6 @@ import Owners from '../../Components/info-owners'
 import Restriction from '../../Components/info-restrictions'
 // import Map from '../../Components/info-map'
 
-// const DynamicMap = dynamic(
-//   () => import('../../Components/info-map'),
-//   { ssr: false,
-//     loading: () => 'ЗАГРУЗКА'
-//   }
-// )
-
-// const NoFlatMap = dynamic(
-//   () => import('../../Components/noFlatMap'),
-//   { ssr: false,
-//     loading: () => 'ЗАГРУЗКА'
-//   }
-// )
-
-// const DynamicMkd = dynamic(
-//   () => import('../../Components/info-mkd'),
-//   { ssr: false }
-// )
-
-// const DynamicPrice = dynamic(
-//   () => import('../../Components/info-price'),
-//   { ssr: false }
-// )
-
 const url = 'mongodb://127.0.0.1/'
 const client = new MongoClient(url, { useUnifiedTopology: true })
 
@@ -67,8 +43,7 @@ export default function Object({ cadastralObject }) {
   const adressUrl = `/api/findflat?address=${addressNotes}&cadNumber=${cadNumber}`
   const askAboutFlat = axios(adressUrl)
   .then((result) => {
-    // setValue(result.data)
-    return result.data
+      return result.data
   })
 
   return (
