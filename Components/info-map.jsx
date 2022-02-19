@@ -18,35 +18,8 @@ const Map = ({ cadastrObj }) => {
     const a = await cadastrObj
     setValue(a)
   }
+
   tryTouchPromise()
-  // const [mapInitialized, setMapInitialized] = useState('')
-
-  // function mapping(value, distance) {
-  //   return social[value].items.map((it) => {
-  //     return {
-  //       title: it.title,
-  //       subtitle: it.subtitle,
-  //       address: it.address,
-  //       distance: it.distance,
-  //       pos: it.pos
-  //     }
-  //   }).filter((it) => {
-  //     return it.distance <= distance
-  //   })
-  // }
-
-  // const socialObjectsProducts = (meters) => mapping(0, meters)
-  // const socialObjectsEducation = (meters) => mapping(1, meters)
-  // const socialObjectsMedicine = (meters) => mapping(2, meters)
-  // const socialObjectsSport = (meters) => mapping(3, meters)
-  // const socialObjectsFun = (meters) => mapping(4, meters)
-
-  // social = [
-  //   {
-  //     category: '',
-  //     items: []
-  //   },
-  // ]
 
   const categoryAssets = {
     products: {
@@ -133,16 +106,7 @@ const Map = ({ cadastrObj }) => {
     // }
 
     const getAddMarkers2 = (socialObjects) => {
-      /*
-      socialObjects = {
-        products: {
-          name: 'Продукты',
-          icon: 'shopMarker',
-          list: [{},{},{}]
-        }
-      }
-      */
-      Object.keys(socialObjects).forEach((categoryName) => {
+        Object.keys(socialObjects).forEach((categoryName) => {
         const marker = DG.icon({
           iconUrl: `/images/${socialObjects[categoryName].icon}.png`,
           iconSize: [21, 32]
@@ -156,12 +120,6 @@ const Map = ({ cadastrObj }) => {
     }
 
     getAddMarkers2(listOfSocialOjects(categoryAssets, range))
-
-    // getAddMarkers(socialObjectsProducts(range), 'shopMarker')
-    // getAddMarkers(socialObjectsEducation(range), 'education')
-    // getAddMarkers(socialObjectsMedicine(range), 'medicine1')
-    // getAddMarkers(socialObjectsSport(range), 'sport1')
-    // getAddMarkers(socialObjectsFun(range), 'fun')
   }, [range])
 
   const uniqueKey = () => (+new Date())
@@ -169,7 +127,7 @@ const Map = ({ cadastrObj }) => {
     <>
       {!value ? (
         <>
-          <div className="searchTitle">Загружаем данные о квартире</div>
+          <div className="searchTitle">Загружаем карту</div>
           <div className="spinner1" />
         </>
       ) : (
@@ -205,6 +163,7 @@ const Map = ({ cadastrObj }) => {
             </button>
           </div>
           <div id="mapContainer" className="mapContainer" />
+
           {/* добавление объектов инфраструктуры - начало */}
           {social.map((it, ind) => {
             return (
@@ -237,7 +196,7 @@ const Map = ({ cadastrObj }) => {
           })}
         </div>
       )}
-    </>  
+    </>
   )
 }
 export default Map

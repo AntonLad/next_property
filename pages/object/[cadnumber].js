@@ -17,9 +17,10 @@ import Mkd from '../../Components/info-mkd'
 import Owners from '../../Components/info-owners'
 import Price from '../../Components/info-price'
 import Restriction from '../../Components/info-restrictions'
+// import testMap from '../../Components/testmap'
 // import Map from '../../Components/info-map'
 const DynamicMap = dynamic(
-  () => import('../../Components/info-map'),
+  () => import('../../Components/testmap'),
   { ssr: false,
     loading: () => 'ЗАГРУЗКА'
   }
@@ -47,11 +48,14 @@ export default function Object({ cadastralObject }) {
   // console.log('addressNotes', addressNotes)
 
   const adressUrl = `/api/findflat?address=${addressNotes}&cadNumber=${cadNumber}`
-  const askAboutFlat = axios(adressUrl)
-  .then((result) => {
-      return result.data
-  })
-
+  let askAboutFlat
+  if (addressNotes) {
+    const askAboutFlaty = axios(adressUrl)
+    .then((result) => {
+        return result.data
+    })
+    askAboutFlat = askAboutFlaty
+  }
   return (
     <>
       <Meta
@@ -75,19 +79,19 @@ export default function Object({ cadastralObject }) {
                     <InfoMainObject cadastrObj={cadastralObject} />
                     <Cadastr cadastrObj={cadastralObject} />
                      {/* пока выводы без условий, надо поправить */}
-                   
+
                     {/* {rights && rightsCheck.length !== 0 && <Owners cadastrObj={cadastralObject} />} */}
                     {/* {encumbrances && encumbrancesCheck.length !== 0 && <Restriction cadastrObj={cadastralObject} />} */}
                     {/* {(stats?.price && stats?.priceRange && stats?.min) && <Price cadastrObj={askAboutFlat} />} */}
-                    
+
                     <Owners cadastrObj={cadastralObject} />
                     <Restriction cadastrObj={cadastralObject} />
                     <Price cadastrObj={askAboutFlat} />
                     <Mkd cadastrObj={askAboutFlat} />
 
                     {/* карте вернул динамическую загрузку иначе window is not defined */}
-                    {/* <DynamicMap cadastrObj={askAboutFlat} /> */}
-                    
+                    <DynamicMap cadastrObj={askAboutFlat} />
+
                     <Scroll />
                   </div>
                 </div>
