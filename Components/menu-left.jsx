@@ -5,8 +5,6 @@ import { Link } from 'react-scroll'
 const MenuLeft = ({ cadastrObj, askAboutFlat }) => {
   const [value, setValue] = useState(false)
   const [value1, setValue1] = useState(false)
-  console.log('askAboutFlat', askAboutFlat )
-  console.log('cadObjMenu', cadastrObj )
   const cadObj = JSON.parse(cadastrObj)
   
   const tryTouchPromise = async () => {
