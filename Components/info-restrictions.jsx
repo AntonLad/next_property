@@ -7,10 +7,7 @@ import React, { useState } from 'react'
 const Restriction = ({ cadastrObj }) => {
   const cadObj = JSON.parse(cadastrObj)
   const encumbrances = cadObj?.rights?.realty?.encumbrances
-  console.log('encumbrances', encumbrances)
- 
- 
-
+  
   return (
     <div id="restrictions-info">
       <div className="object__block-wrap">

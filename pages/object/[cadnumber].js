@@ -69,7 +69,7 @@ export default function Object({ cadastralObject }) {
             <div className="content">
               <Search />
               <div className="object__wrap">
-                <MenuLeft cadastrObj={cadastralObject}/>
+                <MenuLeft cadastrObj={cadastralObject} askAboutFlat={askAboutFlat}/>
                 <div className="object__contentWrap">
                   <div className="object__content">
                     <InfoMainObject cadastrObj={cadastralObject} />

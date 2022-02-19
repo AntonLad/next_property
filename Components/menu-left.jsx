@@ -1,15 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-scroll'
 // import './info.css'
 
-const MenuLeft = ({cadastrObj}) => {
-  const rights = cadastrObj?.rights?.realty?.rights
+const MenuLeft = ({ cadastrObj, askAboutFlat }) => {
+  const [value, setValue] = useState(false)
+  const [value1, setValue1] = useState(false)
+  console.log('askAboutFlat', askAboutFlat )
+  console.log('cadObjMenu', cadastrObj )
+  const cadObj = JSON.parse(cadastrObj)
+  
+  const tryTouchPromise = async () => {
+    const a = await askAboutFlat
+    const b = await cadastrObj
+
+    setValue(a)
+    setValue1(b)
+  }
+  tryTouchPromise()
+  
+  const rights = cadObj?.rights?.realty?.rights
   const rightsCheck = rights?.filter((it) =>  it?.rightState === 1)
-  const encumbrances = cadastrObj?.rights?.realty?.encumbrances
+  const encumbrances = cadObj?.rights?.realty?.encumbrances
   const encumbrancesCheck = encumbrances?.filter((it) =>  it?.encmbState === 1)
-  const stats = cadastrObj?.price?.stats
-  const checker = cadastrObj?.price?.address
-  const oksType = cadastrObj?.parcelData?.oksType
+  const stats = value?.price?.stats || value?.stats 
+  const checker = value?.price?.address || value?.address 
+  const oksType = cadObj?.parcelData?.oksType
+
+ 
 
   return (
     <div className="object__leftMenu">
@@ -34,26 +51,36 @@ const MenuLeft = ({cadastrObj}) => {
               {/* арест обременеия залог ипотека запере на регистрацию и ные ограничения или обременения  */}
             </li>
           )}
-          {(stats?.price && stats?.priceRange && stats?.min) && (
-            <li data-type="fnp" className="object__leftMenu-link _success">
-              <Link to="price-info" smooth="true" activeClass="active" spy="true" duration={500}>Оценка стоимости</Link>
-              {/* по максимуму поля stat из getask , рыночная стоимость, quality, площадь, квартиры проадеются в диапазоне () */}
-            </li>
-          )}
-          {checker && (
-            <li data-type="mkd" className="object__leftMenu-link _success">
-              {oksType === 'flat' ?
-                <Link to="mkd-info" smooth="true" activeClass="active" spy="true" duration={500}>Сведения о МКД</Link> :
-                <Link to="mkd-info" smooth="true" activeClass="active" spy="true" duration={500}>Дополнительные сведения об объекте</Link> 
-              }
-            </li>
-          )}
-          {checker && (
-            <li data-type="map" className="object__leftMenu-link _success">
-              <Link to="infrastructura" smooth="true" activeClass="active" spy="true" duration={500}>Инфраструктура</Link>
-              {/* по максимуму поля bld из getask , фотки */}
-            </li>
-          )}
+          <>
+            {!value ? (
+              <>
+                {''}
+              </>
+            ) : (
+              <>
+                {(stats?.price && stats?.priceRange && stats?.min) && (
+                  <li data-type="fnp" className="object__leftMenu-link _success">
+                    <Link to="price-info" smooth="true" activeClass="active" spy="true" duration={500}>Оценка стоимости</Link>
+                    {/* по максимуму поля stat из getask , рыночная стоимость, quality, площадь, квартиры проадеются в диапазоне () */}
+                  </li>
+                )}
+                {checker && (
+                  <li data-type="mkd" className="object__leftMenu-link _success">
+                    {oksType === 'flat' ?
+                      <Link to="mkd-info" smooth="true" activeClass="active" spy="true" duration={500}>Сведения о МКД</Link> :
+                      <Link to="mkd-info" smooth="true" activeClass="active" spy="true" duration={500}>Дополнительные сведения об объекте</Link> 
+                    }
+                  </li>
+                )}
+                {checker && (
+                  <li data-type="map" className="object__leftMenu-link _success">
+                    <Link to="infrastructura" smooth="true" activeClass="active" spy="true" duration={500}>Инфраструктура</Link>
+                    {/* по максимуму поля bld из getask , фотки */}
+                  </li>
+                )}
+              </>
+            )}
+          </>   
         </ul>
         <div className="btn _pink object__leftMenu-btnFull js__objectLeftBtnReports">
           Получить полный отчёт
