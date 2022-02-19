@@ -80,8 +80,8 @@ export default function Object({ cadastralObject }) {
                     {/* {encumbrances && encumbrancesCheck.length !== 0 && <Restriction cadastrObj={cadastralObject} />} */}
                     {/* {(stats?.price && stats?.priceRange && stats?.min) && <Price cadastrObj={askAboutFlat} />} */}
                     
-                    <Owners cadastrObj={askAboutFlat} />
-                    <Restriction cadastrObj={askAboutFlat} />
+                    <Owners cadastrObj={cadastralObject} />
+                    <Restriction cadastrObj={cadastralObject} />
                     <Price cadastrObj={askAboutFlat} />
                     <Mkd cadastrObj={askAboutFlat} />
 

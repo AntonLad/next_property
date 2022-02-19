@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 
 const Price = ({ cadastrObj }) => {
   const [value, setValue] = useState(false)
-  const { price } = value.price?.stats ?? {}
-  const priceRange = value?.price?.stats?.priceRange
-  const meterPrice = value?.price?.stats
+  const price = value.price?.stats?.price || value?.stats?.price
+  const priceRange = value?.price?.stats?.priceRange || value?.stats?.priceRange
+  const meterPrice = value?.price?.stats || value?.stats
   
 
   const tryTouchPromise = async () => {

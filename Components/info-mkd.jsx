@@ -24,32 +24,32 @@ const Mkd = ({ cadastrObj }) => {
   //   stations, maxFloor, supplyTypeHotWater, supplyTypeVent, bldArea, bldLivingArea,
   //   bldNonLivingArea, bldYear, supplyTypeGas, entranceCount, flatsCount, livingCount,
   //   bldProject, isAlarm
-  // } = cadastrObj.price?.bld
+  // } = value?.price?.bld || value?.bld
 
-  const oksType = value?.parcelData?.oksType
-  const addresSspare = value?.price?.address
+  const oksType = value?.parcelData?.oksType 
+  const addresSspare = value?.price?.address || value?.address
 
-  const bldTitle = value?.price?.bld?.bldTitle
-  const address = value?.price?.bld?.address
-  const photos = value?.price?.bld?.photos
-  const wallMaterial = value?.price?.bld?.wallMaterial
-  const floorMaterial = value?.price?.bld?.floorMaterial
-  const elevatorCount = value?.price?.bld?.elevatorCount
-  const supplyTypeHeating = value?.price?.bld?.supplyTypeHeating
-  const supplyTypeHotWater = value?.price?.bld?.supplyTypeHotWater
-  const supplyTypeVent = value?.price?.bld?.supplyTypeVent
-  const maxFloor = value?.price?.bld?.maxFloor
-  const bldArea = value?.price?.bld?.bldArea
-  const bldLivingArea = value?.price?.bld?.bldLivingArea
-  const bldNonLivingArea = value?.price?.bld?.bldNonLivingArea
-  const bldYear = value?.price?.bld?.bldYear
-  const supplyTypeGas = value?.price?.bld?.supplyTypeGas
-  const entranceCount = value?.price?.bld?.entranceCount
-  const flatsCount = value?.price?.bld?.flatsCount
-  const livingCount = value?.price?.bld?.livingCount
-  const bldProject = value?.price?.bld?.bldProject
-  const stations = value?.price?.bld?.stations
-  const isAlarm = value?.price?.bld?.isAlarm
+  const bldTitle = value?.price?.bld?.bldTitle || value?.bld?.bldTitle
+  const address = value?.price?.bld?.address || value?.bld?.address
+  const photos = value?.price?.bld?.photos || value?.bld?.photos
+  const wallMaterial = value?.price?.bld?.wallMaterial ||  value?.bld?.wallMaterial
+  const floorMaterial = value?.price?.bld?.floorMaterial ||  value?.bld?.floorMaterial
+  const elevatorCount = value?.price?.bld?.elevatorCount || value?.bld?.elevatorCount
+  const supplyTypeHeating = value?.price?.bld?.supplyTypeHeating || value?.bld?.supplyTypeHeating
+  const supplyTypeHotWater = value?.price?.bld?.supplyTypeHotWater || value?.bld?.supplyTypeHotWater
+  const supplyTypeVent = value?.price?.bld?.supplyTypeVent || value?.bld?.supplyTypeVent
+  const maxFloor = value?.price?.bld?.maxFloor || value?.bld?.maxFloor
+  const bldArea = value?.price?.bld?.bldArea || value?.bld?.bldArea
+  const bldLivingArea = value?.price?.bld?.bldLivingArea || value?.bld?.bldLivingArea
+  const bldNonLivingArea = value?.price?.bld?.bldNonLivingArea || value?.bld?.bldNonLivingArea
+  const bldYear = value?.price?.bld?.bldYear || value?.bld?.bldYear
+  const supplyTypeGas = value?.price?.bld?.supplyTypeGas || value?.bld?.supplyTypeGas
+  const entranceCount = value?.price?.bld?.entranceCount || value?.bld?.entranceCount
+  const flatsCount = value?.price?.bld?.flatsCount || value?.bld?.flatsCount
+  const livingCount = value?.price?.bld?.livingCount || value?.bld?.livingCount
+  const bldProject = value?.price?.bld?.bldProject || value?.bld?.bldProject 
+  const stations = value?.price?.bld?.stations || value?.bld?.stations
+  const isAlarm = value?.price?.bld?.isAlarm || value?.bld?.isAlarm
 
   const date = new Date().getFullYear()
   const buildingDamage = date - bldYear
@@ -71,7 +71,7 @@ const Mkd = ({ cadastrObj }) => {
     <>
       {!value ? (
         <>
-          <div className="searchTitle">Загружаем данные о квартире</div>
+          <div className="searchTitle">Загружаем данные об объекте</div>
           <div className="spinner1" />
         </>
       ) : (
@@ -97,6 +97,7 @@ const Mkd = ({ cadastrObj }) => {
               <div className="object__blockTableTr">
                 <div className="object__blockTableTd">Тип объекта</div>
                 <div className="object__blockTableTd">
+                  {console.log('bldTitle', bldTitle)}
                   <b>{bldTitle}</b>
                 </div>
               </div>
