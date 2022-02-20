@@ -69,8 +69,9 @@ const Map = ({ cadastrObj }) => {
     }, {})
   }
 
+  
   useEffect(() => {
-    map = DG.map('mapContainer', {
+     map = DG.map('mapContainer', {
       center: [`${lat}`, `${lng}`],
       zoom: 16
     })

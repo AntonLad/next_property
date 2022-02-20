@@ -88,6 +88,7 @@ const testMap = ({ cadastrObj }) => {
   // listOfSocialOjects(categoryAssets, range)
 
   const uniqueKey = () => (+new Date())
+  let lands = 'islands#glyphDotIcon'
 
   return (
     <>
@@ -140,12 +141,36 @@ const testMap = ({ cadastrObj }) => {
                     preset: 'islands#blueDotIcon'
                   }}
                 />
-                <Placemark
-                  geometry={[lat, lng]}
-                  options={{
-                    preset: 'islands#blueDotIcon'
-                  }}
-                />
+                {social.map((it, ind) => {
+                  return (
+                    <div key={ind}>
+                      {it?.items[0]?.distance < range && (
+                        <div>
+                          <div key={uniqueKey()}>{it.category}</div>
+                          <div>
+                            {it.items.filter((distance) => distance.distance <= range).map((dataOfObject, index) => {
+                              return (
+                                <div key={`${index + uniqueKey()}`}>
+                                  {/* {range < 200 ? lands = 'islands#darkGreenDotIcon' : lands = 'islands#yellowDotIcon'} */}
+                                  
+                                    <Placemark
+                                    geometry={[dataOfObject.pos.lat, dataOfObject.pos.lng]}
+                                    options={{
+                                      preset: lands,
+                                      iconGlyph: 'home',
+                                      iconGlyphColor: 'red'
+                                    }}
+                                  />
+  
+                                </div>
+                              )
+                            })}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )
+                 })}
                 <Circle
                   geometry={[[lat, lng], 1000]}
                   options={{
