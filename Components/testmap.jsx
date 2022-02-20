@@ -13,7 +13,7 @@ const testMap = ({ cadastrObj }) => {
   const lng = value.price?.bld?.pos?.lng || value.bld?.pos?.lng
   const address = value.bld?.address
   const social = value?.structures || value?.getAskStructure?.social
-  //value.?getAskStructure?.social
+
 
   const tryTouchPromise = async () => {
     const a = await cadastrObj
@@ -57,7 +57,8 @@ const testMap = ({ cadastrObj }) => {
   //           subtitle: socialObject.subtitle,
   //           address: socialObject.address,
   //           distance: socialObject.distance,
-  //           pos: socialObject.pos,
+  //           lat: socialObject.pos.lat,
+  //           lng: socialObject.pos.lng
   //         }
   //       })
   //       .filter((it) => it.distance <= distance)
@@ -84,7 +85,7 @@ const testMap = ({ cadastrObj }) => {
   //   })
   // }
 
-  // getAddMarkers2(listOfSocialOjects(categoryAssets, range))
+  // listOfSocialOjects(categoryAssets, range)
 
   const uniqueKey = () => (+new Date())
 
@@ -135,11 +136,12 @@ const testMap = ({ cadastrObj }) => {
                 <FullscreenControl />
                 <Placemark
                   geometry={[lat, lng]}
-                  properties={{
-                    iconContent :'S',
-                    balloonContentHeader :'HAHAHAHAH',
-                    hintContent: 'HOHOHOH',
+                  options={{
+                    preset: 'islands#blueDotIcon'
                   }}
+                />
+                <Placemark
+                  geometry={[lat, lng]}
                   options={{
                     preset: 'islands#blueDotIcon'
                   }}
