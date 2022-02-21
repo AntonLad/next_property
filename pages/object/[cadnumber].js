@@ -32,17 +32,20 @@ const client = new MongoClient(url, { useUnifiedTopology: true })
 
 export default function Object({ cadastralObject }) {
   console.log('ALLPROPS', JSON.parse(cadastralObject))
+  const [value, setValue] = useState(false)
+  
   const router = useRouter()
   const cadNumber = router.query.cadnumber
-  const rights = cadastralObject?.rights?.realty?.rights
-  const rightsCheck = rights?.filter((it) =>  it?.rightState === 1)
-  const encumbrances = cadastralObject?.rights?.realty?.encumbrances
-  const encumbrancesCheck = encumbrances?.filter((it) =>  it?.encmbState === 1)
-  const stats = cadastralObject?.price?.stats
-  const address = cadastralObject?.objectData?.objectAddress?.addressNotes
-  const oksType = cadastralObject?.parcelData?.oksType
-  const checker = cadastralObject?.price?.address
   const props = JSON.parse(cadastralObject)
+  const rights = props?.rights?.realty?.rights
+  const rightsCheck = rights?.filter((it) =>  it?.rightState === 1)
+  const encumbrances = props?.rights?.realty?.encumbrances
+  const encumbrancesCheck = encumbrances?.filter((it) =>  it?.encmbState === 1)
+  
+  const stats = props?.price?.stats
+  const address = props?.objectData?.objectAddress?.addressNotes
+  const oksType = props?.parcelData?.oksType
+  const checker = props?.price?.address
   const addressNotes = props?.objectData?.objectAddress?.addressNotes || props?.objectData?.objectAddress?.mergedAddress
   // console.log('PROPSADRES', addressNotes)
   // console.log('addressNotes', addressNotes)
@@ -52,10 +55,27 @@ export default function Object({ cadastralObject }) {
   if (addressNotes) {
     const askAboutFlaty = axios(adressUrl)
     .then((result) => {
-        return result.data
+      localStorage.setItem(`${cadNumber}`, JSON.stringify(result.data))
+      return result.data
     })
     askAboutFlat = askAboutFlaty
   }
+
+  // const localDatas = JSON.parse(localStorage.getItem(`${cadNumber}`))
+  // console.log('LOCALDAT', localDatas)
+
+  useEffect(() => {
+    const tryTouchPromise = async () => {
+      const a = await askAboutFlat
+      setValue(a)
+    }
+    tryTouchPromise()
+  }, [])
+  console.log('VALUE1', value)
+
+
+
+  
   return (
     <>
       <Meta
@@ -78,14 +98,12 @@ export default function Object({ cadastralObject }) {
                   <div className="object__content">
                     <InfoMainObject cadastrObj={cadastralObject} />
                     <Cadastr cadastrObj={cadastralObject} />
-                     {/* пока выводы без условий, надо поправить */}
 
-                    {/* {rights && rightsCheck.length !== 0 && <Owners cadastrObj={cadastralObject} />} */}
-                    {/* {encumbrances && encumbrancesCheck.length !== 0 && <Restriction cadastrObj={cadastralObject} />} */}
+                    {rights && rightsCheck.length !== 0 && <Owners cadastrObj={cadastralObject} />}
+                    {encumbrances && encumbrancesCheck.length !== 0 && <Restriction cadastrObj={cadastralObject} />}
                     {/* {(stats?.price && stats?.priceRange && stats?.min) && <Price cadastrObj={askAboutFlat} />} */}
 
-                    <Owners cadastrObj={cadastralObject} />
-                    <Restriction cadastrObj={cadastralObject} />
+
                     <Price cadastrObj={askAboutFlat} />
                     <Mkd cadastrObj={askAboutFlat} />
 
