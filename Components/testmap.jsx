@@ -146,7 +146,7 @@ const testMap = ({ cadastrObj }) => {
                     preset: 'islands#blueHomeIcon'
                   }}
                 />
-                {social.map((it, ind) => {
+                {social.slice(0, -1).map((it, ind) => {
                   return (
                     <div key={ind}>
                       {it?.items[0]?.distance < range && (
@@ -211,7 +211,7 @@ const testMap = ({ cadastrObj }) => {
             </div>
           </YMaps>
           {/* добавление объектов инфраструктуры - начало */}
-          {social.map((it, ind) => {
+          {social.slice(0, -1).map((it, ind) => {
             return (
               <div key={ind}>
                 {it?.items[0]?.distance < range && (
