@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { Link } from 'react-scroll'
 // import './info.css'
 
-const MenuLeft = ({ cadastrObj, askAboutFlat }) => {
+const MenuLeft = ({ cadastrObj, askAboutFlat, jkhObj }) => {
   const [value, setValue] = useState(false)
   const [value1, setValue1] = useState(false)
   const cadObj = JSON.parse(cadastrObj)
+  const jkh = JSON.parse(jkhObj)
   
   const tryTouchPromise = async () => {
     const a = await askAboutFlat
@@ -56,7 +57,7 @@ const MenuLeft = ({ cadastrObj, askAboutFlat }) => {
               </>
             ) : (
               <>
-                {(stats?.price && stats?.priceRange && stats?.min) && (
+                {(stats?.price || stats?.priceRange || stats?.min) && (
                   <li data-type="fnp" className="object__leftMenu-link _success">
                     <Link to="price-info" smooth="true" activeClass="active" spy="true" duration={500}>Оценка стоимости</Link>
                     {/* по максимуму поля stat из getask , рыночная стоимость, quality, площадь, квартиры проадеются в диапазоне () */}
@@ -70,6 +71,11 @@ const MenuLeft = ({ cadastrObj, askAboutFlat }) => {
                     }
                   </li>
                 )}
+                {jkh && (
+                  <li data-type="arrest" className="object__leftMenu-link _success">
+                    <Link to="jkh" smooth="true" activeClass="active" spy="true" duration={500}>Управляющая компания</Link>
+                  </li>
+                )}
                 {checker && (
                   <li data-type="map" className="object__leftMenu-link _success">
                     <Link to="infrastructura" smooth="true" activeClass="active" spy="true" duration={500}>Инфраструктура</Link>
@@ -78,7 +84,8 @@ const MenuLeft = ({ cadastrObj, askAboutFlat }) => {
                 )}
               </>
             )}
-          </>   
+          </>
+        
         </ul>
         <div className="btn _pink object__leftMenu-btnFull js__objectLeftBtnReports">
           Получить полный отчёт

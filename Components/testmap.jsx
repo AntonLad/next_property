@@ -8,6 +8,7 @@ const testMap = ({ cadastrObj }) => {
   const lat = value?.price?.bld?.pos?.lat || value?.bld?.pos?.lat
   const lng = value?.price?.bld?.pos?.lng || value?.bld?.pos?.lng
   const social = value?.structures || value?.getAskStructure?.social
+  const addressNotes = value?.objectData?.objectAddress?.addressNotes || value?.objectData?.objectAddress?.mergedAddress
 
 
   const tryTouchPromise = async () => {
@@ -27,10 +28,11 @@ const testMap = ({ cadastrObj }) => {
 
   return (
     <>
-      {!value ? (
+      {(!value) ? (
         <>
-          <div className="searchTitle">Загружаем карту</div>
-          <div className="spinner1" />
+          {''}
+          {/* <div className="searchTitle">Загружаем карту</div>
+          <div className="spinner1" /> */}
         </>
       ) : (
         <div className="object__block">
@@ -77,7 +79,7 @@ const testMap = ({ cadastrObj }) => {
                     iconColor: '#00000'
                   }}
                 />
-                {social.slice(0, -1).map((it, ind) => {
+                {social?.slice(0, -1).map((it, ind) => {
                   return (
                     <div key={ind}>
                       {it?.items[0]?.distance < range && (
@@ -154,7 +156,7 @@ const testMap = ({ cadastrObj }) => {
             </div>
           </YMaps>
           {/* добавление объектов инфраструктуры - начало */}
-          {social.slice(0, -1).map((it, ind) => {
+          {social?.slice(0, -1).map((it, ind) => {
             return (
               <div key={ind}>
                 {it?.items[0]?.distance < range && (

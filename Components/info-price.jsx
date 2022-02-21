@@ -17,8 +17,9 @@ const Price = ({ cadastrObj }) => {
     <>
       {!value ? (
         <>
-          <div className="searchTitle">Загружаем данные о стоимости</div>
-          <div className="spinner1" />
+          {''}
+          {/* <div className="searchTitle">Загружаем данные о стоимости</div>
+          <div className="spinner1" /> */}
         </>
       ) : (
         <div data-content="main" className="object__block" id="price-info">
