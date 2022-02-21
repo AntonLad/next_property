@@ -9,9 +9,9 @@ const testMap = ({ cadastrObj }) => {
   const router = useRouter()
   const info = router.query.cadnumber
   const [range, setRange] = useState(200)
-  const lat = value.price?.bld?.pos?.lat || value.bld?.pos?.lat
-  const lng = value.price?.bld?.pos?.lng || value.bld?.pos?.lng
-  const address = value.bld?.address
+  const lat = value?.price?.bld?.pos?.lat || value?.bld?.pos?.lat
+  const lng = value?.price?.bld?.pos?.lng || value?.bld?.pos?.lng
+  const address = value?.bld?.address
   const social = value?.structures || value?.getAskStructure?.social
 
 
@@ -88,7 +88,12 @@ const testMap = ({ cadastrObj }) => {
   // listOfSocialOjects(categoryAssets, range)
 
   const uniqueKey = () => (+new Date())
-  let lands = 'islands#glyphDotIcon'
+  const landsShop = 'islands#blueShoppingIcon'
+  const landsEducation = 'islands#blueEducationIcon'
+  const landsMedic = 'islands#blueMedicalIcon'
+  const landsSport = 'islands#blueSportIcon'
+  const landsFun = 'islands#blueTheaterIcon'
+
 
   return (
     <>
@@ -138,34 +143,35 @@ const testMap = ({ cadastrObj }) => {
                 <Placemark
                   geometry={[lat, lng]}
                   options={{
-                    preset: 'islands#blueDotIcon'
+                    preset: 'islands#blueHomeIcon'
                   }}
                 />
                 {social.map((it, ind) => {
                   return (
                     <div key={ind}>
                       {it?.items[0]?.distance < range && (
-                        <div>
-                          <div key={uniqueKey()}>{it.category}</div>
-                          <div>
-                            {it.items.filter((distance) => distance.distance <= range).map((dataOfObject, index) => {
-                              return (
-                                <div key={`${index + uniqueKey()}`}>
-                                  {/* {range < 200 ? lands = 'islands#darkGreenDotIcon' : lands = 'islands#yellowDotIcon'} */}
-                                  
-                                    <Placemark
-                                    geometry={[dataOfObject.pos.lat, dataOfObject.pos.lng]}
-                                    options={{
-                                      preset: lands,
-                                      iconGlyph: 'home',
-                                      iconGlyphColor: 'red'
-                                    }}
-                                  />
-  
-                                </div>
-                              )
-                            })}
-                          </div>
+                        <div key={uniqueKey()}>
+                          {it.items.filter((distance) => distance.distance <= range).map((dataOfObject, index) => {
+                            return (
+                              <div key={`${index + uniqueKey()}`}>
+                                {/* {range < 200 ? lands = 'islands#darkGreenDotIcon' : lands = 'islands#yellowDotIcon'} */}
+                                
+                                  <Placemark
+                                  geometry={[dataOfObject.pos.lat, dataOfObject.pos.lng]}
+                                  options={{
+                                    preset: it.category === 'Продукты' ? landsShop 
+                                      : it.category === 'Образование' ? landsEducation
+                                        : it.category === 'Медицина' ? landsMedic
+                                          : it.category === 'Спорт' ? landsSport
+                                            : it.category === 'Развлечения' ? landsFun : 'islands#blueHomeIcon',
+                                    
+                                    iconGlyphColor: 'red'
+                                  }}
+                                />
+
+                              </div>
+                            )
+                          })}
                         </div>
                       )}
                     </div>
