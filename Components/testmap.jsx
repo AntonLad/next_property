@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
-import { YMaps, Map, TypeSelector, ZoomControl, FullscreenControl, Placemark, Circle} from 'react-yandex-maps';
+import React, { useState } from 'react'
+import { YMaps, Map, TypeSelector, ZoomControl, Placemark, Circle, Clusterer} from 'react-yandex-maps';
 
 
 const testMap = ({ cadastrObj }) => {
   const [value, setValue] = useState(false)
-  console.log('TESTMAPPROPS', value)
-  const router = useRouter()
-  const info = router.query.cadnumber
   const [range, setRange] = useState(200)
   const lat = value?.price?.bld?.pos?.lat || value?.bld?.pos?.lat
   const lng = value?.price?.bld?.pos?.lng || value?.bld?.pos?.lng
-  const address = value?.bld?.address
   const social = value?.structures || value?.getAskStructure?.social
 
 
@@ -21,71 +16,6 @@ const testMap = ({ cadastrObj }) => {
   }
 
   tryTouchPromise()
-
-  // const categoryAssets = {
-  //   products: {
-  //     name: 'Продукты',
-  //     icon: 'shopMarker'
-  //   },
-  //   education: {
-  //     name: 'Образование',
-  //     icon: 'education'
-  //   },
-  //   medicine: {
-  //     name: 'Медицина',
-  //     icon: 'medicine1'
-  //   },
-  //   sport: {
-  //     name: 'Спорт',
-  //     icon: 'sport1'
-  //   },
-  //   fun: {
-  //     name: 'Развлечения',
-  //     icon: 'fun'
-  //   }
-  // }
-
-  // const listOfSocialOjects = (socialList, distance) => {
-  //   return Object.keys(socialList).reduce((acc, socialCategory) => {
-  //     const { category, items } = social.find((socObj) => {
-  //       return socObj.category === socialList[socialCategory].name
-  //     })
-  //     const listOfSocialObjects = items
-  //       .map((socialObject) => {
-  //         return {
-  //           title: socialObject.title,
-  //           subtitle: socialObject.subtitle,
-  //           address: socialObject.address,
-  //           distance: socialObject.distance,
-  //           lat: socialObject.pos.lat,
-  //           lng: socialObject.pos.lng
-  //         }
-  //       })
-  //       .filter((it) => it.distance <= distance)
-  //     acc[socialCategory] = {
-  //       name: category,
-  //       icon: socialList[socialCategory].icon,
-  //       list: listOfSocialObjects
-  //     }
-  //     return acc
-  //   }, {})
-  // }
-
-  // const getAddMarkers2 = (socialObjects) => {
-  //   Object.keys(socialObjects).forEach((categoryName) => {
-  //     socialObjects[categoryName].list.forEach((it) => {
-  //       return {
-  //         lat: it.pos.lat,
-  //         lng: it.pos.lng,
-  //         title: it.title,
-  //         subtitle: it.subtitle,
-  //         address: it.address,
-  //       }
-  //     })
-  //   })
-  // }
-
-  // listOfSocialOjects(categoryAssets, range)
 
   const uniqueKey = () => (+new Date())
   const landsShop = 'islands#blueShoppingIcon'
@@ -139,11 +69,12 @@ const testMap = ({ cadastrObj }) => {
               <Map defaultState={{ center: [lat, lng], zoom: 14 }} width="100%" height="400px">
                 <TypeSelector options={{ float: 'right' }} />
                 <ZoomControl options={{ float: 'right' }} />
-                <FullscreenControl />
+                {/* <FullscreenControl /> */}
                 <Placemark
                   geometry={[lat, lng]}
                   options={{
-                    preset: 'islands#blueHomeIcon'
+                    preset: 'islands#blueHomeIcon',
+                    iconColor: '#00000'
                   }}
                 />
                 {social.slice(0, -1).map((it, ind) => {
@@ -151,27 +82,39 @@ const testMap = ({ cadastrObj }) => {
                     <div key={ind}>
                       {it?.items[0]?.distance < range && (
                         <div key={uniqueKey()}>
+                          <Clusterer
+                            options={{
+                              preset: 'islands#greenClusterIcons',
+                              groupByCoordinates: false,
+                            }}
+                          >
+
                           {it.items.filter((distance) => distance.distance <= range).map((dataOfObject, index) => {
                             return (
                               <div key={`${index + uniqueKey()}`}>
                                 {/* {range < 200 ? lands = 'islands#darkGreenDotIcon' : lands = 'islands#yellowDotIcon'} */}
-                                
                                   <Placemark
-                                  geometry={[dataOfObject.pos.lat, dataOfObject.pos.lng]}
-                                  options={{
-                                    preset: it.category === 'Продукты' ? landsShop 
-                                      : it.category === 'Образование' ? landsEducation
-                                        : it.category === 'Медицина' ? landsMedic
-                                          : it.category === 'Спорт' ? landsSport
-                                            : it.category === 'Развлечения' ? landsFun : 'islands#blueHomeIcon',
-                                    
-                                    iconGlyphColor: 'red'
-                                  }}
-                                />
+                                    geometry={[dataOfObject.pos.lat, dataOfObject.pos.lng]}
+                                    options={{
+                                      preset: it.category === 'Продукты' ? landsShop
+                                        : it.category === 'Образование' ? landsEducation
+                                          : it.category === 'Медицина' ? landsMedic
+                                            : it.category === 'Спорт' ? landsSport
+                                              : it.category === 'Развлечения' ? landsFun : 'islands#blueHomeIcon',
 
+                                      iconGlyphColor: 'red'
+                                    }}
+                                    properties={{
+                                      balloonContentHeader: "Заголовок",
+                                      balloonContentBody: "Содержимое",
+                                      balloonContentFooter: "Подвал",
+                                      hintContent: "Подсказка"
+                                    }}
+                                  />
                               </div>
                             )
                           })}
+                          </Clusterer>
                         </div>
                       )}
                     </div>
@@ -180,8 +123,8 @@ const testMap = ({ cadastrObj }) => {
                 <Circle
                   geometry={[[lat, lng], 1000]}
                   options={{
-                    draggable: true,
-                    fillColor: '#ff666677',
+                    draggable: false,
+                    fillColor: '#ff666622',
                     strokeColor: '#FF0000',
                     strokeOpacity: 0.8,
                     strokeWidth: 3,
@@ -190,8 +133,8 @@ const testMap = ({ cadastrObj }) => {
                 <Circle
                   geometry={[[lat, lng], 500]}
                   options={{
-                    draggable: true,
-                    fillColor: '#FFFF0077',
+                    draggable: false,
+                    fillColor: '#FFFF0022',
                     strokeColor: '#FFFF00',
                     strokeOpacity: 0.8,
                     strokeWidth: 3,
@@ -200,8 +143,8 @@ const testMap = ({ cadastrObj }) => {
                 <Circle
                   geometry={[[lat, lng], 200]}
                   options={{
-                    draggable: true,
-                    fillColor: '#00800077',
+                    draggable: false,
+                    fillColor: '#00800022',
                     strokeColor: '#008000',
                     strokeOpacity: 0.8,
                     strokeWidth: 3,
