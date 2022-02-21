@@ -1,19 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { useState } from 'react'
 import CloseIcon from '@material-ui/icons/Close'
 
 const Mkd = ({ cadastrObj }) => {
-  const router = useRouter()
-  const cadNumber = router.query.cadnumber
   const [value, setValue] = useState(false)
-  console.log('VALUE', value)
-  console.log('MKDPROPS', cadastrObj)
-  // const traTaTa = cadastrObj
-  // .then((result) => {
-  //   // localStorage.setItem(`${cadNumber}`, JSON.stringify(result))
-  //   return result
-  // })
-
   const tryTouchPromise = async () => {
     const a = await cadastrObj
     setValue(a)
@@ -26,7 +15,7 @@ const Mkd = ({ cadastrObj }) => {
   //   bldProject, isAlarm
   // } = value?.price?.bld || value?.bld
 
-  const oksType = value?.parcelData?.oksType 
+  const oksType = value?.parcelData?.oksType
   const addresSspare = value?.price?.address || value?.address
 
   const bldTitle = value?.price?.bld?.bldTitle || value?.bld?.bldTitle
@@ -47,7 +36,7 @@ const Mkd = ({ cadastrObj }) => {
   const entranceCount = value?.price?.bld?.entranceCount || value?.bld?.entranceCount
   const flatsCount = value?.price?.bld?.flatsCount || value?.bld?.flatsCount
   const livingCount = value?.price?.bld?.livingCount || value?.bld?.livingCount
-  const bldProject = value?.price?.bld?.bldProject || value?.bld?.bldProject 
+  const bldProject = value?.price?.bld?.bldProject || value?.bld?.bldProject
   const stations = value?.price?.bld?.stations || value?.bld?.stations
   const isAlarm = value?.price?.bld?.isAlarm || value?.bld?.isAlarm
 
@@ -71,7 +60,7 @@ const Mkd = ({ cadastrObj }) => {
     <>
       {!value ? (
         <>
-          {''}  
+          {''}
           {/* <div className="searchTitle">Загружаем данные об объекте</div>
           <div className="spinner1" /> */}
         </>

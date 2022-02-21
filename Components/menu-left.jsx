@@ -4,28 +4,25 @@ import { Link } from 'react-scroll'
 
 const MenuLeft = ({ cadastrObj, askAboutFlat, jkhObj }) => {
   const [value, setValue] = useState(false)
-  const [value1, setValue1] = useState(false)
   const cadObj = JSON.parse(cadastrObj)
   const jkh = JSON.parse(jkhObj)
-  
+
   const tryTouchPromise = async () => {
     const a = await askAboutFlat
-    const b = await cadastrObj
-
     setValue(a)
-    setValue1(b)
   }
+
   tryTouchPromise()
-  
+
   const rights = cadObj?.rights?.realty?.rights
   const rightsCheck = rights?.filter((it) =>  it?.rightState === 1)
   const encumbrances = cadObj?.rights?.realty?.encumbrances
   const encumbrancesCheck = encumbrances?.filter((it) =>  it?.encmbState === 1)
-  const stats = value?.price?.stats || value?.stats 
-  const checker = value?.price?.address || value?.address 
+  const stats = value?.price?.stats || value?.stats
+  const checker = value?.price?.address || value?.address
   const oksType = cadObj?.parcelData?.oksType
 
- 
+
 
   return (
     <div className="object__leftMenu">
@@ -67,7 +64,7 @@ const MenuLeft = ({ cadastrObj, askAboutFlat, jkhObj }) => {
                   <li data-type="mkd" className="object__leftMenu-link _success">
                     {oksType === 'flat' ?
                       <Link to="mkd-info" smooth="true" activeClass="active" spy="true" duration={500}>Сведения о МКД</Link> :
-                      <Link to="mkd-info" smooth="true" activeClass="active" spy="true" duration={500}>Дополнительные сведения об объекте</Link> 
+                      <Link to="mkd-info" smooth="true" activeClass="active" spy="true" duration={500}>Дополнительные сведения об объекте</Link>
                     }
                   </li>
                 )}
@@ -85,7 +82,7 @@ const MenuLeft = ({ cadastrObj, askAboutFlat, jkhObj }) => {
               </>
             )}
           </>
-        
+
         </ul>
         <div className="btn _pink object__leftMenu-btnFull js__objectLeftBtnReports">
           Получить полный отчёт
