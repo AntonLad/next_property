@@ -56,7 +56,7 @@ const Jkh = ({ jkhObj }) => {
           )}
           {site && (
             <div className="object__blockTableTr">
-              <div className="object__blockTableTd">WWW:</div>
+              <div className="object__blockTableTd">Сайт:</div>
               <div className="object__blockTableTd">{site}</div>
             </div>
           )}
