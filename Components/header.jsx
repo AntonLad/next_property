@@ -9,7 +9,7 @@ const Header = () => {
           <a className="header__logo">
             <div className="header__logo-img" />
             <div className="header__logo-text">
-              <div className="header__logo-title">CadastrService</div>
+              <div className="header__logo-title">mkdfond</div>
               <div className="header__logo-descr">Сервис проверки недвижимости</div>
             </div>
           </a>

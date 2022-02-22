@@ -64,6 +64,7 @@ export default function Object({ cadastralObject, jkh}) {
 
   useEffect(() => {
     setCheck(false)
+    setValue('')
   }, [cadNumber])
 
   useEffect(() => {

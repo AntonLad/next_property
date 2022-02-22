@@ -40,8 +40,8 @@ const Footer = () => {
           <div className="footer__small-img" />
           <div className="footer__small-slog">Реестр сведений о недвижимости</div>
           <div className="footer__small-copy">
-            CADASTRSERVICE, 2022. Все права защищены.
-            email: admin@cadastrservice.ru
+            MKDFOND, 2022. Все права защищены.
+            email: admin@mkdfond.ru
           </div>
         </div>
         <div className="clearfix" />

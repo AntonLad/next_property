@@ -49,10 +49,10 @@ const Mkd = ({ cadastrObj }) => {
     setModel(true)
   }
   const buildingState = (value) => {
-    if ( value <= 20 ) { return 'Хорошее' }
-    if ( value <= 40 ) { return 'Удовлетворительное' }
-    if ( value <= 60 ) { return 'Неудовлетворительное' }
-    return 'Критическое'
+    if ( value <= 20 ) { return <span className="greenState">Хорошее</span> }
+    if ( value <= 40 ) { return <span className="yellowState">Удовлетворительное</span> }
+    if ( value <= 60 ) { return <span className="orangeState">Неудовлетворительное</span> }
+    return <span className="redState">Критическое</span>
  }
 
 
