@@ -443,7 +443,7 @@ a {
 }
 
 .main__blockItem-descr {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 18px;
   color: #8c8c8c;
   margin-top: 9px;
@@ -451,9 +451,9 @@ a {
 
 .main__blockItem-red {
   font-weight: bold;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 18px;
-  margin-top: 9px;
+  margin-top: 33px;
   color: #253A61;
 }
 
@@ -1622,7 +1622,6 @@ a {
 
   .footer__links-td {
     display: table-cell;
-    width: 33.33%;
   }
 
   .footer__links-title {
@@ -1684,18 +1683,16 @@ a {
   }
 
   .footer__content-small {
-
-      float: left;
-      display: block;
-      width: 250px;
-
-  }
+    float: left;
+    display: block;
+    width: 400px;
+ }
 
   .footer__small-img {
-    width: 75px;
-    height: 93px;
-    background-size: cover;
+    width: 70px;
+    height: 86px;
     background-image: url(../public/images/geraldika_middle.png);
+    float:left;
   }
 
   .footer__small-slog {
@@ -1705,6 +1702,8 @@ a {
     color: #999;
     margin-top: 14px;
     text-transform: uppercase;
+    width: 300px;
+    float: right;
   }
 
   .footer__small-line {
@@ -1723,8 +1722,8 @@ a {
   }
 
   .footer__small-copy {
-    margin-top: 34px;
-    width: 175px;
+    width: 300px;
+    float: right;
   }
 
   .footer__bottom-eye, .footer__bottom-version, .footer__small-copy {

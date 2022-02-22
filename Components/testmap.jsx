@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { YMaps, Map, TypeSelector, ZoomControl, Placemark, Circle, Clusterer} from 'react-yandex-maps';
 
 
@@ -24,7 +24,6 @@ const testMap = ({ cadastrObj }) => {
   const landsMedic = 'islands#blueMedicalIcon'
   const landsSport = 'islands#blueSportIcon'
   const landsFun = 'islands#blueTheaterIcon'
-
 
   return (
     <>
@@ -66,9 +65,17 @@ const testMap = ({ cadastrObj }) => {
               1000м
             </button>
           </div>
-          <YMaps>
+          <YMaps
+            options={{
+              mapAutoFocus: true,
+              autoFitToViewport: 'always'
+            }}
+          >
             <div className="mapContainer">
-              <Map defaultState={{ center: [lat, lng], zoom: 14 }} width="100%" height="400px">
+              <Map defaultState={{ center: [lat, lng], zoom: 14 }}
+               width="100%"
+               height="400px"
+               >
                 <TypeSelector options={{ float: 'right' }} />
                 <ZoomControl options={{ float: 'right' }} />
                 {/* <FullscreenControl /> */}

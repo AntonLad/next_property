@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { MongoClient } from 'mongodb'
-import InfoAppart from '../../Components/info-building'
 import Meta from '../../Components/meta'
 import { useRouter } from 'next/router'
 import regions from '../../Components/files/regions'
@@ -22,9 +21,7 @@ import Jkh from '../../Components/info-jkh'
 // import Map from '../../Components/info-map'
 const DynamicMap = dynamic(
   () => import('../../Components/testmap'),
-  { ssr: false,
-    loading: () => 'ЗАГРУЗКА'
-  }
+  { ssr: false }
 )
 
 const url = 'mongodb://127.0.0.1/'
@@ -32,7 +29,8 @@ const client = new MongoClient(url, { useUnifiedTopology: true })
 
 
 export default function Object({ cadastralObject, jkh}) {
-  const [value, setValue] = useState(false)
+  const [value, setValue] = useState('')
+  const [check, setCheck] = useState(false)
   console.log('CADNUMBER_VALUE', value)
   const router = useRouter()
   const cadNumber = router.query.cadnumber
@@ -42,15 +40,16 @@ export default function Object({ cadastralObject, jkh}) {
   const encumbrances = props?.rights?.realty?.encumbrances
   const encumbrancesCheck = encumbrances?.filter((it) =>  it?.encmbState === 1)
   const stats = value?.price?.stats || value?.stats
-  let checker = value?.price?.address || value?.address
-  console.log('CHECKER', checker)
+  // let checker = value?.price?.address || value?.address
 
- if (checker === '') {
-   checker = true
+  console.log('CHECK', check)
+
+ if (check === '') {
+  setCheck(true)
  }
 
   const addressNotes = props?.objectData?.objectAddress?.addressNotes || props?.objectData?.objectAddress?.mergedAddress
-  // console.log('PROPSADRES', addressNotes)
+  console.log('ADDRESS', addressNotes)
   // console.log('addressNotes', addressNotes)
 
   const adressUrl = `/api/findflat?address=${addressNotes}&cadNumber=${cadNumber}`
@@ -63,17 +62,21 @@ export default function Object({ cadastralObject, jkh}) {
     askAboutFlat = askAboutFlaty
   }
 
-  // const localDatas = JSON.parse(localStorage.getItem(`${cadNumber}`))
-  // console.log('LOCALDAT', localDatas)
+  useEffect(() => {
+    setCheck(false)
+  }, [cadNumber])
 
   useEffect(() => {
     const tryTouchPromise = async () => {
-      const a = await askAboutFlat
-      setValue(a)
+      const result = await askAboutFlat
+      const checker = result?.price?.address || result?.address
+      console.log('NEW VALUE', result)
+      console.log('CHECKADRESS', checker)
+      setValue(result)
+      setCheck(checker)
     }
     tryTouchPromise()
-  }, [])
-
+  }, [cadNumber])
 
   return (
     <>
@@ -99,7 +102,7 @@ export default function Object({ cadastralObject, jkh}) {
                     <Cadastr cadastrObj={cadastralObject} />
                     {rights && rightsCheck.length !== 0 && <Owners cadastrObj={cadastralObject} />}
                     {encumbrances && encumbrancesCheck.length !== 0 && <Restriction cadastrObj={cadastralObject} />}
-                    {addressNotes && (!checker ? (
+                    {addressNotes && (!check ? (
                       <>
                         <div className="searchTitle">Идет поиск и загрузка данных</div>
                         <div className="spinner1" />
@@ -107,9 +110,9 @@ export default function Object({ cadastralObject, jkh}) {
                     ) : (
                       <>
                         {(stats?.price || stats?.priceRange || stats?.min) && <Price cadastrObj={askAboutFlat} />}
-                        {checker && <Mkd cadastrObj={askAboutFlat} />}
+                        {check && <Mkd cadastrObj={askAboutFlat} />}
                         {jkh && <Jkh jkhObj={jkh} />}
-                        {checker && <DynamicMap cadastrObj={askAboutFlat} />}
+                        {check && <DynamicMap cadastrObj={askAboutFlat} />}
                         </>
                     ))}
                     <Scroll />
