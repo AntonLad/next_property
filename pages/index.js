@@ -72,9 +72,9 @@ export default function Main() {
                     онлайн
                   </div>
                   <div className="main__blockItem-red">15 164 578 объектов в реестре</div>
-                  <a href="/proverit-sobstvennika-kvartiry" className="a _blue main__blockItem-link">
+                  {/* <a href="/proverit-sobstvennika-kvartiry" className="a _blue main__blockItem-link">
                     Подробнее &gt;
-                  </a>
+                  </a> */}
                 </div>
                 <div className="main__blockItem">
                   <div className="main__blockItem-title">МКД</div>
@@ -82,9 +82,9 @@ export default function Main() {
                     Реестр многоквартирных домов - техническая информация и данные о капремонте
                   </div>
                   <div className="main__blockItem-red">11 477 301 объект(ов) в реестре</div>
-                  <a href="/proverit-kvartiru-na-arest" className="a _blue main__blockItem-link">
+                  {/* <a href="/proverit-kvartiru-na-arest" className="a _blue main__blockItem-link">
                     Подробнее &gt;
-                  </a>
+                  </a> */}
                 </div>
                 <div className="main__blockItem">
                   <div className="main__blockItem-title">Квартиры</div>
@@ -92,9 +92,9 @@ export default function Main() {
                     Реестр квартир в МКД - сведения о рыночной стоимости и другие актуальные данные
                   </div>
                   <div className="main__blockItem-red"> 37 421 701 объект(ов) в реестре</div>
-                  <a href="/proverka-na-zalog" className="a _blue main__blockItem-link">
+                  {/* <a href="/proverka-na-zalog" className="a _blue main__blockItem-link">
                     Подробнее &gt;
-                  </a>
+                  </a> */}
                 </div>
                 <div className="main__blockItem">
                   <div className="main__blockItem-title">Обременения</div>
@@ -103,12 +103,12 @@ export default function Main() {
                     базе недвижимости
                   </div>
                   <div className="main__blockItem-red">164 578 объектов в реестре</div>
-                  <a
+                  {/* <a
                     href="/proverit-kvartiru-na-obremenenie"
                     className="a _blue main__blockItem-link"
                   >
                     Подробнее &gt;
-                  </a>
+                  </a> */}
                 </div>
                 <div className="main__blockItem">
                   <div className="main__blockItem-title">Земельные участки</div>
@@ -116,12 +116,12 @@ export default function Main() {
                     Реестр земельных участков, ижс, промышленных зон и земель с/х назначения
                   </div>
                   <div className="main__blockItem-red">4 263 432 объекта в реестре</div>
-                  <a
+                  {/* <a
                     href="/proveit-kadastroviy-nomer-zemelnogo-uchastka"
                     className="a _blue main__blockItem-link"
                   >
                     Подробнее &gt;
-                  </a>
+                  </a> */}
                 </div>
                 <div className="main__blockItem">
                   <div className="main__blockItem-title">Кадастровая стоимость</div>
@@ -130,12 +130,12 @@ export default function Main() {
                     объекта
                   </div>
                   <div className="main__blockItem-red">15 621 137 объектов в реестре</div>
-                  <a
+                  {/* <a
                     href="/uznat-kadastrovuyu-stoimost-obyekta-nedvizhimosti"
                     className="a _blue main__blockItem-link"
                   >
                     Подробнее &gt;
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>
