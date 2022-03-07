@@ -19,11 +19,25 @@ const testMap = ({ cadastrObj }) => {
   tryTouchPromise()
 
   const uniqueKey = () => (+new Date())
-  const landsShop = 'islands#blueShoppingIcon'
-  const landsEducation = 'islands#blueEducationIcon'
-  const landsMedic = 'islands#blueMedicalIcon'
-  const landsSport = 'islands#blueSportIcon'
-  const landsFun = 'islands#blueTheaterIcon'
+
+  const landsIcon = (socialObj) => {
+    if(socialObj.category === 'Продукты') {
+      return 'islands#blueShoppingIcon'
+    }
+    if(socialObj.category === 'Образование') {
+      return 'islands#blueEducationIcon'
+    }
+    if(socialObj.category === 'Медицина') {
+      return 'islands#blueMedicalIcon'
+    }
+    if(socialObj.category === 'Спорт') {
+      return 'islands#blueSportIcon'
+    }
+    if(socialObj.category === 'Развлечения') {
+      return 'islands#blueTheaterIcon'
+    }
+    return 'islands#blueHomeIcon'
+  }
 
   return (
     <>
@@ -101,25 +115,18 @@ const testMap = ({ cadastrObj }) => {
                           {it.items.filter((distance) => distance.distance <= range).map((dataOfObject, index) => {
                             return (
                               <div key={`${index + uniqueKey()}`}>
-                                {/* {range < 200 ? lands = 'islands#darkGreenDotIcon' : lands = 'islands#yellowDotIcon'} */}
-                                  <Placemark
-                                    geometry={[dataOfObject.pos.lat, dataOfObject.pos.lng]}
-                                    options={{
-                                      preset: it.category === 'Продукты' ? landsShop
-                                        : it.category === 'Образование' ? landsEducation
-                                          : it.category === 'Медицина' ? landsMedic
-                                            : it.category === 'Спорт' ? landsSport
-                                              : it.category === 'Развлечения' ? landsFun : 'islands#blueHomeIcon',
-
-                                      iconGlyphColor: 'red'
-                                    }}
-                                    properties={{
-                                      balloonContentHeader: "Заголовок",
-                                      balloonContentBody: "Содержимое",
-                                      balloonContentFooter: "Подвал",
-                                      hintContent: "Подсказка"
-                                    }}
-                                  />
+                                <Placemark
+                                  geometry={[dataOfObject.pos.lat, dataOfObject.pos.lng]}
+                                  options={{
+                                    preset: landsIcon(it)
+                                  }}
+                                  properties={{
+                                    balloonContentHeader: "Заголовок",
+                                    balloonContentBody: "Содержимое",
+                                    balloonContentFooter: "Подвал",
+                                    hintContent: "Подсказка"
+                                  }}
+                                />
                               </div>
                             )
                           })}
