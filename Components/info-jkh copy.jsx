@@ -1,12 +1,24 @@
+import { InfoTwoTone } from '@material-ui/icons'
 import React from 'react'
 import { Link } from 'react-scroll'
 // import { useSelector } from 'react-redux'
 
 
 
-const Jkh = ({ jkhObj }) => {
+const JkhTest = ({ jkhObj }) => {
   const jkh = JSON.parse(jkhObj)
   const { name_full, inn, legal_address, actual_address, phone, email, site, count_mkd, area_total  } = jkh ?? {}
+  const paramInfo = {
+    'Наименование': name_full,
+    'ИНН': inn,
+    'Юридический адрес': legal_address,
+    'Фактический адрес:': actual_address,
+    'Телефон:': phone,
+    'Электронная почта:': email,
+    'Сайт:': site,
+    'Количество обслуживаемых МКД:': count_mkd,
+    'Общая территория обслуживания:': area_total
+  }
 
   return (
     <div id='jkh'>
@@ -15,9 +27,22 @@ const Jkh = ({ jkhObj }) => {
         <div className="object__block-title _h1">
           Управляющая компания
         </div>
-
-        <div className="clearfix"> </div>
         <div className="object__blockTable">
+          {Object.keys(paramInfo).map((it, ind) => {
+            return (
+              <div key={ind}>
+                {paramInfo[it] && (
+                  <div className="object__blockTableTr">
+                    <div className="object__blockTableTd">{it}:</div>
+                    <div className="object__blockTableTd">{paramInfo[it]}</div>
+                  </div>
+                )}
+              </div>
+            )
+          })
+          } 
+        </div>
+        {/* <div className="object__blockTable">
           {name_full && (
             <div className="object__blockTableTr">
               <div className="object__blockTableTd">Наименование:</div>
@@ -62,7 +87,7 @@ const Jkh = ({ jkhObj }) => {
           )}
           {count_mkd && (
             <div className="object__blockTableTr">
-              <div className="object__blockTableTd">Количество обслуживаемых МКД:</div>
+              <div className="object__blockTableTd">Колличество обслуживаемых МКД:</div>
               <div className="object__blockTableTd">{count_mkd}</div>
             </div>
           )}
@@ -72,12 +97,11 @@ const Jkh = ({ jkhObj }) => {
               <div className="object__blockTableTd">{area_total} кв.м.</div>
             </div>
           )}
-         
-        </div>
+        </div> */}
       </div>
     </div>
   )
 }
 
 
-export default Jkh
+export default JkhTest

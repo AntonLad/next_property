@@ -57,7 +57,7 @@ const Cadastr = ({ cadastrObj }) => {
           )}
           {oksElementsConstructStr && (
             <div className="object__blockTableTr">
-              <div className="object__blockTableTd">Матариалы стен:</div>
+              <div className="object__blockTableTd">Материалы стен:</div>
               <div className="object__blockTableTd">{`${oksElementsConstructStr}`}</div>
             </div>
           )}
