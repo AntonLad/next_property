@@ -28,7 +28,13 @@ const JkhTest2 = ({ jkhObj }) => {
     )
   }
 
-  const foo2 = () => {
+  const foo3 = () => {
+    Object.keys(paramInfo).map((it) => {
+      return foo(paramInfo[it], it)
+    })
+  }
+
+  const foo2 = (paramInfo) => {
     Object.keys(paramInfo).map((it, ind) => {
       return (
         <div key={ind}>
@@ -47,73 +53,26 @@ const JkhTest2 = ({ jkhObj }) => {
 
   return (
     <div id='jkh'>
-      <div className="object__blockTable">
-          {foo(name_full, 'Наименование:')}
-          {foo(inn, 'ИНН:')}
-          {foo(legal_address, 'Юридический адрес:')}
-          {foo2}
-
-          
-  
-  
-
-        {/* <div className="object__blockTable">
-          {name_full && (
-            <div className="object__blockTableTr">
-              <div className="object__blockTableTd">Наименование:</div>
-              <div className="object__blockTableTd">{name_full}</div>
-            </div>
-          )}
-          {inn && (
-            <div className="object__blockTableTr">
-              <div className="object__blockTableTd">ИНН:</div>
-              <div className="object__blockTableTd">{inn}</div>
-            </div>
-          )} 
-          {legal_address && (
-            <div className="object__blockTableTr">
-              <div className="object__blockTableTd">Юридический адрес:</div>
-              <div className="object__blockTableTd">{legal_address}</div>
-            </div>
-          )}
-          {actual_address && (
-            <div className="object__blockTableTr">
-              <div className="object__blockTableTd">Фактический адрес:</div>
-              <div className="object__blockTableTd">{actual_address}</div>
-            </div>
-          )}
-          {phone && (
-            <div className="object__blockTableTr">
-              <div className="object__blockTableTd">Телефон:</div>
-              <div className="object__blockTableTd">{phone}</div>
-            </div>
-          )}
-          {email && (
-            <div className="object__blockTableTr">
-              <div className="object__blockTableTd">Электронная почта:</div>
-              <div className="object__blockTableTd">{email}</div>
-            </div>
-          )}
-          {site && (
-            <div className="object__blockTableTr">
-              <div className="object__blockTableTd">Сайт:</div>
-              <div className="object__blockTableTd">{site}</div>
-            </div>
-          )}
-          {count_mkd && (
-            <div className="object__blockTableTr">
-              <div className="object__blockTableTd">Колличество обслуживаемых МКД:</div>
-              <div className="object__blockTableTd">{count_mkd}</div>
-            </div>
-          )}
-          {area_total && (
-            <div className="object__blockTableTr">
-              <div className="object__blockTableTd">Общая территория обслуживания:</div>
-              <div className="object__blockTableTd">{area_total} кв.м.</div>
-            </div>
-          )}
-        </div> */}
-      </div>
+      <div data-content="main" className="object__block" id="main">
+        <div className="object__block-title _h1">
+            Управляющая компания
+          </div>
+        <div className="object__blockTable">
+          {foo3()}
+          {/* foo3 не работает  */}
+          {/* {Object.keys(paramInfo).map((it, ind) => {
+            return (
+              <div key={ind}>
+                {foo(paramInfo[it], it)}
+              </div>
+            )
+          })} */}
+            {foo(name_full, 'Наименование:')}
+            {foo(inn, 'ИНН:')}
+            {foo(legal_address, 'Юридический адрес:')}
+            
+        </div>
+      </div>  
     </div>
   )
 }
