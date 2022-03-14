@@ -53,35 +53,41 @@ const Mkd = ({ cadastrObj }) => {
     if ( value <= 40 ) { return <span className="yellowState">Удовлетворительное</span> }
     if ( value <= 60 ) { return <span className="orangeState">Неудовлетворительное</span> }
     return <span className="redState">Критическое</span>
- }
+  }
 
- const paramInfo = {
-  'Тип объекта:': <b>{bldTitle}</b>,
-  'Адрес:': address || addresSspare ,
-  'Год постройки:': bldYear,
-  'Физический износ здания:': buildingDamage && `${buildingDamage}%`,
-  'Оценка фактического состояния:': buildingState(buildingDamage),
-  'Проект/серия:': bldProject,
-  'Проект/серия:': bldProject,
+  const paramInfo = {
+    'Тип объекта:': <b>{bldTitle}</b>,
+    'Адрес:': address || addresSspare ,
+    'Год постройки:': bldYear,
+    'Физический износ здания:': buildingDamage && `${buildingDamage}%`,
+    'Оценка фактического состояния:': buildingState(buildingDamage),
+    'Проект/серия:': bldProject,
+    'Материал стен:': wallMaterial,
+    'Перекрытия:': floorMaterial,
+    'Количество помещений:': flatsCount,
+    'Количество жилых помещений:': livingCount,
+    'Количество лифтов:': elevatorCount,
+    'Количество подъездов:': entranceCount,
+    'Этажность:': maxFloor && `${maxFloor} этажей`,
+    'Отопление:': supplyTypeHeating,
+    'Горячее водоснабжение:': supplyTypeHotWater,
+    'Тип вентеляции:': supplyTypeVent,
+    'Газоснабжение:': supplyTypeGas,
+    'Площадь объекта:': bldArea && `${bldArea} кв.м`,
+    'Жилая площадь:': bldLivingArea && `${bldLivingArea} кв.м`,
+    'Нежилая площадь:': bldNonLivingArea && `${bldNonLivingArea} кв.м`
+  }
 
-
-  
-  // 'Тип:':  objectNameLetter !== '0' && (name || objectName),
-  // 'Тип собственности:':  rightType?.reduce((acc, rec) => rec.typeName, ' ') || 'не известно',
-  // 'Площадь, кв. м.:': areaValue !== 0 && areaValue,
-  
-}
-
-const outputObject = () => {
-  return Object.keys(paramInfo).map((it) => {
-    return paramInfo[it] && (
-      <div className="object__blockTableTr">
-        <div className="object__blockTableTd">{it}</div>
-        <div className="object__blockTableTd">{paramInfo[it]}</div>
-      </div>
-    )
-  })
-}
+  const outputObject = () => {
+    return Object.keys(paramInfo).map((it) => {
+      return paramInfo[it] && (
+        <div className="object__blockTableTr">
+          <div className="object__blockTableTd">{it}</div>
+          <div className="object__blockTableTd">{paramInfo[it]}</div>
+        </div>
+      )
+    })
+  }
 
   return (
     <>
@@ -111,130 +117,6 @@ const outputObject = () => {
 
             <div className="object__blockTable _first">
               {outputObject()}
-
-              {/* {bldTitle && (
-              <div className="object__blockTableTr">
-                <div className="object__blockTableTd">Тип объекта</div>
-                <div className="object__blockTableTd">
-                  {console.log('bldTitle', bldTitle)}
-                  <b>{bldTitle}</b>
-                </div>
-              </div>
-              )}
-              {(address || addresSspare) && (
-              <div className="object__blockTableTr">
-                <div className="object__blockTableTd">Адрес</div>
-                <div className="object__blockTableTd">{address || addresSspare}</div>
-              </div>
-              )}
-              {bldYear && (
-                <>
-                  <div className="object__blockTableTr">
-                    <div className="object__blockTableTd">Год постройки: </div>
-                    <div className="object__blockTableTd">{bldYear} </div>
-                  </div>
-                  <div className="object__blockTableTr">
-                    <div className="object__blockTableTd">Физический износ здания: </div>
-                    <div className="object__blockTableTd">{buildingDamage}%</div>
-                  </div>
-                  <div className="object__blockTableTr">
-                    <div className="object__blockTableTd">Оценка фактического состояния: </div>
-                    <div className="object__blockTableTd">{buildingState(buildingDamage)}</div>
-                  </div>
-                </>
-              )}
-              {bldProject && (
-                <div className="object__blockTableTr">
-                  <div className="object__blockTableTd">Проект/серия: </div>
-                  <div className="object__blockTableTd">{bldProject} </div>
-                </div>
-              )}
-              {wallMaterial && (
-                <div className="object__blockTableTr">
-                  <div className="object__blockTableTd">Материал стен: </div>
-                  <div className="object__blockTableTd">{wallMaterial} </div>
-                </div>
-              )}
-              {floorMaterial && (
-                <div className="object__blockTableTr">
-                  <div className="object__blockTableTd">Перекрытия: </div>
-                  <div className="object__blockTableTd">{floorMaterial} </div>
-                </div>
-              )}
-              {flatsCount && (
-                <div className="object__blockTableTr">
-                  <div className="object__blockTableTd">Количество помещений: </div>
-                  <div className="object__blockTableTd">{flatsCount} </div>
-                </div>
-              )}
-              {livingCount && (
-                <div className="object__blockTableTr">
-                  <div className="object__blockTableTd">Количество жилых помещений: </div>
-                  <div className="object__blockTableTd">{livingCount} </div>
-                </div>
-              )}
-              {(elevatorCount || elevatorCount === 0) && (
-                <div className="object__blockTableTr">
-                  <div className="object__blockTableTd">Количество лифтов: </div>
-                  <div className="object__blockTableTd">{elevatorCount} </div>
-                </div>
-              )}
-              {entranceCount && (
-                <div className="object__blockTableTr">
-                  <div className="object__blockTableTd">Количество подъездов: </div>
-                  <div className="object__blockTableTd">{entranceCount} </div>
-                </div>
-              )}
-              {maxFloor && (
-                <div className="object__blockTableTr">
-                  <div className="object__blockTableTd">Этажность: </div>
-                  <div className="object__blockTableTd">{`${maxFloor} эт`} </div>
-                </div>
-              )}
-              {supplyTypeHeating && (
-                <div className="object__blockTableTr">
-                  <div className="object__blockTableTd">Отопление: </div>
-                  <div className="object__blockTableTd">{supplyTypeHeating} </div>
-                </div>
-              )}
-              {supplyTypeHotWater && (
-                <div className="object__blockTableTr">
-                  <div className="object__blockTableTd">Горячее водоснабжение: </div>
-                  <div className="object__blockTableTd">{supplyTypeHotWater} </div>
-                </div>
-              )}
-              {supplyTypeVent && (
-                <div className="object__blockTableTr">
-                  <div className="object__blockTableTd">Тип вентеляции: </div>
-                  <div className="object__blockTableTd">{supplyTypeVent} </div>
-                </div>
-              )}
-              {supplyTypeGas && (
-                <div className="object__blockTableTr">
-                  <div className="object__blockTableTd">Газоснабжение: </div>
-                  <div className="object__blockTableTd">{supplyTypeGas} </div>
-                </div>
-              )}
-              {bldArea && (
-                <>
-                  <div className="object__blockTableTr">
-                    <div className="object__blockTableTd">Площадь объекта: </div>
-                    <div className="object__blockTableTd">{`${bldArea} кв.м` }</div>
-                  </div>
-                  {bldLivingArea && (
-                  <div className="object__blockTableTr">
-                    <div className="object__blockTableTd">Жилая площадь: </div>
-                    <div className="object__blockTableTd">{`${bldLivingArea} кв.м`} </div>
-                  </div>
-                  )}
-                  {bldNonLivingArea && (
-                    <div className="object__blockTableTr">
-                      <div className="object__blockTableTd">Не жилая площадь: </div>
-                      <div className="object__blockTableTd">{`${bldNonLivingArea} кв.м`} </div>
-                    </div>
-                  )}
-                </>
-              )} */}
               {stations && (
                 <div className="object__blockTableTr">
                   <div className="object__blockTableTd">Ближайшие остановки ОТ или метро: </div>

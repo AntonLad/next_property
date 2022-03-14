@@ -1,12 +1,25 @@
 import React, { useState } from 'react'
 
-// import { useSelector } from 'react-redux'
-
-// import './info.css'
-
 const Restriction = ({ cadastrObj }) => {
   const cadObj = JSON.parse(cadastrObj)
   const encumbrances = cadObj?.rights?.realty?.encumbrances
+
+  const outputObject = (item) => {
+    const paramInfo =  {
+      'Регистрационный номер:': item.regNmbr,
+      'Дата регистрации обременения': item.regDate,
+      'Дата окончания обременения': item.dateStop,
+      
+    }
+    return Object.keys(paramInfo).map((it) => {
+      return paramInfo[it] && (
+        <div className="object__blockTableTr">
+          <div className="object__blockTableTd">{it}</div>
+          <div className="object__blockTableTd">{paramInfo[it]}</div>
+        </div>
+      )
+    })
+  }
   
   return (
     <div id="restrictions-info">
@@ -23,7 +36,8 @@ const Restriction = ({ cadastrObj }) => {
                   {`Обременение: ${it.typeName}`}
                 </div>
                 <div className="object__blockTable">
-                  {it?.regNmbr && (
+                  {outputObject(it)}
+                  {/* {it?.regNmbr && (
                     <div className="object__blockTableTr">
                       <div className="object__blockTableTd">Регистрационный номер</div>
                       <div className="object__blockTableTd">{it?.regNmbr}</div>
@@ -40,7 +54,7 @@ const Restriction = ({ cadastrObj }) => {
                       <div className="object__blockTableTd">Дата окончания обременения</div>
                       <div className="object__blockTableTd">{it?.dateStop}</div>
                     </div>
-                  )}
+                  )} */}
 
                 </div>
               </>
