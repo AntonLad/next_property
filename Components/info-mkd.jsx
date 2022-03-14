@@ -55,6 +55,33 @@ const Mkd = ({ cadastrObj }) => {
     return <span className="redState">Критическое</span>
  }
 
+ const paramInfo = {
+  'Тип объекта:': <b>{bldTitle}</b>,
+  'Адрес:': address || addresSspare ,
+  'Год постройки:': bldYear,
+  'Физический износ здания:': buildingDamage && `${buildingDamage}%`,
+  'Оценка фактического состояния:': buildingState(buildingDamage),
+  'Проект/серия:': bldProject,
+  'Проект/серия:': bldProject,
+
+
+  
+  // 'Тип:':  objectNameLetter !== '0' && (name || objectName),
+  // 'Тип собственности:':  rightType?.reduce((acc, rec) => rec.typeName, ' ') || 'не известно',
+  // 'Площадь, кв. м.:': areaValue !== 0 && areaValue,
+  
+}
+
+const outputObject = () => {
+  return Object.keys(paramInfo).map((it) => {
+    return paramInfo[it] && (
+      <div className="object__blockTableTr">
+        <div className="object__blockTableTd">{it}</div>
+        <div className="object__blockTableTd">{paramInfo[it]}</div>
+      </div>
+    )
+  })
+}
 
   return (
     <>
@@ -81,9 +108,11 @@ const Mkd = ({ cadastrObj }) => {
                 Внимание! дом признан аварийным
               </div>
             )}
-            <div className="clearfix"> </div>
+
             <div className="object__blockTable _first">
-              {bldTitle && (
+              {outputObject()}
+
+              {/* {bldTitle && (
               <div className="object__blockTableTr">
                 <div className="object__blockTableTd">Тип объекта</div>
                 <div className="object__blockTableTd">
@@ -205,7 +234,7 @@ const Mkd = ({ cadastrObj }) => {
                     </div>
                   )}
                 </>
-              )}
+              )} */}
               {stations && (
                 <div className="object__blockTableTr">
                   <div className="object__blockTableTd">Ближайшие остановки ОТ или метро: </div>

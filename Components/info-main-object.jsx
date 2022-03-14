@@ -18,6 +18,26 @@ const InfoMainObject = ({ cadastrObj }) => {
   const year = data.getFullYear()
   const month = data.getMonth()
   const day = data.getDate()
+
+  const paramInfo = {
+    'Адрес': addressNotes,
+    'Кадастровый номер:': objectCn,
+    'Тип объекта:': objectNameLetter !== '0' && (name || objectName),
+    'Тип использования:': utilByDoc,
+    'Площадь:': areaValue !== 0 && areaValue && `${areaValue} кв. м.`,   
+  }
+
+  const outputObject = () => {
+    return Object.keys(paramInfo).map((it) => {
+      return paramInfo[it] && (
+        <div className="object__blockTableTr">
+          <div className="object__blockTableTd">{it}</div>
+          <div className="object__blockTableTd">{paramInfo[it]}</div>
+        </div>
+      )
+    })
+  }
+
   return (
     <div>
       <div className="object__content-top">
@@ -43,36 +63,7 @@ const InfoMainObject = ({ cadastrObj }) => {
         )}
         <div className="clearfix"> </div>
         <div className="object__blockTable">
-          {addressNotes && (
-          <div className="object__blockTableTr">
-            <div className="object__blockTableTd">Адрес:</div>
-            <div className="object__blockTableTd">{addressNotes}</div>
-          </div>
-          )}
-          {objectCn && (
-          <div className="object__blockTableTr">
-            <div className="object__blockTableTd">Кадастровый номер:</div>
-            <div className="object__blockTableTd">{objectCn}</div>
-          </div>
-          )}
-          {objectNameLetter !== '0' && (
-            <div className="object__blockTableTr">
-              <div className="object__blockTableTd">Тип объекта:</div>
-              <div className="object__blockTableTd">{name || objectName}</div>
-            </div>
-          )}
-          {utilByDoc && (
-            <div className="object__blockTableTr">
-              <div className="object__blockTableTd">Тип использования:</div>
-              <div className="object__blockTableTd">{utilByDoc}</div>
-            </div>
-          )}
-          {areaValue !== 0 && areaValue && (
-            <div className="object__blockTableTr">
-              <div className="object__blockTableTd">Площадь:</div>
-              <div className="object__blockTableTd">{`${areaValue} кв. м.`}</div>
-            </div>
-          )}
+          {outputObject()}
         </div>
       </div>
     </div>

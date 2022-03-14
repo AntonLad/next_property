@@ -17,8 +17,6 @@ import Owners from '../../Components/info-owners'
 import Price from '../../Components/info-price'
 import Restriction from '../../Components/info-restrictions'
 import Jkh from '../../Components/info-jkh'
-import JkhTest from '../../Components/info-jkh copy'
-import JkhTest2 from '../../Components/info-jkh copy 2'
 // import testMap from '../../Components/testmap'
 // import Map from '../../Components/info-map'
 const DynamicMap = dynamic(
@@ -115,9 +113,6 @@ export default function Object({ cadastralObject, jkh}) {
                         {(stats?.price || stats?.priceRange || stats?.min) && <Price cadastrObj={askAboutFlat} />}
                         {check && <Mkd cadastrObj={askAboutFlat} />}
                         {jkh && <Jkh jkhObj={jkh} />}
-                        {jkh && <JkhTest jkhObj={jkh} />}
-                        {jkh && <JkhTest2 jkhObj={jkh} />}
-
                         {check && <DynamicMap cadastrObj={askAboutFlat} />}
                         </>
                     ))}

@@ -21,21 +21,11 @@ const testMap = ({ cadastrObj }) => {
   const uniqueKey = () => (+new Date())
 
   const landsIcon = (socialObj) => {
-    if(socialObj.category === 'Продукты') {
-      return 'islands#blueShoppingIcon'
-    }
-    if(socialObj.category === 'Образование') {
-      return 'islands#blueEducationIcon'
-    }
-    if(socialObj.category === 'Медицина') {
-      return 'islands#blueMedicalIcon'
-    }
-    if(socialObj.category === 'Спорт') {
-      return 'islands#blueSportIcon'
-    }
-    if(socialObj.category === 'Развлечения') {
-      return 'islands#blueTheaterIcon'
-    }
+    if(socialObj.category === 'Продукты') {return 'islands#blueShoppingIcon'}
+    if(socialObj.category === 'Образование') {return 'islands#blueEducationIcon'}
+    if(socialObj.category === 'Медицина') {return 'islands#blueMedicalIcon'}
+    if(socialObj.category === 'Спорт') {return 'islands#blueSportIcon'}
+    if(socialObj.category === 'Развлечения') {return 'islands#blueTheaterIcon'}
     return 'islands#blueHomeIcon'
   }
 
