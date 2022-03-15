@@ -36,7 +36,7 @@ export default async function dadata(req, res) {
       client.connect(async () => {
         const db = client.db('cadastr')
         const collection = db.collection('searchingObjects')
-        await collection.updateOne({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}, { $set: {dadata: getAskDadata.suggestions[0].data}}, { upsert: false })
+        await collection.updateOne({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}, { $set: {dadata: getAskDadata.suggestions[0]?.data}}, { upsert: false })
       })
       return res.json(getAskDadata)
   }

@@ -48,6 +48,7 @@ const Mkd = ({ cadastrObj }) => {
     setTempImg(img)
     setModel(true)
   }
+
   const buildingState = (value) => {
     if ( value <= 20 ) { return <span className="greenState">Хорошее</span> }
     if ( value <= 40 ) { return <span className="yellowState">Удовлетворительное</span> }
@@ -56,11 +57,11 @@ const Mkd = ({ cadastrObj }) => {
   }
 
   const paramInfo = {
-    'Тип объекта:': <b>{bldTitle}</b>,
+    'Тип объекта': bldTitle && <b>{bldTitle}</b>,
     'Адрес:': address || addresSspare ,
     'Год постройки:': bldYear,
-    'Физический износ здания:': buildingDamage && `${buildingDamage}%`,
-    'Оценка фактического состояния:': buildingState(buildingDamage),
+    'Физический износ здания:': bldYear && `${buildingDamage}%`,
+    'Оценка фактического состояния:': bldYear && buildingState(buildingDamage),
     'Проект/серия:': bldProject,
     'Материал стен:': wallMaterial,
     'Перекрытия:': floorMaterial,

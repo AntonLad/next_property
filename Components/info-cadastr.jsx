@@ -62,7 +62,7 @@ const Cadastr = ({ cadastrObj }) => {
         <div className="object__blockTable">
           {outputObject()}  
         </div>
-        {cadCost !== 0 && cadCost  (
+        {cadCost !== 0 && cadCost && (
           <>
             <div className="object__block-title-2">Кадастровая стоимость:</div>
             <div className="clearfix"> </div>

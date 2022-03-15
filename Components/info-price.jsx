@@ -5,6 +5,7 @@ const Price = ({ cadastrObj }) => {
   const price = value?.price?.stats?.price || value?.stats?.price
   const priceRange = value?.price?.stats?.priceRange || value?.stats?.priceRange
   const meterPrice = value?.price?.stats || value?.stats
+  console.log('METERPRICE', meterPrice )
   
 
   const tryTouchPromise = async () => {
