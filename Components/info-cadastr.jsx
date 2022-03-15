@@ -2,9 +2,9 @@ import React from 'react'
 
 const Cadastr = ({ cadastrObj }) => {
   const cadObj = JSON.parse(cadastrObj)
-  const { firActualDate } = cadastrObj ?? {}
+  const { firActualDate } = cadObj ?? {}
   const { objectCn } = cadObj?.objectData ?? {}
-  const addressNotes = cadObj?.objectData?.objectAddress?.addressNotes || cadastrObj?.objectData?.objectAddress?.mergedAddress
+  const addressNotes = cadObj?.objectData?.objectAddress?.addressNotes || cadObj?.objectData?.objectAddress?.mergedAddress
   const objectName = cadObj?.objectData?.objectName ?? '0'
   const objectNameLetter = objectName[0]
   const { name, floor } = cadObj?.flat?.price?.flat ?? {}
@@ -62,7 +62,7 @@ const Cadastr = ({ cadastrObj }) => {
         <div className="object__blockTable">
           {outputObject()}  
         </div>
-        {cadCost && (
+        {cadCost !== 0 && cadCost  (
           <>
             <div className="object__block-title-2">Кадастровая стоимость:</div>
             <div className="clearfix"> </div>

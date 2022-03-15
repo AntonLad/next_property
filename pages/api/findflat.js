@@ -20,7 +20,7 @@ export default async function findFlat(req, res) {
   const db = client.db('cadastr')
   const collection = db.collection('searchingObjects')
   const resultOfCheckObject = await collection.find({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}).toArray()
-  if (!resultOfCheckObject[0].price) {
+  if (!resultOfCheckObject[0]?.price) {
     const getAskPrice = await axios({
       headers: {
         'X-Api-Key': apiKey,

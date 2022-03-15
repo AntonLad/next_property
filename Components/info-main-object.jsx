@@ -16,7 +16,8 @@ const InfoMainObject = ({ cadastrObj }) => {
   const encumbrancesCheck = encumbrances?.filter((it) =>  it?.encmbState === 1)
   const data = new Date()
   const year = data.getFullYear()
-  const month = data.getMonth()
+  const month = `0${data.getMonth()+1}`
+  const monthReal = month.length > 2 ? month.slice(1) : month
   const day = data.getDate()
 
   const paramInfo = {
@@ -47,7 +48,7 @@ const InfoMainObject = ({ cadastrObj }) => {
         <div className="object__content-top-link _favorite ob">
           <span>В избранное</span>
         </div>
-        <div className="object__content-top-link">{`Дата запроса:  ${day}.${month}.${year}`}</div>
+        <div className="object__content-top-link">{`Дата запроса:  ${day}.${monthReal}.${year}`}</div>
         <div className="object__content-top-link ob">
           <span>Обновить</span>
         </div>
