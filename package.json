@@ -2,9 +2,9 @@
   "name": "property",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -H 127.0.4.203 -p 59534",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -H 127.0.4.203 -p 59534",
     "lint": "next lint"
   },
   "dependencies": {

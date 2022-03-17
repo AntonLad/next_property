@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Search from "../Components/search"
 import Header from "../Components/header"
 import Footer from "../Components/footer"
+import ButtonMongo from "../Components/buttonMongo"
 
 
 export default function Main() {
@@ -28,7 +29,7 @@ export default function Main() {
               <Search />
               <div className="main__first-info">
                 <div className="main__first-infoItem">
-                  <div className="main__first-infoItem-title">Проверка недвижимости</div>
+                  <div className="main__first-infoItem-title">Проверка недвижимости101010</div>
                   <div className="main__first-infoItem-descr">
                     Данный сервис позволяет узнать максимум полезной и актуальной информации
                     о квартире, частном доме или участке: кадастровые сведения, техническую
@@ -190,6 +191,7 @@ export default function Main() {
             </div>
           </div>
         </div>
+        <ButtonMongo />
         <Footer />
       </div>
     </>

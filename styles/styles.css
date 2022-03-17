@@ -1388,9 +1388,9 @@ a {
     /* border-top: 1px solid #e8e8e8; */
   }
 
-  .photoContainer{
-    display: table-caption;
-  }
+  /*.photoContainer{*/
+  /*  display: table-caption;*/
+  /*}*/
 
   .foto{
     -webkit-column-count: 3;

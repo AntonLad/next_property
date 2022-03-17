@@ -1,7 +1,7 @@
 import axios from "axios"
 import { MongoClient } from 'mongodb'
 
-const url = 'mongodb://127.0.0.1/'
+const url = process.env.MONGO_URL
 const client = new MongoClient(url, { useUnifiedTopology: true })
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0
@@ -19,7 +19,7 @@ export default async function tooltips(req, res) {
   }
 
   await client.connect()
-  const db = client.db('cadastr')
+  const db = client.db('c53651_mkdfond_ru_cadastr')
   const collection = db.collection('searchingObjects')
   const resultOfCheckObject = await collection.find({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}).toArray()
 
@@ -41,7 +41,7 @@ export default async function tooltips(req, res) {
       })
 
     client.connect(async () => {
-      const db = client.db('cadastr')
+      const db = client.db('c53651_mkdfond_ru_cadastr')
       const collection = db.collection('searchingObjects')
       await collection.insertOne(getAskReestrByCudNum)
       await collection.updateOne
