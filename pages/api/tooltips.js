@@ -6,7 +6,14 @@ export default async function tooltips(req, res) {
   const text = req.query.text
   const url = `${toolTipsUrl}${text}`
   const encodingUrl = encodeURI(url)
-  const getAskByReestrByAdress = await axios(encodingUrl)
+  const getAskByReestrByAdress = await axios({
+    headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+      method: 'GET',
+      timeout: 1000 * 10,
+      url: encodingUrl
+    })
   .then(({ data }) => {
     return data
   })

@@ -9,29 +9,30 @@ const Footer = () => {
             <div className="footer__links-td">
               <div className="footer__links-title">Навигация</div>
               <div className="footer__links-data">
-                <a href="/o-rabote-portala">О портале</a>
+                <a href="#">Главная</a>
                 <br />
-                <a href="/tekhnicheskaya-podderzhka">Тех. поддержка</a>
+                <a href="#">Контакты</a>
                 <br />
-                <a href="/otvety-na-chastyye-voprosy">Ответы на частые вопросы</a>
+                <a href="#">Политика конфиденциальности</a>
                 <br />
-                <a className="ob">Пресс-служба</a>
+                <a href="#">Пользовательское соглашение</a>
                 <br />
-                <a className="ob">Новости</a>
+                <a href="#">Оферта</a>
+                <br />
               </div>
             </div>
             <div className="footer__links-td">
               <div className="footer__links-title">Онлайн сервисы</div>
               <div className="footer__links-data">
-                <a href="/moy-zakaz">Проверить статус заказа</a>
+                <a href="#">Проверка квартиры</a>
                 <br />
-                <a href="/proverit-sobstvennika-kvartiry">Проверка собственника</a>
+                <a href="#">Проверка участка</a>
                 <br />
-                <a href="/proveit-kadastroviy-nomer-zemelnogo-uchastka">Проверка зем. участка</a>
+                <a href="#">Проверка собственника</a>
                 <br />
-                <a href="/uvedomlenie-o-zaloge">Добавление данных</a>
+                <a href="#">Реестр МКД</a>
                 <br />
-                <a href="/udalit-zapis-v-reestre">Исключение из реестра</a>
+                <a href="#">Реестр капитального ремонта МКД</a>
               </div>
             </div>
           </div>
