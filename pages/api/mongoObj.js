@@ -9,7 +9,7 @@ export default async function mongoObj (req, res) {
     1: 'fuck the mongo'
   }
   const result = client.connect(async () => {
-  const db = client.db('c53651_mkdfond_ru_cadastr')
+    const db = client.db(process.env.MONGO_COLLECTION)
   const collection = db.collection('searchingObjects')
   await collection.insertOne(obj)
   // collection.updateOne

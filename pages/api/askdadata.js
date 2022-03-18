@@ -8,7 +8,7 @@ export default async function dadata(req, res) {
   const cadNumber = req.query.cadNumber
   console.log('DADATACADNUMBER', cadNumber)
   await client.connect()
-  const db = client.db('c53651_mkdfond_ru_cadastr')
+  const db = client.db(process.env.MONGO_COLLECTION)
   const collection = db.collection('searchingObjects')
   const resultOfCheckObject = await collection.find({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}).toArray()
   const address = resultOfCheckObject[0]?.objectData?.objectAddress?.addressNotes || resultOfCheckObject[0]?.objectData?.objectAddress?.mergedAddress
@@ -34,7 +34,7 @@ export default async function dadata(req, res) {
       })
 
       client.connect(async () => {
-        const db = client.db('c53651_mkdfond_ru_cadastr')
+        const db = client.db(process.env.MONGO_COLLECTION)
         const collection = db.collection('searchingObjects')
         await collection.updateOne({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}, { $set: {dadata: getAskDadata.suggestions[0]?.data}}, { upsert: false })
       })

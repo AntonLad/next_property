@@ -25,7 +25,7 @@ export default async function tooltips(req, res) {
     })
 
   client.connect(async () => {
-    const db = client.db('c53651_mkdfond_ru_cadastr')
+    const db = client.db(process.env.MONGO_COLLECTION)
     const collection = db.collection('searchingObjects')
     await collection.updateOne({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}, { $set: {rights: getAskRights}}, { upsert: false })
   })

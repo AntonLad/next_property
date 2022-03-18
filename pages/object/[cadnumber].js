@@ -25,7 +25,7 @@ const DynamicMap = dynamic(
 )
 
 const url = process.env.MONGO_URL
-const client = new MongoClient('mongodb://c53651_mkdfond_ru:TeMcoXizcetax45@mongo1.c53651.h2,mongo2.c53651.h2,mongo3.c53651.h2/c53651_mkdfond_ru_cadastr?replicaSet=MongoReplica', { useUnifiedTopology: true })
+const client = new MongoClient(url, { useUnifiedTopology: true })
 
 
 export default function Object({ cadastralObject, jkh}) {
@@ -133,7 +133,7 @@ export default function Object({ cadastralObject, jkh}) {
 export async function getServerSideProps(context) {
   const cadastr = context.params.cadnumber
   await client.connect()
-  const db = client.db('c53651_mkdfond_ru_cadastr')
+  const db = client.db(process.env.MONGO_COLLECTION)
   const collection = db.collection('searchingObjects')
   const res = await collection.find({ $or : [{'objectData.objectCn': cadastr}, {'objectData.id':cadastr}]}).toArray()
   const cadastrObj = res[0]

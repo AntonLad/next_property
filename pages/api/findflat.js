@@ -17,7 +17,7 @@ export default async function findFlat(req, res) {
   console.log('FLAT', flat)
   console.log('CADNUMBER', cadNumber)
   await client.connect()
-  const db = client.db('c53651_mkdfond_ru_cadastr')
+  const db = client.db(process.env.MONGO_COLLECTION)
   const collection = db.collection('searchingObjects')
   const resultOfCheckObject = await collection.find({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}).toArray()
   if (!resultOfCheckObject[0]?.price) {
@@ -64,7 +64,7 @@ export default async function findFlat(req, res) {
       })
 
     client.connect(async () => {
-      const db = client.db('c53651_mkdfond_ru_cadastr')
+      const db = client.db(process.env.MONGO_COLLECTION)
       const collection = db.collection('searchingObjects')
       await collection.updateOne({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}, { $set: {price: getAskPrice, structures: getAskStructure.social}}, { upsert: false })
     })
