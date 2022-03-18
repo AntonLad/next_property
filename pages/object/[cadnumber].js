@@ -40,6 +40,7 @@ export default function Object({ cadastralObject, jkh}) {
   const encumbrances = props?.rights?.realty?.encumbrances
   const encumbrancesCheck = encumbrances?.filter((it) =>  it?.encmbState === 1)
   const stats = value?.price?.stats || value?.stats
+  const bldYear = value?.price?.bld?.bldYear || value?.bld?.bldYear
   // let checker = value?.price?.address || value?.address
 
   console.log('CHECK', check)
@@ -111,7 +112,7 @@ export default function Object({ cadastralObject, jkh}) {
                     ) : (
                       <>
                         {(stats?.price || stats?.priceRange || stats?.min) && <Price cadastrObj={askAboutFlat} />}
-                        {check && <Mkd cadastrObj={askAboutFlat} />}
+                        {bldYear && check && <Mkd cadastrObj={askAboutFlat} />}
                         {jkh && <Jkh jkhObj={jkh} />}
                         {check && <DynamicMap cadastrObj={askAboutFlat} />}
                         </>

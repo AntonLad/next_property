@@ -66,7 +66,7 @@ export default async function findFlat(req, res) {
     client.connect(async () => {
       const db = client.db(process.env.MONGO_COLLECTION)
       const collection = db.collection('searchingObjects')
-      await collection.updateOne({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}, { $set: {price: getAskPrice, structures: getAskStructure.social}}, { upsert: false })
+      await collection.updateOne({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}, { $set: {price: getAskPrice, structures: getAskStructure?.social}}, { upsert: false })
     })
     return res.json({ ...getAskPrice, getAskStructure })
   }
