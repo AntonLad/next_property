@@ -22,7 +22,7 @@ export default async function dadata(req, res) {
         'Authorization': 'Token 70b8dda637580dd14625d9296f24945f2a6fc4f9',
         'Host': 'suggestions.dadata.ru',
       },
-      url: url,
+      url: encodeURI(url),
       data: {query: address, 'count':10}
     })
       .then(({ data }) => {
@@ -36,7 +36,7 @@ export default async function dadata(req, res) {
       client.connect(async () => {
         const db = client.db(process.env.MONGO_COLLECTION)
         const collection = db.collection('searchingObjects')
-        await collection.updateOne({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}, { $set: {dadata: getAskDadata.suggestions[0]?.data}}, { upsert: false })
+        await collection.updateOne({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}, { $set: {dadata: getAskDadata?.suggestions[0]?.data}}, { upsert: false })
       })
       return res.json(getAskDadata)
   }

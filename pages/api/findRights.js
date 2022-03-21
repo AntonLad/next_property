@@ -11,10 +11,11 @@ export default async function tooltips(req, res) {
   const cadNumber = req.query.cadNumber
   const objectId = req.query.objectid
   const url = `${egrpUrl}${objectId}`
+  const encodeUrl = encodeURI(url)
   const getAskRights = await axios({
     method: 'GET',
     timeout: 1000 * 10,
-    url: url
+    url: encodeUrl
   })
     .then(({ data }) => {
       return data

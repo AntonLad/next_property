@@ -43,29 +43,26 @@ const Search = () => {
         if (objectId !== 0) {
           await axios(`/api/findRights?objectid=${objectId}&cadNumber=${cadNumber || enterText}`)
         }
-      }
-      
-      // const cookieName = Math.random().toString(36).slice(2)
+        
+        const address = getAskReestrByCudNum.objectData?.objectAddress?.addressNotes || getAskReestrByCudNum.objectData?.objectAddress?.mergedAddress
 
-      // Cookie.set(`${cadNumber.replace(/[^0-9]/g, '') || enterText.replace(/[^0-9]/g, '')}`, `${cadNumber || enterText}`, { expires: 1000 })
-      setData(getAskReestrByCudNum)
-      const address = getAskReestrByCudNum.objectData?.objectAddress?.addressNotes || getAskReestrByCudNum.objectData?.objectAddress?.mergedAddress
+        if (address) {
+          await axios(`/api/askdadata?cadNumber=${cadNumber || enterText}`)
+        }
 
-      if (address) {
-        await axios(`/api/askdadata?cadNumber=${cadNumber || enterText}`)
-      }
+        if (typeof getAskReestrByCudNum.error === 'undefined' && objectId) {
+          // if (address) {
+          //   const adressUrl = `/api/findflat?address=${address}&cadNumber=${cadNumber || enterText}`
+          //   await axios(adressUrl)
+          // }
+          setLoading(false)
+          setData(getAskReestrByCudNum)
+          router.push(`/object/${cadNumber || enterText}`)
+        }
 
-      if (typeof getAskReestrByCudNum.error === 'undefined') {
-        // if (address) {
-        //   const adressUrl = `/api/findflat?address=${address}&cadNumber=${cadNumber || enterText}`
-        //   await axios(adressUrl)
-        // }
-        router.push(`/object/${cadNumber || enterText}`)
-        setLoading(false)
-      }
-
-      if (typeof getAskReestrByCudNum.error !== 'undefined') {
-        setLoading(false)
+        if (typeof getAskReestrByCudNum.error !== 'undefined') {
+          setLoading(false)
+        }
       }
     }
   }

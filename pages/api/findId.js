@@ -4,10 +4,11 @@ const objectIdUrl = process.env.OBJECT_ID_URL
 
 export default async function tooltips(req, res) {
   const adress = req.query.cadNumber
+  const encodeUri =  `${objectIdUrl}${adress}`
   const getAskId = await axios({
     method: 'GET',
     timeout: 1000 * 10,
-    url: `${objectIdUrl}${adress}`
+    url: encodeURI(encodeUri) 
   })
     .then(({ data }) => {
       if (data.length !== 0) {

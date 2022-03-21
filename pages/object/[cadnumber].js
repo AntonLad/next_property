@@ -54,9 +54,10 @@ export default function Object({ cadastralObject, jkh}) {
   // console.log('addressNotes', addressNotes)
 
   const adressUrl = `/api/findflat?address=${addressNotes}&cadNumber=${cadNumber}`
+  const encodeUrl = encodeURI(adressUrl)
   let askAboutFlat
   if (addressNotes) {
-    const askAboutFlaty = axios(adressUrl)
+    const askAboutFlaty = axios(encodeUrl)
     .then((result) => {
       return result.data
     })
@@ -71,7 +72,7 @@ export default function Object({ cadastralObject, jkh}) {
   useEffect(() => {
     const tryTouchPromise = async () => {
       const result = await askAboutFlat
-      const checker = result?.price?.address || result?.address
+      const checker = result?.price?.address || result?.address || result?.objectData?.addressNote || result?.addressNote
       console.log('NEW VALUE', result)
       console.log('CHECKADRESS', checker)
       setValue(result)
@@ -112,7 +113,7 @@ export default function Object({ cadastralObject, jkh}) {
                     ) : (
                       <>
                         {(stats?.price || stats?.priceRange || stats?.min) && <Price cadastrObj={askAboutFlat} />}
-                        {bldYear && check && <Mkd cadastrObj={askAboutFlat} />}
+                        {bldYear !== null && check && <Mkd cadastrObj={askAboutFlat} />}
                         {jkh && <Jkh jkhObj={jkh} />}
                         {check && <DynamicMap cadastrObj={askAboutFlat} />}
                         </>
