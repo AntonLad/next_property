@@ -31,7 +31,7 @@ const InfoMainObject = ({ cadastrObj }) => {
   const outputObject = () => {
     return Object.keys(paramInfo).map((it) => {
       return paramInfo[it] && (
-        <div className="object__blockTableTr">
+        <div key={it} className="object__blockTableTr">
           <div className="object__blockTableTd">{it}</div>
           <div className="object__blockTableTd">{paramInfo[it]}</div>
         </div>
@@ -59,7 +59,7 @@ const InfoMainObject = ({ cadastrObj }) => {
         </div>
         {encumbrances && encumbrancesCheck.length !== 0 && (
         <div className="attention">
-          <Link to="restrictions-info" smooth="true" activeClass="active" spy="true" duration={500}>Внимание! Найдены ограничения или обременения</Link>
+          <Link to="restrictions-info" smooth="true" activeClass="active" spy={true} duration={500}>Внимание! Найдены ограничения или обременения</Link>
         </div>
         )}
         <div className="clearfix"> </div>

@@ -23,7 +23,7 @@ const Jkh = ({ jkhObj }) => {
   const outputObject = () => {
     return Object.keys(paramInfo).map((it) => {
       return paramInfo[it] && (
-        <div className="object__blockTableTr">
+        <div key={it} className="object__blockTableTr">
           <div className="object__blockTableTd">{it}</div>
           <div className="object__blockTableTd">{paramInfo[it]}</div>
         </div>

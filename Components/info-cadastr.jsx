@@ -31,7 +31,7 @@ const Cadastr = ({ cadastrObj }) => {
   const outputObject = () => {
     return Object.keys(paramInfo).map((it) => {
       return paramInfo[it] && (
-        <div className="object__blockTableTr">
+        <div key={it} className="object__blockTableTr">
           <div className="object__blockTableTd">{it}</div>
           <div className="object__blockTableTd">{paramInfo[it]}</div>
         </div>
@@ -47,7 +47,7 @@ const Cadastr = ({ cadastrObj }) => {
   const outputObject2 = () => {
     return Object.keys(paramInfo2).map((it) => {
       return paramInfo2[it] && (
-        <div className="object__blockTableTr">
+        <div key={it} className="object__blockTableTr">
           <div className="object__blockTableTd">{it}</div>
           <div className="object__blockTableTd">{paramInfo2[it]}</div>
         </div>

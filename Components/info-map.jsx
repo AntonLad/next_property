@@ -168,7 +168,7 @@ const Map = ({ cadastrObj }) => {
           {/* добавление объектов инфраструктуры - начало */}
           {social.map((it, ind) => {
             return (
-              <div key={ind}>
+              <div key={it.category}>
                 {it?.items[0]?.distance < range && (
                   <div>
                     <div key={uniqueKey()} className="object__block-title-2 products">{it.category}</div>

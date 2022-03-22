@@ -11,9 +11,10 @@ const Owners = ({ cadastrObj }) => {
       'Доля собственности': item.partText,
       'Регистрационный номер': item.regNmbr,
     }
-    return Object.keys(paramInfo).map((it) => {
+    const arr = [1, 2, 3, 4, 5, 6, 7]
+    return Object.keys(paramInfo).map((it, ind) => {
       return paramInfo[it] && (
-        <div className="object__blockTableTr">
+        <div key={it} className="object__blockTableTr">
           <div className="object__blockTableTd">{it}</div>
           <div className="object__blockTableTd">{paramInfo[it]}</div>
         </div>
@@ -30,14 +31,14 @@ const Owners = ({ cadastrObj }) => {
         {rights?.filter((it) => it?.rightState === 1)
           .map((it, ind) => {
             return (
-              <>
-                <div key={ind} className="object__block-title-2 products">
+              <div key={it.externalId}>
+                <div className="object__block-title-2 products">
                   {`Собственник ${ind + 1}`}
                 </div>
                 <div className="object__blockTable">                 
                   {outputObject(it)}
                 </div>
-              </>
+              </div>
             )
           })}
       </div>

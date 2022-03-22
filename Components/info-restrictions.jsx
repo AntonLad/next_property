@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { nanoid } from 'nanoid'
 
 const Restriction = ({ cadastrObj }) => {
   const cadObj = JSON.parse(cadastrObj)
@@ -13,7 +14,7 @@ const Restriction = ({ cadastrObj }) => {
     }
     return Object.keys(paramInfo).map((it) => {
       return paramInfo[it] && (
-        <div className="object__blockTableTr">
+        <div key={it} className="object__blockTableTr">
           <div className="object__blockTableTd">{it}</div>
           <div className="object__blockTableTd">{paramInfo[it]}</div>
         </div>
@@ -31,8 +32,8 @@ const Restriction = ({ cadastrObj }) => {
           .filter((item, i, arr) => arr.findIndex((it) => it.typeName === item.typeName && it.regNmbr === item.regNmbr) === i)
           .map((it, ind) => {
             return (
-              <>
-                <div key={ind} className="object__block-title-2 products">
+              <div key={it.externalId}>
+                <div className="object__block-title-2 products">
                   {`Обременение: ${it.typeName}`}
                 </div>
                 <div className="object__blockTable">
@@ -57,7 +58,7 @@ const Restriction = ({ cadastrObj }) => {
                   )} */}
 
                 </div>
-              </>
+              </div>
             )
           })}
       </div>

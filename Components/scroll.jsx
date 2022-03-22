@@ -20,15 +20,15 @@ const Scroll = () => {
 
   return (
     <div>
-      <div class="object__arrows-btn _top" onClick={() => {
+      <div className="object__arrows-btn _top" onClick={() => {
         scroll.scrollToTop()
       }}>
-        <div class="object__arrows-btn-arrow" />
+        <div className="object__arrows-btn-arrow" />
       </div>
-      <div class="object__arrows-btn _bottom" onClick={() => {
+      <div className="object__arrows-btn _bottom" onClick={() => {
         scroll.scrollToBottom()
       }}>
-        <div class="object__arrows-btn-arrow" />
+        <div className="object__arrows-btn-arrow" />
       </div>
   </div>
   )

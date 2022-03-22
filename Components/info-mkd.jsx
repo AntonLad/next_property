@@ -82,7 +82,7 @@ const Mkd = ({ cadastrObj }) => {
   const outputObject = () => {
     return Object.keys(paramInfo).map((it) => {
       return paramInfo[it] && (
-        <div className="object__blockTableTr">
+        <div key={it} className="object__blockTableTr">
           <div className="object__blockTableTd">{it}</div>
           <div className="object__blockTableTd">{paramInfo[it]}</div>
         </div>
@@ -90,6 +90,8 @@ const Mkd = ({ cadastrObj }) => {
     })
   }
 
+  const uniqueKey = () => (+new Date() + Math.random())
+  const uniqueKey2 = () => (+new Date() +  Math.random())
   return (
     <>
       {!value ? (
@@ -124,7 +126,7 @@ const Mkd = ({ cadastrObj }) => {
                   <div className="object__blockTableTd">
                     {stations.map((it, ind) => {
                       return (
-                        <div key={ind}>
+                        <div key={ind + uniqueKey()}>
                           {it?.type} {` - ${it?.name}`} {it?.comment ? ` - ${it?.comment}` : '1'}
                         </div>
                       )
@@ -138,7 +140,7 @@ const Mkd = ({ cadastrObj }) => {
                   <div className="foto">
                     {photos.map((it, ind) => {
                       return (
-                        <div className="pics" key={ind} aria-hidden="true" onClick={() => { getImg(it) }}>
+                        <div className="pics" key={ind + uniqueKey2()} aria-hidden="true" onClick={() => { getImg(it) }}>
                           <img src={it} alt="bld" />
                         </div>
                       )
