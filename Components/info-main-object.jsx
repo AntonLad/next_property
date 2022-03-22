@@ -22,7 +22,7 @@ const InfoMainObject = ({ cadastrObj }) => {
 
   const paramInfo = {
     'Адрес': addressNotes,
-    'Кадастровый номер:': objectCn,
+    // 'Кадастровый номер:': objectCn,
     'Тип объекта:': objectNameLetter !== '0' && (name || objectName),
     'Тип использования:': utilByDoc,
     'Площадь:': areaValue !== 0 && areaValue && `${areaValue} кв. м.`,   

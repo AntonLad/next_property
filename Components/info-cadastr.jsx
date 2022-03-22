@@ -4,7 +4,7 @@ const Cadastr = ({ cadastrObj }) => {
   const cadObj = JSON.parse(cadastrObj)
   const { firActualDate } = cadObj ?? {}
   const { objectCn } = cadObj?.objectData ?? {}
-  const addressNotes = cadObj?.objectData?.objectAddress?.addressNotes || cadObj?.objectData?.objectAddress?.mergedAddress
+  // const addressNotes = cadObj?.objectData?.objectAddress?.addressNotes || cadObj?.objectData?.objectAddress?.mergedAddress
   const objectName = cadObj?.objectData?.objectName ?? '0'
   const objectNameLetter = objectName[0]
   const { name, floor } = cadObj?.flat?.price?.flat ?? {}
@@ -15,7 +15,7 @@ const Cadastr = ({ cadastrObj }) => {
     
   const paramInfo = {
     'Кадастровый номер:': <b>{objectCn}</b>,
-    'Адрес по документам:': addressNotes !== '0' && addressNotes,
+    // 'Адрес по документам:': addressNotes !== '0' && addressNotes,
     'Тип:':  objectNameLetter !== '0' && (name || objectName),
     'Тип собственности:':  rightType?.reduce((acc, rec) => rec.typeName, ' ') || 'не известно',
     'Площадь:': areaValue !== 0 && areaValue && `${areaValue} кв. м.`, 

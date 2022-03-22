@@ -6,15 +6,16 @@ const MenuLeft = ({ cadastrObj, askAboutFlat, jkhObj }) => {
   const [value, setValue] = useState(false)
   const cadObj = JSON.parse(cadastrObj)
   const jkh = JSON.parse(jkhObj)
-  const bldYear = value?.price?.bld?.bldYear || value?.bld?.bldYear
-
+  
   const tryTouchPromise = async () => {
     const a = await askAboutFlat
     setValue(a)
   }
-
   tryTouchPromise()
 
+  const bldYear = value?.price?.bld?.bldYear || value?.bld?.bldYear
+  const bldTitle = value?.price?.bld?.bldTitle || value?.bld?.bldTitle
+  const stations = value?.price?.bld?.stations || value?.bld?.stations
   const rights = cadObj?.rights?.realty?.rights
   const rightsCheck = rights?.filter((it) =>  it?.rightState === 1)
   const encumbrances = cadObj?.rights?.realty?.encumbrances
@@ -61,7 +62,7 @@ const MenuLeft = ({ cadastrObj, askAboutFlat, jkhObj }) => {
                     {/* по максимуму поля stat из getask , рыночная стоимость, quality, площадь, квартиры проадеются в диапазоне () */}
                   </li>
                 )}
-                {bldYear && checker &&  (
+                {(bldYear || bldTitle || stations) && checker &&  (
                   <li data-type="mkd" className="object__leftMenu-link _success">
                     {oksType === 'flat' ?
                       <Link to="mkd-info" smooth="true" activeClass="active" spy={true} duration={500}>Сведения о МКД</Link> :
