@@ -14,6 +14,6 @@ export default async function mongoObj (req, res) {
   await collection.insertOne(obj)
   // collection.updateOne
   })
-  res.json(result) 
+  return res.json(result) 
 }
 
