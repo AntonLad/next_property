@@ -22,7 +22,7 @@ export default async function tooltips(req, res) {
   const db = client.db(process.env.MONGO_COLLECTION)
   const collection = db.collection('searchingObjects')
   const resultOfCheckObject = await collection.find({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}).toArray()
-
+  console.log('resultOfCheckObject', resultOfCheckObject.length)
   if (resultOfCheckObject.length === 0) {
     const urlTest = `${cadastrUrl}${cadNum}`
     const getAskReestrByCudNum = await axios({
