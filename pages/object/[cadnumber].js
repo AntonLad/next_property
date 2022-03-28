@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import { MongoClient } from 'mongodb'
 import Meta from '../../Components/meta'
 import { useRouter } from 'next/router'
@@ -31,7 +31,6 @@ const client = new MongoClient(url, { useUnifiedTopology: true })
 export default function Object({ cadastralObject, jkh}) {
   const [value, setValue] = useState('')
   const [check, setCheck] = useState(false)
-  console.log('CADNUMBER_VALUE', value)
   const router = useRouter()
   const cadNumber = router.query.cadnumber
   const props = JSON.parse(cadastralObject)
@@ -45,24 +44,22 @@ export default function Object({ cadastralObject, jkh}) {
   const stations = value?.price?.bld?.stations || value?.bld?.stations
   // let checker = value?.price?.address || value?.address
 
-  console.log('CHECK', check)
-
  if (check === '') {
   setCheck(true)
  }
 
   const addressNotes = props?.objectData?.objectAddress?.addressNotes || props?.objectData?.objectAddress?.mergedAddress
-  console.log('ADDRESS', addressNotes)
-  // console.log('addressNotes', addressNotes)
 
   const adressUrl = `/api/findflat?address=${addressNotes}&cadNumber=${cadNumber}`
   const encodeUrl = encodeURI(adressUrl)
   let askAboutFlat
   if (addressNotes) {
-    const askAboutFlaty = axios(encodeUrl)
+    const askAboutFlaty = fetch(encodeUrl)
     .then((result) => {
       setCheck(true)
-      return result.data
+      return result.json()
+     }).then((data) => {
+      return data
      })
      askAboutFlat = askAboutFlaty
   }
@@ -75,7 +72,6 @@ export default function Object({ cadastralObject, jkh}) {
   useEffect(() => {
     const tryTouchPromise = async () => {
       const result = await askAboutFlat
-      console.log('NEW VALUE', result)
       setValue(result)
       setCheck(true)
     }

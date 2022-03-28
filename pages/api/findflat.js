@@ -14,8 +14,6 @@ export default async function findFlat(req, res) {
   const cadNumber = req.query.cadNumber
   const url = `${priceUrl}${flat}`
   const encodingUrl = encodeURI(url)
-  console.log('FLAT', flat)
-  console.log('CADNUMBER', cadNumber)
   await client.connect()
   const db = client.db(process.env.MONGO_COLLECTION)
   const collection = db.collection('searchingObjects')
@@ -39,36 +37,39 @@ export default async function findFlat(req, res) {
         console.log('ERROR_FIND_FLAT', e)
         return res.json({ error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' })
       })
+      const lat = getAskPrice?.bld?.pos?.lat
+      const lng = getAskPrice?.bld?.pos?.lng
 
-    const lat = getAskPrice?.bld?.pos?.lat
-    const lng = getAskPrice?.bld?.pos?.lng
-    const infraUrl = `${socialUrl}${lat}&lng=${lng}`
-    const encodingInfraUrl = encodeURI(infraUrl)
+    if (lat && lng) {
+      const infraUrl = `${socialUrl}${lat}&lng=${lng}`
+      const encodingInfraUrl = encodeURI(infraUrl)
 
-    const getAskStructure = await axios({
-      headers: {
-        'X-Api-Key': apiKey,
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0',
-        'Referer': 'https://xn--h1alcedd.xn--d1aqf.xn--p1ai/',
-      },
-      method: 'GET',
-      timeout: 1000 * 15,
-      url: encodingInfraUrl
-    })
-      .then(({ data }) => {
-        return data
+      const getAskStructure = await axios({
+        headers: {
+          'X-Api-Key': apiKey,
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0',
+          'Referer': 'https://xn--h1alcedd.xn--d1aqf.xn--p1ai/',
+        },
+        method: 'GET',
+        timeout: 1000 * 15,
+        url: encodingInfraUrl
       })
-      .catch((e) => {
-        console.log('ERROR_FIND_SOCIAL', e)
-        return res.json({ error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' })
-      })
+        .then(({ data }) => {
+          return data
+        })
+        .catch((e) => {
+          console.log('ERROR_FIND_SOCIAL', e)
+          return res.json({ error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' })
+        })
 
-    client.connect(async () => {
-      const db = client.db(process.env.MONGO_COLLECTION)
-      const collection = db.collection('searchingObjects')
-      await collection.updateOne({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}, { $set: {price: getAskPrice, structures: getAskStructure?.social}}, { upsert: false })
-    })
-    return res.json({ ...getAskPrice, getAskStructure })
+      client.connect(async () => {
+        const db = client.db(process.env.MONGO_COLLECTION)
+        const collection = db.collection('searchingObjects')
+        await collection.updateOne({ $or : [{'objectData.objectCn': cadNumber}, {'objectData.id':cadNumber}]}, { $set: {price: getAskPrice, structures: getAskStructure?.social}}, { upsert: false })
+      })
+      return res.json({ ...getAskPrice, getAskStructure })
+    }
+    return res.json({ ...getAskPrice })
   }
   return res.json(resultOfCheckObject[0])
 }
