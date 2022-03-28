@@ -61,9 +61,10 @@ export default function Object({ cadastralObject, jkh}) {
   if (addressNotes) {
     const askAboutFlaty = axios(encodeUrl)
     .then((result) => {
+      setCheck(true)
       return result.data
-    })
-    askAboutFlat = askAboutFlaty
+     })
+     askAboutFlat = askAboutFlaty
   }
 
   useEffect(() => {
@@ -74,11 +75,9 @@ export default function Object({ cadastralObject, jkh}) {
   useEffect(() => {
     const tryTouchPromise = async () => {
       const result = await askAboutFlat
-      const checker = result?.price?.address || result?.address || result?.objectData?.addressNote || result?.addressNote
       console.log('NEW VALUE', result)
-      console.log('CHECKADRESS', checker)
       setValue(result)
-      setCheck(checker)
+      setCheck(true)
     }
     tryTouchPromise()
   }, [cadNumber])

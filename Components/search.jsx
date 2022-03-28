@@ -33,6 +33,9 @@ const Search = () => {
     if (cadNumber.length > 10 || enterText.length > 10) {
       const getAskReestrByCudNum = await axios.get(`/api/findobject?cadNumber=${cadNumber || enterText}`)
         .then((result) => {
+          if (result.data.error) {
+            setLoading(false)
+          }
           return result.data
         })
       console.log('getAskReestrByCudNum', getAskReestrByCudNum)
@@ -43,31 +46,14 @@ const Search = () => {
         if (objectId !== 0 || objectId.error) {
           await axios(`/api/findRights?objectid=${objectId}&cadNumber=${cadNumber || enterText}`)
         }
-      }
-      
-      // const cookieName = Math.random().toString(36).slice(2)
-
-      // Cookie.set(`${cadNumber.replace(/[^0-9]/g, '') || enterText.replace(/[^0-9]/g, '')}`, `${cadNumber || enterText}`, { expires: 1000 })
-      setData(getAskReestrByCudNum)
-      const address = getAskReestrByCudNum.objectData?.objectAddress?.addressNotes || getAskReestrByCudNum.objectData?.objectAddress?.mergedAddress
-
-      if (address) {
-        await axios(`/api/askdadata?cadNumber=${cadNumber || enterText}`)
-      }
-
-      if (typeof getAskReestrByCudNum.error === 'undefined') {
-        // if (address) {
-        //   const adressUrl = `/api/findflat?address=${address}&cadNumber=${cadNumber || enterText}`
-        //   await axios(adressUrl)
-        // }
+        const address = getAskReestrByCudNum.objectData?.objectAddress?.addressNotes || getAskReestrByCudNum.objectData?.objectAddress?.mergedAddress
+        if (address) {
+          await axios(`/api/askdadata?cadNumber=${cadNumber || enterText}`)
+        }
         router.push(`/object/${cadNumber || enterText}`)
-        // setLoading(false)
+        setLoading(false)
       }
-
-      // if (typeof getAskReestrByCudNum.error !== 'undefined') {
-      //   // setLoading(false)
-      // }
-      setLoading(false)
+      setData(getAskReestrByCudNum)
     }
   }
 
