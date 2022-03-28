@@ -50,7 +50,7 @@ export default function Object({ cadastralObject, jkh}) {
 
   const addressNotes = props?.objectData?.objectAddress?.addressNotes || props?.objectData?.objectAddress?.mergedAddress
 
-  const adressUrl = `/api/findflat?address=${addressNotes}&cadNumber=${cadNumber}`
+  const adressUrl = `https://mkdfond.ru/api/findflat?address=${addressNotes}&cadNumber=${cadNumber}`
   const encodeUrl = encodeURI(adressUrl)
   let askAboutFlat
   if (addressNotes) {
