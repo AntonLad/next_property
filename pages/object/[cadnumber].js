@@ -159,7 +159,7 @@ export async function getServerSideProps(context) {
       }
     }
     const needRegionsForBase = regions[regionFiasCode]
-    const regionBase = client.db('dataHousePassports')
+    const regionBase = client.db(process.env.MONGO_PASSPORT)
     const regionCollection = regionBase.collection(`${needRegionsForBase}`)
     const findBuildingFromBase = await regionCollection.find({houseguid: houseFiasCode}).toArray()
     const jkhCompanyId = findBuildingFromBase?.[0]?.management_organization_id
