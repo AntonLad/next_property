@@ -143,6 +143,7 @@ export async function getServerSideProps(context) {
   const searchAdress = res?.[0]?.objectData?.objectAddress?.addressNotes || res?.[0]?.objectData?.objectAddress?.mergedAddress
   const searchFlat = res?.[0]?.dadata?.flat_type
   if (searchFlat !== null && searchAdress) {
+    await clientPassport.connect()
     const regionFiasCode = res[0].dadata?.region_fias_id
     const houseFiasCode = res[0].dadata?.house_fias_id
     if (!houseFiasCode) {
