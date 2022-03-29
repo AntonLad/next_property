@@ -27,6 +27,9 @@ const DynamicMap = dynamic(
 const url = process.env.MONGO_URL
 const client = new MongoClient(url, { useUnifiedTopology: true })
 
+const urlPassport = process.env.MONGO_URL_PASSPORT
+const clientPassport = new MongoClient(urlPassport, { useUnifiedTopology: true })
+
 
 export default function Object({ cadastralObject, jkh}) {
   const [value, setValue] = useState('')
@@ -50,7 +53,7 @@ export default function Object({ cadastralObject, jkh}) {
 
   const addressNotes = props?.objectData?.objectAddress?.addressNotes || props?.objectData?.objectAddress?.mergedAddress
 
-  const adressUrl = `https://mkdfond.ru/api/findflat?address=${addressNotes}&cadNumber=${cadNumber}`
+  const adressUrl = process.env.FETCH
   const encodeUrl = encodeURI(adressUrl)
   let askAboutFlat
   if (addressNotes) {
@@ -146,7 +149,7 @@ export async function getServerSideProps(context) {
       const streetFiasCode = res[0].dadata?.street_fias_id
       const houseNumber = res[0].dadata?.house
       const needRegionsForBase = regions[regionFiasCode]
-      const regionBase = client.db(process.env.MONGO_PASSPORT)
+      const regionBase = clientPassport.db(process.env.MONGO_PASSPORT)
       const regionCollection = regionBase.collection(`${needRegionsForBase}`)
       const findBuildingFromBase = await regionCollection.find({street_id: streetFiasCode, house_number: houseNumber }).toArray()
       const jkhCompanyId = findBuildingFromBase?.[0]?.management_organization_id
@@ -159,7 +162,7 @@ export async function getServerSideProps(context) {
       }
     }
     const needRegionsForBase = regions[regionFiasCode]
-    const regionBase = client.db(process.env.MONGO_PASSPORT)
+    const regionBase = clientPassport.db(process.env.MONGO_PASSPORT)
     const regionCollection = regionBase.collection(`${needRegionsForBase}`)
     const findBuildingFromBase = await regionCollection.find({houseguid: houseFiasCode}).toArray()
     const jkhCompanyId = findBuildingFromBase?.[0]?.management_organization_id
