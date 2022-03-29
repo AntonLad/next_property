@@ -6,7 +6,7 @@ const MenuLeft = ({ cadastrObj, askAboutFlat, jkhObj }) => {
   const [value, setValue] = useState(false)
   const cadObj = JSON.parse(cadastrObj)
   const jkh = JSON.parse(jkhObj)
-  
+
   const tryTouchPromise = async () => {
     const a = await askAboutFlat
     setValue(a)
@@ -86,9 +86,9 @@ const MenuLeft = ({ cadastrObj, askAboutFlat, jkhObj }) => {
           </>
 
         </ul>
-        <div className="btn _pink object__leftMenu-btnFull js__objectLeftBtnReports">
+        {/* <div className="btn">
           Получить полный отчёт
-        </div>
+        </div> */}
       </div>
     </div>
   )

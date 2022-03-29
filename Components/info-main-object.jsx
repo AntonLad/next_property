@@ -25,7 +25,7 @@ const InfoMainObject = ({ cadastrObj }) => {
     // 'Кадастровый номер:': objectCn,
     'Тип объекта:': objectNameLetter !== '0' && (name || objectName),
     'Тип использования:': utilByDoc,
-    'Площадь:': areaValue !== 0 && areaValue && `${areaValue} кв. м.`,   
+    'Площадь:': areaValue !== 0 && areaValue && `${areaValue} кв. м.`,
   }
 
   const outputObject = () => {
@@ -41,7 +41,7 @@ const InfoMainObject = ({ cadastrObj }) => {
 
   return (
     <div>
-      <div className="object__content-top">
+      {/* <div className="object__content-top">
         <div className="object__content-top-link _print ob">
           <span>Печать</span>
         </div>
@@ -52,7 +52,7 @@ const InfoMainObject = ({ cadastrObj }) => {
         <div className="object__content-top-link ob">
           <span>Обновить</span>
         </div>
-      </div>
+      </div> */}
       <div data-content="main" className="object__block" id="main">
         <div className="object__block-title _h1">
           Объект недвижимости № {objectCn}
