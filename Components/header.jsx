@@ -1,5 +1,7 @@
 import React from 'react'
 import Link from "next/link"
+import MobileNavigation from './mobile-navigation'
+import Navigation from './navigation'
 
 const Header = () => {
   return (
@@ -14,20 +16,8 @@ const Header = () => {
             </div>
           </a>
         </Link>
-        <nav className="header__menu">
-          <a className="header__menu-link" href="#">
-            Проверка недвижимости
-          </a>
-          <a className="header__menu-link" href="#">
-            Реестр МКД
-          </a>
-          <a className="header__menu-link" href="#">
-            Капитальный ремонт
-          </a>
-          <a className="header__menu-link" href="#">
-            Контакты
-          </a>
-        </nav>
+          <Navigation />
+          <MobileNavigation />
         <div className="header__mobileBtn js__headerMobileBtn" />
       </div>
     </div>

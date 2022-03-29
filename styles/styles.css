@@ -82,7 +82,9 @@ a {
   display: inline-flex;
   float: right;
   padding-top: 11px;
+  font-weight: 800;
 }
+
 .header__menu-link {
   display: inline-flex;
   font-size: 14px;
@@ -91,6 +93,30 @@ a {
   margin-left: 32px;
 }
 .header__menu-link:hover {
+  color: #7db1ff;
+  border-bottom: 1px solid;
+  background: none !important;
+}
+
+.header__menu ul{
+  display: flex;
+  text-decoration: none;
+  list-style: none;
+}
+
+.mobileMenu {
+  display: none;
+  float: right;
+  padding-top: 11px;
+}
+.mobileMenu-link {
+  display: inline-flex;
+  font-size: 14px;
+  line-height: 17px;
+  color: #fff;
+  margin-left: 32px;
+}
+.mobileMenu-link:hover {
   color: #7db1ff;
   border-bottom: 1px solid;
   background: none !important;

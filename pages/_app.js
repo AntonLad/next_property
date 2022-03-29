@@ -5,6 +5,7 @@ import { createWrapper } from 'next-redux-wrapper'
 import store from '../redux'
 
 import '../styles/styles.css'
+import '../styles/mediascreen.css'
 
 function MyApp({ Component, pageProps }) {
   return (

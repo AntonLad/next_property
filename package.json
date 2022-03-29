@@ -2,9 +2,9 @@
   "name": "property",
   "private": true,
   "scripts": {
-   "dev": "next dev -H 127.0.4.203 -p 59534",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start -H 127.0.4.203 -p 59534",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -22,6 +22,7 @@
     "react": "17.0.2",
     "react-dadata": "^2.16.0",
     "react-dom": "17.0.2",
+    "react-icons": "^4.3.1",
     "react-loading": "^2.0.3",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
