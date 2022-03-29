@@ -135,7 +135,7 @@ export default function Object({ cadastralObject, jkh}) {
 export async function getServerSideProps(context) {
   const cadastr = context.params.cadnumber
   await client.connect()
-  await clientPassport.connect()
+  // await clientPassport.connect()
   const db = client.db(process.env.MONGO_COLLECTION)
   const collection = db.collection('searchingObjects')
   const res = await collection.find({ $or : [{'objectData.objectCn': cadastr}, {'objectData.id':cadastr}]}).toArray()
@@ -144,7 +144,7 @@ export async function getServerSideProps(context) {
   const searchAdress = res?.[0]?.objectData?.objectAddress?.addressNotes || res?.[0]?.objectData?.objectAddress?.mergedAddress
   const searchFlat = res?.[0]?.dadata?.flat_type
   // if (searchFlat !== null && searchAdress) {
-  //   
+  //
   //   const regionFiasCode = res[0].dadata?.region_fias_id
   //   const houseFiasCode = res[0].dadata?.house_fias_id
   //   if (!houseFiasCode) {
