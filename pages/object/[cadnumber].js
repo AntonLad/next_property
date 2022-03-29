@@ -27,8 +27,8 @@ const DynamicMap = dynamic(
 const url = process.env.MONGO_URL
 const client = new MongoClient(url, { useUnifiedTopology: true })
 
-// const urlPassport = process.env.MONGO_URL_PASSPORT
-// const clientPassport = new MongoClient(urlPassport, { useUnifiedTopology: true })
+const urlPassport = process.env.MONGO_URL_PASSPORT
+const clientPassport = new MongoClient(urlPassport, { useUnifiedTopology: true })
 
 
 export default function Object({ cadastralObject, jkh}) {
@@ -135,6 +135,7 @@ export default function Object({ cadastralObject, jkh}) {
 export async function getServerSideProps(context) {
   const cadastr = context.params.cadnumber
   await client.connect()
+  await clientPassport.connect()
   const db = client.db(process.env.MONGO_COLLECTION)
   const collection = db.collection('searchingObjects')
   const res = await collection.find({ $or : [{'objectData.objectCn': cadastr}, {'objectData.id':cadastr}]}).toArray()
@@ -142,39 +143,39 @@ export async function getServerSideProps(context) {
   // console.log('CADASTROBJ', cadastrObj )
   const searchAdress = res?.[0]?.objectData?.objectAddress?.addressNotes || res?.[0]?.objectData?.objectAddress?.mergedAddress
   const searchFlat = res?.[0]?.dadata?.flat_type
-  // if (searchFlat !== null && searchAdress) {
-  //   await clientPassport.connect()
-  //   const regionFiasCode = res[0].dadata?.region_fias_id
-  //   const houseFiasCode = res[0].dadata?.house_fias_id
-  //   if (!houseFiasCode) {
-  //     const streetFiasCode = res[0].dadata?.street_fias_id
-  //     const houseNumber = res[0].dadata?.house
-  //     const needRegionsForBase = regions[regionFiasCode]
-  //     const regionBase = clientPassport.db(process.env.MONGO_PASSPORT)
-  //     const regionCollection = regionBase.collection(`${needRegionsForBase}`)
-  //     const findBuildingFromBase = await regionCollection.find({street_id: streetFiasCode, house_number: houseNumber }).toArray()
-  //     const jkhCompanyId = findBuildingFromBase?.[0]?.management_organization_id
-  //     const jkhBase = regionBase.collection('JKHBase')
-  //     const company = await jkhBase.find({id: jkhCompanyId}).toArray()
-  //     const companyJkh = company[0]
+  if (searchFlat !== null && searchAdress) {
+    
+    const regionFiasCode = res[0].dadata?.region_fias_id
+    const houseFiasCode = res[0].dadata?.house_fias_id
+    if (!houseFiasCode) {
+      const streetFiasCode = res[0].dadata?.street_fias_id
+      const houseNumber = res[0].dadata?.house
+      const needRegionsForBase = regions[regionFiasCode]
+      const regionBase = clientPassport.db(process.env.MONGO_PASSPORT)
+      const regionCollection = regionBase.collection(`${needRegionsForBase}`)
+      const findBuildingFromBase = await regionCollection.find({street_id: streetFiasCode, house_number: houseNumber }).toArray()
+      const jkhCompanyId = findBuildingFromBase?.[0]?.management_organization_id
+      const jkhBase = regionBase.collection('JKHBase')
+      const company = await jkhBase.find({id: jkhCompanyId}).toArray()
+      const companyJkh = company[0]
 
-  //     return {
-  //       props: {cadastralObject: JSON.stringify(cadastrObj), jkh: JSON.stringify(companyJkh) || null}, // will be passed to the page component as props
-  //     }
-  //   }
-  //   const needRegionsForBase = regions[regionFiasCode]
-  //   const regionBase = clientPassport.db(process.env.MONGO_PASSPORT)
-  //   const regionCollection = regionBase.collection(`${needRegionsForBase}`)
-  //   const findBuildingFromBase = await regionCollection.find({houseguid: houseFiasCode}).toArray()
-  //   const jkhCompanyId = findBuildingFromBase?.[0]?.management_organization_id
-  //   const jkhBase = regionBase.collection('JKHBase')
-  //   const company = await jkhBase.find({id: jkhCompanyId}).toArray()
-  //   const companyJkh = company[0]
+      return {
+        props: {cadastralObject: JSON.stringify(cadastrObj), jkh: JSON.stringify(companyJkh) || null}, // will be passed to the page component as props
+      }
+    }
+    const needRegionsForBase = regions[regionFiasCode]
+    const regionBase = clientPassport.db(process.env.MONGO_PASSPORT)
+    const regionCollection = regionBase.collection(`${needRegionsForBase}`)
+    const findBuildingFromBase = await regionCollection.find({houseguid: houseFiasCode}).toArray()
+    const jkhCompanyId = findBuildingFromBase?.[0]?.management_organization_id
+    const jkhBase = regionBase.collection('JKHBase')
+    const company = await jkhBase.find({id: jkhCompanyId}).toArray()
+    const companyJkh = company[0]
 
-  //   return {
-  //     props: {cadastralObject: JSON.stringify(cadastrObj), jkh: JSON.stringify(companyJkh) || null}, // will be passed to the page component as props
-  //   }
-  // }
+    return {
+      props: {cadastralObject: JSON.stringify(cadastrObj), jkh: JSON.stringify(companyJkh) || null}, // will be passed to the page component as props
+    }
+  }
 
  return {
     props: {cadastralObject: JSON.stringify(cadastrObj) || null}, // will be passed to the page component as props
