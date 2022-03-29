@@ -137,6 +137,17 @@
   .object__contentWrap {
     margin-left: 0;
   }
+  .object__block-title-2 {
+    font-size: 16px;
+  }
+
+  .object__block-title {
+    font-size: 20px;
+  }
+
+  .object__block-title._map {
+    font-size: 20px;
+  }
 }
 
 @media (max-width: 700px) {
