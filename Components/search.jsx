@@ -178,14 +178,6 @@ const Search = () => {
           aria-hidden="true"
           className="a _blueback _inner js__searchExample"
           onClick={() => {
-            setEnterText('63:01:0629002:000')
-          }}
-        >  63:01:0629002:000
-        </span> или
-        <span
-          aria-hidden="true"
-          className="a _blueback _inner js__searchExample"
-          onClick={() => {
             setEnterText('16:39:012701:131')
           }}
         >  16:39:012701:131

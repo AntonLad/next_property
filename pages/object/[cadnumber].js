@@ -27,10 +27,6 @@ const DynamicMap = dynamic(
 const url = process.env.MONGO_URL
 const client = new MongoClient(url, { useUnifiedTopology: true })
 
-// const urlPassport = process.env.MONGO_URL_PASSPORT
-// const clientPassport = new MongoClient(urlPassport, { useUnifiedTopology: true })
-
-
 export default function Object({ cadastralObject, jkh}) {
   const [value, setValue] = useState('')
   const [check, setCheck] = useState(false)
@@ -131,11 +127,9 @@ export default function Object({ cadastralObject, jkh}) {
   )
 }
 
-
 export async function getServerSideProps(context) {
   const cadastr = context.params.cadnumber
   await client.connect()
-  // await clientPassport.connect()
   const db = client.db(process.env.MONGO_COLLECTION)
   const collection = db.collection('searchingObjects')
   const res = await collection.find({ $or : [{'objectData.objectCn': cadastr}, {'objectData.id':cadastr}]}).toArray()
@@ -151,7 +145,7 @@ export async function getServerSideProps(context) {
       const streetFiasCode = res[0].dadata?.street_fias_id
       const houseNumber = res[0].dadata?.house
       const needRegionsForBase = regions[regionFiasCode]
-      const regionBase = client.db(process.env.MONGO_PASSPORT)
+      const regionBase = client.db(process.env.MONGO_COLLECTION)
       const regionCollection = regionBase.collection(`${needRegionsForBase}`)
       const findBuildingFromBase = await regionCollection.find({street_id: streetFiasCode, house_number: houseNumber }).toArray()
       const jkhCompanyId = findBuildingFromBase?.[0]?.management_organization_id
@@ -164,7 +158,7 @@ export async function getServerSideProps(context) {
       }
     }
     const needRegionsForBase = regions[regionFiasCode]
-    const regionBase = client.db(process.env.MONGO_PASSPORT)
+    const regionBase = client.db(process.env.MONGO_COLLECTION)
     const regionCollection = regionBase.collection(`${needRegionsForBase}`)
     const findBuildingFromBase = await regionCollection.find({houseguid: houseFiasCode}).toArray()
     const jkhCompanyId = findBuildingFromBase?.[0]?.management_organization_id
