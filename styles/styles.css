@@ -712,7 +712,7 @@ a {
 .main__faq-title::after {
   color: #313e51;
   content: "\22EF";
-  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .main__faq-wrap {
