@@ -1258,10 +1258,6 @@ a {
     position: relative;
   }
 
-  .clearfix {
-    content: "";
-  }
-
   .object__block-title._kadastr:before {
     width: 30px;
     height: 30px;

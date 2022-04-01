@@ -1,9 +1,4 @@
-import { InfoTwoTone } from '@material-ui/icons'
 import React from 'react'
-import { Link } from 'react-scroll'
-// import { useSelector } from 'react-redux'
-
-
 
 const Jkh = ({ jkhObj }) => {
   const jkh = JSON.parse(jkhObj)
@@ -44,6 +39,5 @@ const Jkh = ({ jkhObj }) => {
     </div>
   )
 }
-
 
 export default Jkh

@@ -97,8 +97,7 @@ const Mkd = ({ cadastrObj }) => {
       {!value ? (
         <>
           {''}
-          {/* <div className="searchTitle">Загружаем данные об объекте</div>
-          <div className="spinner1" /> */}
+          {/* пока нет value ничего не выводим */}
         </>
       ) : (
       <>

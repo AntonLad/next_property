@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-// import axios from 'axios'
 import { MongoClient } from 'mongodb'
 import Meta from '../Components/meta'
 import { useRouter } from 'next/router'
@@ -17,8 +16,7 @@ import Owners from '../Components/info-owners'
 import Price from '../Components/info-price'
 import Restriction from '../Components/info-restrictions'
 import Jkh from '../Components/info-jkh'
-// import testMap from '../../Components/testmap'
-// import Map from '../../Components/info-map'
+
 const DynamicMap = dynamic(
   () => import('../Components/testmap'),
   { ssr: false }
@@ -41,13 +39,12 @@ export default function Object({ cadastralObject, jkh}) {
   const bldYear = value?.price?.bld?.bldYear || value?.bld?.bldYear
   const bldTitle = value?.price?.bld?.bldTitle || value?.bld?.bldTitle
   const stations = value?.price?.bld?.stations || value?.bld?.stations
+  const addressNotes = props?.objectData?.objectAddress?.addressNotes || props?.objectData?.objectAddress?.mergedAddress
   // let checker = value?.price?.address || value?.address
 
  if (check === '') {
   setCheck(true)
  }
-
-  const addressNotes = props?.objectData?.objectAddress?.addressNotes || props?.objectData?.objectAddress?.mergedAddress
 
   const adressUrl = `/api/findflat?address=${addressNotes}&cadNumber=${cadNumber}`
   const encodeUrl = encodeURI(adressUrl)

@@ -1,8 +1,5 @@
 import React from 'react'
 import { Link } from 'react-scroll'
-// import { useSelector } from 'react-redux'
-
-
 
 const InfoMainObject = ({ cadastrObj }) => {
   const cadObj = JSON.parse(cadastrObj)
@@ -22,7 +19,6 @@ const InfoMainObject = ({ cadastrObj }) => {
 
   const paramInfo = {
     'Адрес': addressNotes,
-    // 'Кадастровый номер:': objectCn,
     'Тип объекта:': objectNameLetter !== '0' && (name || objectName),
     'Тип использования:': utilByDoc,
     'Площадь:': areaValue !== 0 && areaValue && `${areaValue} кв. м.`,
@@ -41,18 +37,9 @@ const InfoMainObject = ({ cadastrObj }) => {
 
   return (
     <div>
-      {/* <div className="object__content-top">
-        <div className="object__content-top-link _print ob">
-          <span>Печать</span>
-        </div>
-        <div className="object__content-top-link _favorite ob">
-          <span>В избранное</span>
-        </div>
-        <div className="object__content-top-link">{`Дата запроса:  ${day}.${monthReal}.${year}`}</div>
-        <div className="object__content-top-link ob">
-          <span>Обновить</span>
-        </div>
-      </div> */}
+      <div className="object__content-top">
+        <div className="object__content-top-link ">{`Дата запроса:  ${day}.${monthReal}.${year}`}</div>
+      </div>
       <div data-content="main" className="object__block" id="main">
         <div className="object__block-title _h1">
           Объект недвижимости № {objectCn}

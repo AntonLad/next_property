@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { nanoid } from 'nanoid'
 
 const Restriction = ({ cadastrObj }) => {
   const cadObj = JSON.parse(cadastrObj)
@@ -38,25 +37,6 @@ const Restriction = ({ cadastrObj }) => {
                 </div>
                 <div className="object__blockTable">
                   {outputObject(it)}
-                  {/* {it?.regNmbr && (
-                    <div className="object__blockTableTr">
-                      <div className="object__blockTableTd">Регистрационный номер</div>
-                      <div className="object__blockTableTd">{it?.regNmbr}</div>
-                    </div>
-                  )}
-                  {it?.regNmbr && (
-                    <div className="object__blockTableTr">
-                      <div className="object__blockTableTd">Дата регистрации обременения</div>
-                      <div className="object__blockTableTd">{it?.regDate}</div>
-                    </div>
-                  )}
-                  {it?.dateStop && (
-                    <div className="object__blockTableTr">
-                      <div className="object__blockTableTd">Дата окончания обременения</div>
-                      <div className="object__blockTableTd">{it?.dateStop}</div>
-                    </div>
-                  )} */}
-
                 </div>
               </div>
             )
