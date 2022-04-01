@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react'
 // import axios from 'axios'
 import { MongoClient } from 'mongodb'
-import Meta from '../../Components/meta'
+import Meta from '../Components/meta'
 import { useRouter } from 'next/router'
-import regions from '../../Components/files/regions'
+import regions from '../Components/files/regions'
 import dynamic from 'next/dynamic'
-import Header from '../../Components/header'
-import Footer from '../../Components/footer'
-import MenuLeft from '../../Components/menu-left'
-import Search from '../../Components/search'
-import Scroll from '../../Components/scroll'
-import InfoMainObject from '../../Components/info-main-object'
-import Cadastr from '../../Components/info-cadastr'
-import Mkd from '../../Components/info-mkd'
-import Owners from '../../Components/info-owners'
-import Price from '../../Components/info-price'
-import Restriction from '../../Components/info-restrictions'
-import Jkh from '../../Components/info-jkh'
+import Header from '../Components/header'
+import Footer from '../Components/footer'
+import MenuLeft from '../Components/menu-left'
+import Search from '../Components/search'
+import Scroll from '../Components/scroll'
+import InfoMainObject from '../Components/info-main-object'
+import Cadastr from '../Components/info-cadastr'
+import Mkd from '../Components/info-mkd'
+import Owners from '../Components/info-owners'
+import Price from '../Components/info-price'
+import Restriction from '../Components/info-restrictions'
+import Jkh from '../Components/info-jkh'
 // import testMap from '../../Components/testmap'
 // import Map from '../../Components/info-map'
 const DynamicMap = dynamic(
-  () => import('../../Components/testmap'),
+  () => import('../Components/testmap'),
   { ssr: false }
 )
 
@@ -49,7 +49,7 @@ export default function Object({ cadastralObject, jkh}) {
 
   const addressNotes = props?.objectData?.objectAddress?.addressNotes || props?.objectData?.objectAddress?.mergedAddress
 
-  const adressUrl = `https://mkdfond.ru/api/findflat?address=${addressNotes}&cadNumber=${cadNumber}`
+  const adressUrl = `/api/findflat?address=${addressNotes}&cadNumber=${cadNumber}`
   const encodeUrl = encodeURI(adressUrl)
   let askAboutFlat
   if (addressNotes) {
@@ -137,39 +137,39 @@ export async function getServerSideProps(context) {
   // console.log('CADASTROBJ', cadastrObj )
   const searchAdress = res?.[0]?.objectData?.objectAddress?.addressNotes || res?.[0]?.objectData?.objectAddress?.mergedAddress
   const searchFlat = res?.[0]?.dadata?.flat_type
-  // if (searchFlat !== null && searchAdress) {
-  
-  //   const regionFiasCode = res[0].dadata?.region_fias_id
-  //   const houseFiasCode = res[0].dadata?.house_fias_id
-  //   if (!houseFiasCode) {
-  //     const streetFiasCode = res[0].dadata?.street_fias_id
-  //     const houseNumber = res[0].dadata?.house
-  //     const needRegionsForBase = regions[regionFiasCode]
-  //     const regionBase = client.db(process.env.MONGO_COLLECTION)
-  //     const regionCollection = regionBase.collection(`${needRegionsForBase}`)
-  //     const findBuildingFromBase = await regionCollection.find({street_id: streetFiasCode, house_number: houseNumber }).toArray()
-  //     const jkhCompanyId = findBuildingFromBase?.[0]?.management_organization_id
-  //     const jkhBase = regionBase.collection('JKHBase')
-  //     const company = await jkhBase.find({id: jkhCompanyId}).toArray()
-  //     const companyJkh = company[0]
+  if (searchFlat !== null && searchAdress) {
 
-  //     return {
-  //       props: {cadastralObject: JSON.stringify(cadastrObj), jkh: JSON.stringify(companyJkh) || null}, // will be passed to the page component as props
-  //     }
-  //   }
-  //   const needRegionsForBase = regions[regionFiasCode]
-  //   const regionBase = client.db(process.env.MONGO_COLLECTION)
-  //   const regionCollection = regionBase.collection(`${needRegionsForBase}`)
-  //   const findBuildingFromBase = await regionCollection.find({houseguid: houseFiasCode}).toArray()
-  //   const jkhCompanyId = findBuildingFromBase?.[0]?.management_organization_id
-  //   const jkhBase = regionBase.collection('JKHBase')
-  //   const company = await jkhBase.find({id: jkhCompanyId}).toArray()
-  //   const companyJkh = company[0]
+    const regionFiasCode = res[0].dadata?.region_fias_id
+    const houseFiasCode = res[0].dadata?.house_fias_id
+    if (!houseFiasCode) {
+      const streetFiasCode = res[0].dadata?.street_fias_id
+      const houseNumber = res[0].dadata?.house
+      const needRegionsForBase = regions[regionFiasCode]
+      const regionBase = client.db(process.env.MONGO_COLLECTION)
+      const regionCollection = regionBase.collection(`${needRegionsForBase}`)
+      const findBuildingFromBase = await regionCollection.find({street_id: streetFiasCode, house_number: houseNumber }).toArray()
+      const jkhCompanyId = findBuildingFromBase?.[0]?.management_organization_id
+      const jkhBase = regionBase.collection('JKHBase')
+      const company = await jkhBase.find({id: jkhCompanyId}).toArray()
+      const companyJkh = company[0]
 
-  //   return {
-  //     props: {cadastralObject: JSON.stringify(cadastrObj), jkh: JSON.stringify(companyJkh) || null}, // will be passed to the page component as props
-  //   }
-  // }
+      return {
+        props: {cadastralObject: JSON.stringify(cadastrObj), jkh: JSON.stringify(companyJkh) || null}, // will be passed to the page component as props
+      }
+    }
+    const needRegionsForBase = regions[regionFiasCode]
+    const regionBase = client.db(process.env.MONGO_COLLECTION)
+    const regionCollection = regionBase.collection(`${needRegionsForBase}`)
+    const findBuildingFromBase = await regionCollection.find({houseguid: houseFiasCode}).toArray()
+    const jkhCompanyId = findBuildingFromBase?.[0]?.management_organization_id
+    const jkhBase = regionBase.collection('JKHBase')
+    const company = await jkhBase.find({id: jkhCompanyId}).toArray()
+    const companyJkh = company[0]
+
+    return {
+      props: {cadastralObject: JSON.stringify(cadastrObj), jkh: JSON.stringify(companyJkh) || null}, // will be passed to the page component as props
+    }
+  }
 
  return {
     props: {cadastralObject: JSON.stringify(cadastrObj) || null}, // will be passed to the page component as props

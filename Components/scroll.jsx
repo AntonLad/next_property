@@ -19,7 +19,7 @@ const Scroll = () => {
   }
 
   return (
-    <div>
+    <div className="bottomContainer">
       <div className="object__arrows-btn _top" onClick={() => {
         scroll.scrollToTop()
       }}>

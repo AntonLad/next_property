@@ -50,7 +50,7 @@ const Search = () => {
         if (address) {
           await axios(`/api/askdadata?cadNumber=${cadNumber || enterText}`)
         }
-        router.push(`/object/${cadNumber || enterText}`)
+        router.push(`/${cadNumber || enterText}`)
         setLoading(false)
       }
       setData(getAskReestrByCudNum)
@@ -81,7 +81,7 @@ const Search = () => {
           <div className="searchInputs">
             <input
               type="text"
-              placeholder="Введите кадастровый номер или адрес объекта"
+              placeholder="Введите кадастровый номер или адрес"
               value={enterText}
               onChange={onChange}
             />
