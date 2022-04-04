@@ -14,8 +14,6 @@ const url = process.env.MONGO_URL
 const client = new MongoClient(url, { useUnifiedTopology: true })
 
 export default function Object({mkd, jkh}) {
-  console.log('MKD', mkd)
-  console.log('JKH', jkh)
   return (
     <>
       <Meta

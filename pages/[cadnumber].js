@@ -125,7 +125,7 @@ export default function Object({ cadastralObject, jkh}) {
 }
 
 export async function getServerSideProps(context) {
-  const cadastr = context.params
+  const cadastr = context.params.cadnumber
   await client.connect()
   const db = client.db(process.env.MONGO_COLLECTION)
   const collection = db.collection('searchingObjects')
