@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Search from "../Components/search"
 import Header from "../Components/header"
 import Footer from "../Components/footer"
-
+import ButtonMongo from '../Components/buttonMongo'
 
 export default function Main() {
   return (
@@ -189,6 +189,7 @@ export default function Main() {
             </div>
           </div>
         </div>
+        <ButtonMongo />
         <Footer />
       </div>
     </>

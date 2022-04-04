@@ -19,7 +19,7 @@ const ButtonMongo =  () => {
         addObj()
       }}
     >
-      MONGO
+      Делаем файл с фиасами
     </button>
   )
 }

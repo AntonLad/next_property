@@ -3,10 +3,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-     "build": "next build",
-     "start": "next start -H 127.0.4.203 -p 59534",
-     "lint": "next lint"
-   },
+    "build": "next build",
+    "start": "next start -H 127.0.4.203 -p 59534",
+    "lint": "next lint"
+  },
   "dependencies": {
     "2gis-maps": "^3.7.0",
     "@material-ui/core": "^4.12.3",
@@ -31,7 +31,8 @@
     "react-yandex-maps": "^4.6.0",
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.4.1"
+    "redux-thunk": "^2.4.1",
+    "xmlbuilder2": "^3.0.2"
   },
   "devDependencies": {
     "eslint": "8.8.0",
