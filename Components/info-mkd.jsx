@@ -56,6 +56,17 @@ const Mkd = ({ cadastrObj }) => {
     return <span className="redState">Критическое</span>
   }
 
+  const flor = (fl) => {
+    if (fl >= 5 && fl <=20) {return 'этажей'}
+    const regexp = /1$/g
+    const checker = regexp.test(fl) 
+    if (checker) {return 'этаж'}
+    const regexp2 = /2$|3$|4$/g
+    const checker2 = regexp2.test(fl)
+    if (checker2) {return 'этажа'}
+    return 'этажей' 
+  }
+
   const paramInfo = {
     'Тип объекта': bldTitle && <b>{bldTitle}</b>,
     'Адрес:': address || addresSspare ,
@@ -69,7 +80,7 @@ const Mkd = ({ cadastrObj }) => {
     'Количество жилых помещений:': livingCount,
     'Количество лифтов:': elevatorCount,
     'Количество подъездов:': entranceCount,
-    'Этажность:': maxFloor && `${maxFloor} этажей`,
+    'Этажность:': maxFloor && `${maxFloor} ${flor(maxFloor)}`,
     'Отопление:': supplyTypeHeating,
     'Горячее водоснабжение:': supplyTypeHotWater,
     'Тип вентеляции:': supplyTypeVent,

@@ -1,66 +1,138 @@
 import { MongoClient } from 'mongodb'
+import regions from '../../Components/files/regions'
 const { readFile, writeFile, stat, unlink } = require('fs').promises
 const { create } = require('xmlbuilder2')
 
-const url = process.env.MONGO_URL
-const client = new MongoClient(url, { useUnifiedTopology: true })
 
-let count = 1
+// функция по созданию файлов sitemap
+
+// const url = process.env.MONGO_URL
+// const client = new MongoClient(url, { useUnifiedTopology: true })
+
+// let count = 1
+// const arrayOfCollectionOfRegions = Object.values(regions)
+
+// export default async function mongoObj (req, res) {
+ 
+//   const result = client.connect(async () => {
+
+//     async function totalResult () { 
+//       arrayOfCollectionOfRegions.slice(90, 100).map(async (it) => {
+    
+//         const filePath = () => {
+//           const renameRegion = it.split(' ').join('_')
+//           const path = `/mnt/d/dev/next-property/sitemap/sitemap_${renameRegion}_${count}.xml`
+//           count += 1
+//           console.log(renameRegion  )
+//           return path
+//         } // формируем название файла виде sitemap+имяРегиона+count, count  увеличивем на один после каждой записи файла
+
+//         const writeNewFile = (data) => {
+//           return writeFile(filePath(), data, 'utf-8')
+//         }
+
+//         const db = client.db(process.env.MONGO_COLLECTION)
+//         const collection = db.collection(it)
+//         const arrayOfFias = await collection.find({}).toArray() // делаем массив из всех объектов в коллекции  
+        
+//         const urlFias = arrayOfFias.reduce((acc, rec) => {
+//           acc = [...acc, `https://mkdfond.ru/mkd/${rec.region_id}-mkd-${rec.houseguid}`]
+//           return acc
+//         }, [])   // создаем массив адресов с двумя кодами фиас региональным и дома
+
+//         const bucketSize = 1750
+//         const bucketArr = urlFias.reduce(
+//           (acc, rec) => {
+//             if (acc[acc.length - 1].length < bucketSize) {
+//               acc[acc.length - 1] = [...acc[acc.length - 1], rec]
+//               return acc
+//             }
+//             return [...acc, [rec]]
+//           }, [[]]
+//         )  // создаем масиив с масивами ограниченными по колличеству переменной  bucketSize
+//         // console.log('bucketArr', bucketArr.slice(0, 5))
+
+//         bucketArr.map ((it) => {
+//           const doc = create({ version: '1.0', encoding: "UTF-8" }, {
+//             urlset: {
+//               '@xsi:schemaLocation': 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd',
+//               url: () => {
+//                 return it.map((it) => {
+//                   const x = {
+//                     loc: it,
+//                   } 
+//                   return x 
+//                 })
+//               } 
+//             }
+//           })
+//           const dataForXML = doc.end({ prettyPrint: true })  // формируем при помощи библиотеки xmlbuilder2 из объекта рзметку xml 
+          
+//           writeNewFile(dataForXML)  // записываем в файл данные со всеми url в формате xml
+//           console.log('файл номер', count, it.length)
+          
+//         })    
+
+//       }) 
+//     }
+//     return totalResult()
+//   })
+ 
+//   return res.json(result) 
+// }
+
+
+
+
+// функция по созданию файла sitemapindex
+
+// const fs = require('fs')
+// const dir = '/mnt/d/dev/next-property/sitemap'
+// const files = fs.readdirSync(dir)
+
+// export default async function mongoObj (req, res) {
+//   let arrayOfFileName = []
+//   for (const file of files) {
+//     arrayOfFileName = [...arrayOfFileName, file]
+//   }
+//   // console.log('arrofName', arrayOfFileName.slice(0, 10) )
+//   const arrayOfUrl = arrayOfFileName.reduce((acc, rec) => {
+//     acc = [...acc, `https://mkdfond.ru/sitemap/${rec}`]
+//     return acc
+//   }, [])   // создаем массив адресов где лежат файлы sitemap
+
+  
+//   const doc = create({ version: '1.0', encoding: "UTF-8" }, {
+//     sitemapindex: {
+//       '@xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd',
+//       sitemap: () => {
+//         return arrayOfUrl.slice(0, 1000).map((it) => {
+//           const x = {
+//             loc: it,
+//           } 
+//           return x 
+//         })
+//       } 
+//     }
+//   })
+//   const dataForXML = doc.end({ prettyPrint: true })  // формируем при помощи библиотеки xmlbuilder2 из объекта рзметку xml 
+  
+//   writeFile('/mnt/d/dev/next-property/sitemap/sitemapIndex.xml', dataForXML, 'utf-8')  // записываем в файл данные со всеми url в формате xml
+
+//   return res.json(arrayOfFileName) 
+// }
 
 export default async function mongoObj (req, res) {
-  const filePath = () => {
-    const path = `/mnt/d/dev/next-property/sitemap/sitemap${count}.xml`
-    count += 1
-    return path
-  } 
-
-  const writeNewFile = (data) => {
-    return writeFile(filePath(), data, 'utf-8')
-  }
-
-  const result = client.connect(async () => {
-    const db = client.db(process.env.MONGO_COLLECTION)
-    const collection = db.collection('Adygeya')
-    const arrayOfFias = await collection.find({}).toArray() // делаем массив из всех объектов в коллекции  
-    
-    const urlFias = arrayOfFias.reduce((acc, rec) => {
-      acc = [...acc, `https://mkdfond.ru/${rec.region_id}-mkd-${rec.houseguid}`]
-      return acc
-    }, [])   // создаем массив адресов с двумя кодами фиас региональным и дома
-
-    const BUCKET_SIZE = 1000
-    const bucketArr = urlFias.reduce(
-      (acc, rec) => {
-        if (acc[acc.length - 1].length < BUCKET_SIZE) {
-          acc[acc.length - 1] = [...acc[acc.length - 1], rec]
-          return acc
-        }
-        return [...acc, [rec]]
-      }, [[]]
-    )
-    // console.log('bucketArr', bucketArr.slice(0, 5))
-
-    bucketArr.map ((it) => {
-      const doc = create({ version: '1.0', encoding: "UTF-8" }, {
-        urlset: {
-          '@xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9',
-          url: () => {
-            return it.map((it) => {
-              const x = {
-                loc: it,
-              } 
-              return x 
-            })
-          } 
-        }
-      })
-      const dataForXML = doc.end({ prettyPrint: true })  // формируем при помощи библиотеки xmlbuilder2 из объекта рзметку xml 
-      
-      writeNewFile(dataForXML)  // записываем в файл данные со всеми url в формате xml
-      // console.log('dataForXML', dataForXML)
-    })    
-  })
- 
-  return res.json(result) 
+const flor = (fl) => {
+  if (fl >= 5 && fl <=20) {return 'этажей'}
+  const regexp = /1$/g
+  const checker = regexp.test(fl) 
+  if (checker) {return 'этаж'}
+  const regexp2 = /2$|3$|4$/g
+  const checker2 = regexp2.test(fl)
+  if (checker2) {return 'этажа'}
+  return 'этажей' 
 }
-
+console.log ('CHECK',flor(25))
+res.json(flor)
+}
