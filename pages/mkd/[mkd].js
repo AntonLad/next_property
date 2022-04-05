@@ -6,6 +6,7 @@ import regions from '../../Components/files/regions'
 // import dynamic from 'next/dynamic'
 import Header from '../../Components/header'
 import Footer from '../../Components/footer'
+import MkdMap from '../../Components/mkdMap'
 import Dadata from '../../Components/dadata'
 import MkdReestr from '../../Components/mkd-reestr'
 // import Scroll from '../Components/scroll'
@@ -19,8 +20,8 @@ export default function Object({mkd, jkh}) {
   const addressMkd = mkdHouse.address
   const okato = mkdHouse.okato
   const oktmo = mkdHouse.oktmo
-  const postalCode = mkdHouse.postalcode
-  const title = `Проверка многоквартирного дома по адресу: ${addressMkd} на карте | ОКАТО: ${okato}, ОКТМО: ${oktmo}, Индекс: ${postalCode}`
+  const postalCode = mkdHouse.postalCode
+  const title = `Многоквартирный дом на карте по адресу: ${postalCode} ${addressMkd}, ОКАТО: ${okato}, ОКТМО: ${oktmo}`
   const title2 = `${addressMkd} - проверка многоквартирного дома | ${addressMkd} на карте`
   return (
     <>
@@ -43,6 +44,7 @@ export default function Object({mkd, jkh}) {
                 <div className="object__contentWrap">
                   <div className="object__content">
                     <MkdReestr mkdObj={mkd} jkhObj={jkh}/>
+                    <MkdMap mkd={mkd}/>
                   </div>
                 </div>
               </div>
@@ -70,8 +72,7 @@ export async function getServerSideProps(context) {
   const mkd = mkdsearch[0]
   const mkdAddress = mkd.address
   const url = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address'
-  if (mkdAddress) {
-    const getAskDadata = await axios({
+  const getAskDadata = await axios({
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -82,27 +83,23 @@ export async function getServerSideProps(context) {
       url: encodeURI(url),
       data: {query: mkdAddress, 'count':10}
     })
-      .then(({ data }) => {
-        return data
-      })
-      .catch((e) => {
-        console.log('ERROR_FIND_SOCIAL', e)
-        return res.json({ error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' })
-      })
-    console.log('ЗАПРОС', getAskDadata)
-    // const db = client.db('dataHousePassports')
-    // const collection = db.collection(`${searchRegions}`)
-    // await collection.updateOne({'houseguid':houseFiasCode}, { $set: {postalcode, lat, lon, oktmo, okato}}, { upsert: false })
-    //  res.json(getAskDadata)
-  }
 
-  console.log('ДОМИШКО', mkd)
+    const okato = getAskDadata.data.suggestions[0].data.okato
+  const oktmo = getAskDadata.data.suggestions[0].data.oktmo
+  const postalCode = getAskDadata.data.suggestions[0].data.postal_code
+  const lat = getAskDadata.data.suggestions[0].data.geo_lat
+  const lon = getAskDadata.data.suggestions[0].data.geo_lon
 
+  const db = client.db('dataHousePassports')
+  const collection = db.collection(`${searchRegions}`)
+  await collection.updateOne({'houseguid':houseFiasCode}, { $set: {postalCode, lat, lon, oktmo, okato}}, { upsert: false })
+  const mkdNewSearch = await regionCollection.find({houseguid: houseFiasCode}).toArray()
+  const newMkd = mkdNewSearch[0]
   const jkhCompanyId = mkdsearch?.[0]?.management_organization_id
   const jkhBase = regionBase.collection('JKHBase')
   const company = await jkhBase.find({id: jkhCompanyId}).toArray()
   const companyJkh = company[0]
     return {
-      props: {mkd: JSON.stringify(mkd), jkh: JSON.stringify(companyJkh) || null}
+      props: {mkd: JSON.stringify(newMkd), jkh: JSON.stringify(companyJkh) || null}
     }
 }
