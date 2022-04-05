@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { AddressSuggestions } from 'react-dadata';
 import SearchIcon from '@material-ui/icons/Search'
@@ -8,7 +8,6 @@ const Dadata = () => {
   const router = useRouter()
   const [value, setValue] = useState()
   const [serverAnswer, setServerAnswer] = useState('')
-
   const postalcode = value?.data?.postal_code
   const regionFiasCode = value?.data?.region_fias_id
   const houseFiasCode = value?.data?.house_fias_id || value?.data?.fias_id
@@ -17,14 +16,21 @@ const Dadata = () => {
   const oktmo = value?.data?.oktmo
   const okato = value?.data?.okato
 
-  console.log ('DADATAVALUE', value)
+  const clearToolTips = () => {
+    setServerAnswer('')
+  }
+
+  useEffect(() => {
+    document.addEventListener('click', clearToolTips)
+    return () => document.removeEventListener('click', clearToolTips)
+  }, [])
+
 
   const sendDataToServer = async (postalcode, regionFiasCode, houseFiasCode, lat, lon, oktmo, okato) => {
     const searchObject = await axios.get(`/api/mkdrecdata?postalcode=${postalcode}&regionFiasCode=${regionFiasCode}&houseFiasCode=${houseFiasCode}&lat=${lat}&lon=${lon}&oktmo=${oktmo}&okato=${okato}`)
-    setServerAnswer(searchObject)
+    setServerAnswer(searchObject.data)
     console.log('searchObject', searchObject)
-    console.log('ЧТО ПРИШЛО С СЕРВЕРА', serverAnswer)
-    if (!searchObject.error) {
+        if (!searchObject.data.error) {
       router.push(`/mkd/${regionFiasCode}-mkd-${houseFiasCode}`)
     }
   }
@@ -46,8 +52,18 @@ const Dadata = () => {
         </button>
       </div>
       <div className="pledge__form-examples"> Пример:&nbsp;&nbsp;
-        <span className="a _blue _inner js__pledgeSearchExample">г Россошь, Пролетарская улица, д 117 кв.34</span>
+        <span
+          className="a _blue _inner js__pledgeSearchExample"
+          >г. Самара, ул Дыбенко, 30
+        </span>
       </div>
+      {serverAnswer.error && (
+        <div className="dataErrorResult">
+          <div className="response">
+            {serverAnswer.error}
+          </div>
+        </div>
+      )}
     </>
   )
 }
