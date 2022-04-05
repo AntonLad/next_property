@@ -50,7 +50,7 @@ const Search = () => {
         if (address) {
           await axios(`/api/askdadata?cadNumber=${cadNumber || enterText}`)
         }
-        router.push(`/${cadNumber || enterText}`)
+        router.push(`/object/${cadNumber || enterText}`)
         setLoading(false)
       }
       setData(getAskReestrByCudNum)

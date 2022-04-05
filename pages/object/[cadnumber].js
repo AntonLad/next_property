@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { MongoClient } from 'mongodb'
-import Meta from '../Components/meta'
+import Meta from '../../Components/meta'
 import { useRouter } from 'next/router'
-import regions from '../Components/files/regions'
+import regions from '../../Components/files/regions'
 import dynamic from 'next/dynamic'
-import Header from '../Components/header'
-import Footer from '../Components/footer'
-import MenuLeft from '../Components/menu-left'
-import Search from '../Components/search'
-import Scroll from '../Components/scroll'
-import InfoMainObject from '../Components/info-main-object'
-import Cadastr from '../Components/info-cadastr'
-import Mkd from '../Components/info-mkd'
-import Owners from '../Components/info-owners'
-import Price from '../Components/info-price'
-import Restriction from '../Components/info-restrictions'
-import Jkh from '../Components/info-jkh'
+import Header from '../../Components/header'
+import Footer from '../../Components/footer'
+import MenuLeft from '../../Components/menu-left'
+import Search from '../../Components/search'
+import Scroll from '../../Components/scroll'
+import InfoMainObject from '../../Components/info-main-object'
+import Cadastr from '../../Components/info-cadastr'
+import Mkd from '../../Components/info-mkd'
+import Owners from '../../Components/info-owners'
+import Price from '../../Components/info-price'
+import Restriction from '../../Components/info-restrictions'
+import Jkh from '../../Components/info-jkh'
 
 const DynamicMap = dynamic(
-  () => import('../Components/testmap'),
+  () => import('../../Components/testmap'),
   { ssr: false }
 )
 
