@@ -7,19 +7,27 @@ import regions from '../../Components/files/regions'
 // import dynamic from 'next/dynamic'
 import Header from '../../Components/header'
 import Footer from '../../Components/footer'
-import Search from '../../Components/search'
+import Dadata from '../../Components/dadata'
 // import Scroll from '../Components/scroll'
 
 const url = process.env.MONGO_URL
 const client = new MongoClient(url, { useUnifiedTopology: true })
 
 export default function Object({mkd, jkh}) {
+  const mkdHouse = JSON.parse(mkd)
+  const jkhInfo = JSON.parse(jkh)
+  const addressMkd = mkdHouse.address
+  const okato = mkdHouse.okato
+  const oktmo = mkdHouse.oktmo
+  const postalCode = mkdHouse.postalcode
+  console.log('MKD', mkdHouse)
+  console.log('JKH', jkhInfo)
   return (
     <>
       <Meta
-        title={`Многоквартирный дом на карте. Индекс`}
-        descritoin={`Информация о многоквартином доме, расположенного по адресу. Физический износ, оценочная стоимость, инфраструктура`}
-        keywords={`многоквартирный дом, индекс, на карте`}
+        title={`Проверка многоквартирного дома по адресу: ${addressMkd} на карте | ОКАТО: ${okato}, ОКТМО: ${oktmo}, Индекс: ${postalCode}`}
+        descritoin={`Информация о многоквартином доме, расположенного по адресу ${addressMkd}. Физический износ, оценочная стоимость, инфраструктура`}
+        keywords={`${addressMkd}, индекс, окато, ОКТМО`}
       />
       <div className="first">
         <Header />
@@ -29,7 +37,7 @@ export default function Object({mkd, jkh}) {
         <section content-main="">
           <div className="object">
             <div className="content">
-              <Search />
+              <Dadata />
               <div className="object__wrap">
                 {/* <MenuLeft cadastrObj={cadastralObject} askAboutFlat={askAboutFlat} jkhObj={jkh || null}/> */}
                 <div className="object__contentWrap">
@@ -60,6 +68,7 @@ export async function getServerSideProps(context) {
   const regionCollection = regionBase.collection(`${searchRegions}`)
   const mkdsearch = await regionCollection.find({houseguid: houseFiasCode}).toArray()
   const mkd = mkdsearch[0]
+  console.log('ДОМ В БАЗЕ', mkd)
   const jkhCompanyId = mkdsearch?.[0]?.management_organization_id
   const jkhBase = regionBase.collection('JKHBase')
   const company = await jkhBase.find({id: jkhCompanyId}).toArray()

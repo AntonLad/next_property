@@ -1,28 +1,44 @@
 import React from 'react'
+import Link from "next/link"
 
 export const NavLinks = () => {
   return (
     <div>
       <ul>
         <li>
-          <a className="header__menu-link" href="#">
-            Проверка недвижимости
-          </a>
+          <Link href="#">
+            <a className="header__menu-link">
+              Главная
+            </a>
+          </Link>
         </li>
         <li>
-          <a className="header__menu-link" href="#">
-            Реестр МКД
-          </a>
+          <Link href="#">
+            <a className="header__menu-link">
+              Проверка недвижимости
+            </a>
+          </Link>
         </li>
         <li>
-           <a className="header__menu-link" href="#">
+          <Link href="/mkd">
+            <a className="header__menu-link" >
+              Реестр МКД
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link  href="#">
+            <a className="header__menu-link">
             Капитальный ремонт
-          </a>
+            </a>
+          </Link>
         </li>
         <li>
-          <a className="header__menu-link" href="#">
-            Контакты
-          </a>
+          <Link  href="#">
+            <a className="header__menu-link">
+              Контакты
+            </a>
+          </Link>
         </li>
       </ul>
     </div>
