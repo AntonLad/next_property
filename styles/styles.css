@@ -2102,4 +2102,24 @@ a {
   background: #d5ecfd;
 }
 
+.box {
+  margin-top: 50px;
+}
 
+.box p {
+  text-align: justify;
+  padding-bottom: 15px;
+}
+
+.box h1, h2 {
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+.box ul {
+  padding: 10px 20px
+}
+
+.box ul li{
+  text-align: justify;
+}

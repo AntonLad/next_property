@@ -1,5 +1,4 @@
-import Link from 'next/link'
-import Head from 'next/head'
+
 import Meta from '../Components/meta'
 // import Search from "../Components/search"
 import Dadata from '../Components/dadata'
