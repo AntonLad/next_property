@@ -8,6 +8,7 @@ import regions from '../../Components/files/regions'
 import Header from '../../Components/header'
 import Footer from '../../Components/footer'
 import Dadata from '../../Components/dadata'
+import MkdReestr from '../../Components/mkd-reestr'
 // import Scroll from '../Components/scroll'
 
 const url = process.env.MONGO_URL
@@ -42,7 +43,7 @@ export default function Object({mkd, jkh}) {
                 {/* <MenuLeft cadastrObj={cadastralObject} askAboutFlat={askAboutFlat} jkhObj={jkh || null}/> */}
                 <div className="object__contentWrap">
                   <div className="object__content">
-                    привет
+                    <MkdReestr mkdObj={mkd} jkhObj={jkh}/>
                   </div>
                 </div>
               </div>

@@ -86,53 +86,39 @@ const { create } = require('xmlbuilder2')
 
 // функция по созданию файла sitemapindex
 
-// const fs = require('fs')
-// const dir = '/mnt/d/dev/next-property/sitemap'
-// const files = fs.readdirSync(dir)
-
-// export default async function mongoObj (req, res) {
-//   let arrayOfFileName = []
-//   for (const file of files) {
-//     arrayOfFileName = [...arrayOfFileName, file]
-//   }
-//   // console.log('arrofName', arrayOfFileName.slice(0, 10) )
-//   const arrayOfUrl = arrayOfFileName.reduce((acc, rec) => {
-//     acc = [...acc, `https://mkdfond.ru/sitemap/${rec}`]
-//     return acc
-//   }, [])   // создаем массив адресов где лежат файлы sitemap
-
-  
-//   const doc = create({ version: '1.0', encoding: "UTF-8" }, {
-//     sitemapindex: {
-//       '@xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd',
-//       sitemap: () => {
-//         return arrayOfUrl.slice(0, 1000).map((it) => {
-//           const x = {
-//             loc: it,
-//           } 
-//           return x 
-//         })
-//       } 
-//     }
-//   })
-//   const dataForXML = doc.end({ prettyPrint: true })  // формируем при помощи библиотеки xmlbuilder2 из объекта рзметку xml 
-  
-//   writeFile('/mnt/d/dev/next-property/sitemap/sitemapIndex.xml', dataForXML, 'utf-8')  // записываем в файл данные со всеми url в формате xml
-
-//   return res.json(arrayOfFileName) 
-// }
+const fs = require('fs')
+const dir = '/mnt/d/dev/next-property/sitemap'
+const files = fs.readdirSync(dir)
 
 export default async function mongoObj (req, res) {
-const flor = (fl) => {
-  if (fl >= 5 && fl <=20) {return 'этажей'}
-  const regexp = /1$/g
-  const checker = regexp.test(fl) 
-  if (checker) {return 'этаж'}
-  const regexp2 = /2$|3$|4$/g
-  const checker2 = regexp2.test(fl)
-  if (checker2) {return 'этажа'}
-  return 'этажей' 
+  let arrayOfFileName = []
+  for (const file of files) {
+    arrayOfFileName = [...arrayOfFileName, file]
+  }
+  // console.log('arrofName', arrayOfFileName.slice(0, 10) )
+  const arrayOfUrl = arrayOfFileName.reduce((acc, rec) => {
+    acc = [...acc, `https://mkdfond.ru/sitemap/${rec}`]
+    return acc
+  }, [])   // создаем массив адресов где лежат файлы sitemap
+
+  
+  const doc = create({ version: '1.0', encoding: "UTF-8" }, {
+    sitemapindex: {
+      '@xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd',
+      sitemap: () => {
+        return arrayOfUrl.slice(0, 1000).map((it) => {
+          const x = {
+            loc: it,
+          } 
+          return x 
+        })
+      } 
+    }
+  })
+  const dataForXML = doc.end({ prettyPrint: true })  // формируем при помощи библиотеки xmlbuilder2 из объекта рзметку xml 
+  
+  writeFile('/mnt/d/dev/next-property/sitemap/sitemapIndex.xml', dataForXML, 'utf-8')  // записываем в файл данные со всеми url в формате xml
+
+  return res.json(arrayOfFileName) 
 }
-console.log ('CHECK',flor(25))
-res.json(flor)
-}
+
