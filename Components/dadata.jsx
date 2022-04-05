@@ -11,6 +11,7 @@ const Dadata = () => {
   const [value, setValue] = useState()
   const [loading, setLoading] = useState(false)
   const [serverAnswer, setServerAnswer] = useState('')
+  console.log ('ОТВЕТ ОТ СЕРВЕРА', serverAnswer)
   const postalcode = value?.data?.postal_code
   const regionFiasCode = value?.data?.region_fias_id
   const houseFiasCode = value?.data?.house_fias_id || value?.data?.fias_id
@@ -42,7 +43,7 @@ const Dadata = () => {
     })
 
     console.log('searchObject', searchObject)
-    if (!serverAnswer.error) {
+    if (!searchObject.error) {
       router.push(`/mkd/${regionFiasCode}-mkd-${houseFiasCode}`)
     }
   }
