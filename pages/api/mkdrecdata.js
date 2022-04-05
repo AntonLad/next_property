@@ -28,10 +28,16 @@ export default async function mkdRec(req, res) {
   if (mkd) {
     await regionCollection.updateOne({'houseguid':houseFiasCode}, { $set: {postalcode, lat, lon, oktmo, okato}}, { upsert: false })
     return res.json('file rec sucsess')
-  } else if (!mkd) {
-    await regionCollection.find({formalname_street: street, house_number:house}).toArray()
+  }
+
+  const mkdSecondSearch = await regionCollection.find({formalname_street: street, house_number:house}).toArray()
+  const mkd2 = mkdSecondSearch[0]
+  console.log('ВТОРАЯ ПЛПЫТКА', mkd2)
+
+  if (mkd2) {
     await regionCollection.updateOne({'formalname_street': street, 'house_number': house}, { $set: {postalcode, lat, lon, oktmo, okato, houseguid: houseFiasCode}}, { upsert: false })
     return res.json('file rec sucsess')
   }
+
   return res.json({'error' : 'По указанному адресу жилой многоквартирный дом не найден. Убедитесь в правильности ввода адреса.'})
 }
