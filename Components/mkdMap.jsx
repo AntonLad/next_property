@@ -16,7 +16,7 @@ const MkdMap = ({mkd}) => {
           }}
         >
           <div className="mapContainer">
-            <Map defaultState={{ center: [lat, lng], zoom: 14 }}
+            <Map defaultState={{ center: [lat, lng], zoom: 17 }}
               width="100%"
               height="400px"
               >

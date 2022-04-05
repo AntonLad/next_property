@@ -3,7 +3,7 @@ import axios from 'axios'
 import { MongoClient } from 'mongodb'
 import Meta from '../../Components/meta'
 import regions from '../../Components/files/regions'
-// import dynamic from 'next/dynamic'
+import SeoMenu from '../../Components/seoMenu'
 import Header from '../../Components/header'
 import Footer from '../../Components/footer'
 import MkdMap from '../../Components/mkdMap'
@@ -40,6 +40,7 @@ export default function Object({mkd, jkh}) {
             <div className="content">
               <Dadata />
               <div className="object__wrap">
+                <SeoMenu />
                 {/* <MenuLeft cadastrObj={cadastralObject} askAboutFlat={askAboutFlat} jkhObj={jkh || null}/> */}
                 <div className="object__contentWrap">
                   <div className="object__content">
