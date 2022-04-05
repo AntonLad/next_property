@@ -67,7 +67,7 @@ export async function getServerSideProps(context) {
   const houseFiasCode = splitNumbers[1]
 
   const searchRegions = regions[regionFiasCode]
-  const regionBase = client.db('dataHousePassports')
+  const regionBase = client.db('cadastr')
   const regionCollection = regionBase.collection(`${searchRegions}`)
   const mkdsearch = await regionCollection.find({houseguid: houseFiasCode}).toArray()
   const mkd = mkdsearch[0]
@@ -85,11 +85,11 @@ export async function getServerSideProps(context) {
       data: {query: mkdAddress, 'count':10}
     })
 
-    const okato = getAskDadata.data.suggestions[0].data.okato
-  const oktmo = getAskDadata.data.suggestions[0].data.oktmo
-  const postalCode = getAskDadata.data.suggestions[0].data.postal_code
-  const lat = getAskDadata.data.suggestions[0].data.geo_lat
-  const lon = getAskDadata.data.suggestions[0].data.geo_lon
+  const okato = getAskDadata.data.suggestions[0]?.data.okato
+  const oktmo = getAskDadata.data.suggestions[0]?.data.oktmo
+  const postalCode = getAskDadata.data.suggestions[0]?.data.postal_code
+  const lat = getAskDadata.data.suggestions[0]?.data.geo_lat
+  const lon = getAskDadata.data.suggestions[0]?.data.geo_lon
 
   const db = client.db('dataHousePassports')
   const collection = db.collection(`${searchRegions}`)

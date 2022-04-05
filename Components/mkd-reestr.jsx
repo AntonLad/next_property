@@ -42,7 +42,7 @@ const MkdReestr = ({ mkdObj, jkhObj }) => {
     'Тип перекрытий:': floor_type,
     'Материал несущих стен:': wall_material,
     'Наличие мусоропровода:': chute_type,
-    'Количество мусоропроводов, ед.:': chute_count,
+    'Количество мусоропроводов:': chute_count,
     'Электроснабжение': electrical_type,
     'Теплоснабжение': heating_type,
     'Горячее водоснабжение': hot_water_type,
@@ -66,7 +66,7 @@ const MkdReestr = ({ mkdObj, jkhObj }) => {
 
   const outputObject = () => {
     return Object.keys(paramInfo).map((it) => {
-      return paramInfo[it] && (
+      return paramInfo[it] && paramInfo[it] !== "Не заполнено" && (
         <div key={it} className="object__blockTableTr">
           <div className="object__blockTableTd">{it}</div>
           <div className="object__blockTableTd">{paramInfo[it]}</div>
