@@ -69,9 +69,9 @@ export default function Main() {
                   <div className="main__blockItem-title">Проверка собственника</div>
                   <div className="main__blockItem-descr">
                     Проверить собственника квартиры по адресу - узнать ФИО владельца недвижимости
-                    онлайн
+                    онлайн, а так же историю перехода права собственности.
                   </div>
-                  <div className="main__blockItem-red">15 164 578 объектов в реестре</div>
+                  <div className="main__blockItem-red">98 567 832 объекта в реестре</div>
                   {/* <a href="/proverit-sobstvennika-kvartiry" className="a _blue main__blockItem-link">
                     Подробнее &gt;
                   </a> */}
@@ -79,30 +79,32 @@ export default function Main() {
                 <div className="main__blockItem">
                   <div className="main__blockItem-title">МКД</div>
                   <div className="main__blockItem-descr">
-                    Реестр многоквартирных домов - техническая информация и данные о капремонте
+                    Реестр многоквартирных домов - подробная информация о жилых зданиях: год постройки,
+                    техническое состояние, инфраструктура, сведения об управляющих компаниях
                   </div>
-                  <div className="main__blockItem-red">11 477 301 объект(ов) в реестре</div>
+                  <div className="main__blockItem-red">1 204 658 объектов в реестре</div>
                   {/* <a href="/proverit-kvartiru-na-arest" className="a _blue main__blockItem-link">
                     Подробнее &gt;
                   </a> */}
                 </div>
                 <div className="main__blockItem">
-                  <div className="main__blockItem-title">Квартиры</div>
+                  <div className="main__blockItem-title">Проверка квартиры</div>
                   <div className="main__blockItem-descr">
-                    Реестр квартир в МКД - сведения о рыночной стоимости и другие актуальные данные
+                    Проверка квартир перед покупкой на наличие обременений, арестов, залогов, а так же
+                    рыночная оценка квартиры.
                   </div>
-                  <div className="main__blockItem-red"> 37 421 701 объект(ов) в реестре</div>
+                  <div className="main__blockItem-red"> 98 567 832 объекта в реестре</div>
                   {/* <a href="/proverka-na-zalog" className="a _blue main__blockItem-link">
                     Подробнее &gt;
                   </a> */}
                 </div>
                 <div className="main__blockItem">
-                  <div className="main__blockItem-title">Обременения</div>
+                  <div className="main__blockItem-title">Капитальный ремонт</div>
                   <div className="main__blockItem-descr">
-                    Обременения на использование земельного участка или его части, согласно проверке в
-                    базе недвижимости
+                    Реестр многоквартирных домов, внесенных в реестр программу капитального ремонта.
+                    Даты запланированного ремонта, выполненные работы.
                   </div>
-                  <div className="main__blockItem-red">164 578 объектов в реестре</div>
+                  <div className="main__blockItem-red">654 337 объектов в реестре</div>
                   {/* <a
                     href="/proverit-kvartiru-na-obremenenie"
                     className="a _blue main__blockItem-link"
@@ -113,9 +115,10 @@ export default function Main() {
                 <div className="main__blockItem">
                   <div className="main__blockItem-title">Земельные участки</div>
                   <div className="main__blockItem-descr">
-                    Реестр земельных участков, ижс, промышленных зон и земель с/х назначения
+                    Реестр земельных участков, ижс, промышленных зон и земель с/х назначения.
+                    Обременения на использование земельного участка или его части, аресты, залоги и ограничения.
                   </div>
-                  <div className="main__blockItem-red">4 263 432 объекта в реестре</div>
+                  <div className="main__blockItem-red">25 263 432 объекта в реестре</div>
                   {/* <a
                     href="/proveit-kadastroviy-nomer-zemelnogo-uchastka"
                     className="a _blue main__blockItem-link"
@@ -129,7 +132,7 @@ export default function Main() {
                     В случае оспаривания стоимости объекта требуется справка о кадастровой стоимости
                     объекта
                   </div>
-                  <div className="main__blockItem-red">15 621 137 объектов в реестре</div>
+                  <div className="main__blockItem-red">127 045 336 объектов в реестре</div>
                   {/* <a
                     href="/uznat-kadastrovuyu-stoimost-obyekta-nedvizhimosti"
                     className="a _blue main__blockItem-link"

@@ -419,7 +419,7 @@ a {
 
 .main__blockItem {
   width: 510px;
-  height: 182px;
+  height: 200px;
   display: inline-block;
   vertical-align: top;
   margin-top: 15px;
@@ -475,13 +475,14 @@ a {
   line-height: 18px;
   color: #8c8c8c;
   margin-top: 9px;
+  text-align: justify;
 }
 
 .main__blockItem-red {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 18px;
-  margin-top: 33px;
+  margin-top: 15px;
   color: #253A61;
 }
 
