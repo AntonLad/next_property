@@ -69,7 +69,6 @@ export async function getServerSideProps(context) {
   const regionCollection = regionBase.collection(`${searchRegions}`)
   const mkdsearch = await regionCollection.find({houseguid: houseFiasCode}).toArray()
   const mkd = mkdsearch[0]
-  console.log('ДОМ В БАЗЕ', mkd)
   const jkhCompanyId = mkdsearch?.[0]?.management_organization_id
   const jkhBase = regionBase.collection('JKHBase')
   const company = await jkhBase.find({id: jkhCompanyId}).toArray()

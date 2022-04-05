@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from "next/link"
 
 const Footer = () => {
   return (
@@ -9,30 +10,50 @@ const Footer = () => {
             <div className="footer__links-td">
               <div className="footer__links-title">Навигация</div>
               <div className="footer__links-data">
-                <a href="#">Главная</a>
+                <Link href="/">
+                  <a>Главная</a>
+                </Link>
                 <br />
-                <a href="#">Контакты</a>
+                <Link href="/">
+                  <a>Контакты</a>
+                </Link>
                 <br />
-                <a href="#">Политика конфиденциальности</a>
+                <Link href="/privacy-policy">
+                  <a>Политика конфиденциальности</a>
+                </Link>
                 <br />
-                <a href="#">Пользовательское соглашение</a>
+                <Link href="/agreement">
+                  <a>Пользовательское соглашение`</a>
+                </Link>
                 <br />
-                <a href="#">Оферта</a>
+                <Link href="/public-offer">
+                  <a>Оферта</a>
+                </Link>
                 <br />
               </div>
             </div>
             <div className="footer__links-td">
               <div className="footer__links-title">Онлайн сервисы</div>
               <div className="footer__links-data">
-                <a href="#">Проверка квартиры</a>
+                <Link href="/">
+                  <a>Проверка квартиры</a>
+                </Link>
                 <br />
-                <a href="#">Проверка участка</a>
+                <Link href="/">
+                  <a>Проверка участка</a>
+                </Link>
                 <br />
-                <a href="#">Проверка собственника</a>
+                <Link href="/">
+                  <a>Проверка собственника</a>
+                </Link>
                 <br />
-                <a href="#">Реестр МКД</a>
+                <Link href="/mkd">
+                  <a>Реестр МКД</a>
+                </Link>
                 <br />
-                <a href="#">Реестр капитального ремонта МКД</a>
+                <Link href="/">
+                  <a>Реестр капитального ремонта</a>
+                </Link>
               </div>
             </div>
           </div>
