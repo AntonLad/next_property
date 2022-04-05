@@ -19,7 +19,6 @@ export default async function mkdRec(req, res) {
   const regionCollection = db.collection(`${searchRegions}`)
   const mkdsearch = await regionCollection.find({houseguid: houseFiasCode}).toArray()
   const mkd = mkdsearch[0]
-  console.log('ДОМИШКО', mkd)
   if (mkd) {
     await regionCollection.updateOne({'houseguid':houseFiasCode}, { $set: {postalcode, lat, lon, oktmo, okato}}, { upsert: false })
     return res.json('file rec sucsess')
