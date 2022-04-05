@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
-// import axios from 'axios'
+import axios from 'axios'
 import { MongoClient } from 'mongodb'
 import Meta from '../../Components/meta'
-import { useRouter } from 'next/router'
 import regions from '../../Components/files/regions'
 // import dynamic from 'next/dynamic'
 import Header from '../../Components/header'
@@ -21,12 +20,12 @@ export default function Object({mkd, jkh}) {
   const okato = mkdHouse.okato
   const oktmo = mkdHouse.oktmo
   const postalCode = mkdHouse.postalcode
-  console.log('MKD', mkdHouse)
-  console.log('JKH', jkhInfo)
+  const title = `Проверка многоквартирного дома по адресу: ${addressMkd} на карте | ОКАТО: ${okato}, ОКТМО: ${oktmo}, Индекс: ${postalCode}`
+  const title2 = `${addressMkd} - проверка многоквартирного дома | ${addressMkd} на карте`
   return (
     <>
       <Meta
-        title={`Проверка многоквартирного дома по адресу: ${addressMkd} на карте | ОКАТО: ${okato}, ОКТМО: ${oktmo}, Индекс: ${postalCode}`}
+        title={okato ? title : title2}
         descritoin={`Информация о многоквартином доме, расположенного по адресу ${addressMkd}. Физический износ, оценочная стоимость, инфраструктура`}
         keywords={`${addressMkd}, индекс, окато, ОКТМО`}
       />
@@ -69,6 +68,36 @@ export async function getServerSideProps(context) {
   const regionCollection = regionBase.collection(`${searchRegions}`)
   const mkdsearch = await regionCollection.find({houseguid: houseFiasCode}).toArray()
   const mkd = mkdsearch[0]
+  const mkdAddress = mkd.address
+  const url = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address'
+  if (mkdAddress) {
+    const getAskDadata = await axios({
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Token 70b8dda637580dd14625d9296f24945f2a6fc4f9',
+        'Host': 'suggestions.dadata.ru',
+      },
+      url: encodeURI(url),
+      data: {query: mkdAddress, 'count':10}
+    })
+      .then(({ data }) => {
+        return data
+      })
+      .catch((e) => {
+        console.log('ERROR_FIND_SOCIAL', e)
+        return res.json({ error: 'Мы не смогли получить информацию, попробуйте произвести поиск еще раз' })
+      })
+    console.log('ЗАПРОС', getAskDadata)
+    // const db = client.db('dataHousePassports')
+    // const collection = db.collection(`${searchRegions}`)
+    // await collection.updateOne({'houseguid':houseFiasCode}, { $set: {postalcode, lat, lon, oktmo, okato}}, { upsert: false })
+    //  res.json(getAskDadata)
+  }
+
+  console.log('ДОМИШКО', mkd)
+
   const jkhCompanyId = mkdsearch?.[0]?.management_organization_id
   const jkhBase = regionBase.collection('JKHBase')
   const company = await jkhBase.find({id: jkhCompanyId}).toArray()
