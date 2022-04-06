@@ -34,7 +34,7 @@ export default async function mkdRec(req, res) {
   if (newMkd) {
 
     await regionCollection.updateOne({'formalname_street': street, 'house_number': house}, { $set: {postalcode, lat, lon, oktmo, okato, houseguid: houseFiasCode}}, { upsert: false })
-    return res.json('file record sucsess')
+    return res.json('file rec sucsess')
   }
 
   return res.json({'error' : 'По указанному адресу жилой многоквартирный дом не найден. Убедитесь в правильности ввода адреса.'})
