@@ -14,7 +14,7 @@ const Dadata = () => {
   const [serverAnswer, setServerAnswer] = useState('')
   const postalcode = value?.data?.postal_code
   const regionFiasCode = value?.data?.region_fias_id
-  const houseFiasCode = value?.data?.house_fias_id || value?.data?.fias_id
+  const houseFiasCode = value?.data?.house_fias_id
   const street = value?.data?.street
   const house = value?.data?.house
   const lat = value?.data?.geo_lat
