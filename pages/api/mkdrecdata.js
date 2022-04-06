@@ -28,8 +28,10 @@ export default async function mkdRec(req, res) {
   if (mkd) {
     await regionCollection.updateOne({'houseguid':houseFiasCode}, { $set: {postalcode, lat, lon, oktmo, okato}}, { upsert: false })
     return res.json('file rec sucsess')
-  } else if (!mkd) {
-    await regionCollection.find({formalname_street: street, house_number:house}).toArray()
+  }
+  const againMkdSearch = await regionCollection.find({formalname_street: street, house_number:house}).toArray()
+  const newMkd = againMkdSearch[0]
+  if (newMkd) {
     await regionCollection.updateOne({'formalname_street': street, 'house_number': house}, { $set: {postalcode, lat, lon, oktmo, okato, houseguid: houseFiasCode}}, { upsert: false })
     return res.json('file rec sucsess')
   }
