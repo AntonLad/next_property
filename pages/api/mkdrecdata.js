@@ -5,10 +5,11 @@ const url = process.env.MONGO_URL
 const client = new MongoClient(url, { useUnifiedTopology: true })
 
 export default async function mkdRec(req, res) {
-  console.log(req.query)
+  console.log('REQ', req.query)
   const postalcode = req.query.postalcode
   const objecregionFiasCodetId = req.query.regionFiasCode
   const houseFiasCode = req.query.houseFiasCode
+  console.log('HOUSEFIASCODE', houseFiasCode)
   const street = req.query.street
   const house = req.query.house
   const lat = req.query.lat
@@ -16,8 +17,9 @@ export default async function mkdRec(req, res) {
   const oktmo = req.query.oktmo
   const okato = req.query.okato
 
-  console.log('Улица', street)
-  console.log('Дом', house)
+  if (houseFiasCode === 'null') {
+    return res.json({'error' : 'По указанному адресу жилой многоквартирный дом не найден. Убедитесь в правильности ввода адреса.'})
+  }
 
   await client.connect()
   const db = client.db('dataHousePassports')
