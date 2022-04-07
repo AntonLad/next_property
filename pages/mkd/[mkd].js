@@ -67,10 +67,15 @@ export async function getServerSideProps(context) {
   const houseFiasCode = splitNumbers[1]
 
   const searchRegions = regions[regionFiasCode]
-  const regionBase = client.db('cadastr')
+  const regionBase = client.db('dataHousePassports')
   const regionCollection = regionBase.collection(`${searchRegions}`)
   const mkdsearch = await regionCollection.find({houseguid: houseFiasCode}).toArray()
   const mkd = mkdsearch[0]
+  if (!mkd) {
+    return {
+      notFound: true
+    }
+  }
   const mkdAddress = mkd?.address
   const url = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address'
   const getAskDadata = await axios({

@@ -126,11 +126,17 @@ export default function Object({ cadastralObject, jkh}) {
 
 export async function getServerSideProps(context) {
   const cadastr = context.params.cadnumber
+  console.log('CADNUMBER', cadastr)
   await client.connect()
   const db = client.db(process.env.MONGO_COLLECTION)
   const collection = db.collection('searchingObjects')
   const res = await collection.find({ $or : [{'objectData.objectCn': cadastr}, {'objectData.id':cadastr}]}).toArray()
   const cadastrObj = res[0]
+  if (!cadastrObj) {
+    return {
+      notFound: true
+    }
+  }
   // console.log('CADASTROBJ', cadastrObj )
   const searchAdress = res?.[0]?.objectData?.objectAddress?.addressNotes || res?.[0]?.objectData?.objectAddress?.mergedAddress
   const searchFlat = res?.[0]?.dadata?.flat_type
