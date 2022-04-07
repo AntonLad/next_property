@@ -45,7 +45,7 @@ const Dadata = () => {
     })
 
     console.log('searchObject', searchObject)
-    if (!searchObject.error) {
+    if (!searchObject.error && value.data.house_fias_id) {
       router.push(`/mkd/${regionFiasCode}-mkd-${houseFiasCode}`)
     }
   }
