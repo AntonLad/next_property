@@ -21,7 +21,7 @@ export default function Object({mkd, jkh}) {
   const okato = mkdHouse.okato
   const oktmo = mkdHouse.oktmo
   const postalCode = mkdHouse.postalCode
-  const title = `Многоквартирный дом на карте по адресу: ${postalCode} ${addressMkd}, ОКАТО: ${okato}, ОКТМО: ${oktmo}`
+  const title = `Многоквартирный дом на карте по адресу: ${postalCode}, ${addressMkd}, ОКАТО: ${okato}, ОКТМО: ${oktmo}`
   const title2 = `${addressMkd} - проверка многоквартирного дома | ${addressMkd} на карте`
   return (
     <>
@@ -71,7 +71,7 @@ export async function getServerSideProps(context) {
   const regionCollection = regionBase.collection(`${searchRegions}`)
   const mkdsearch = await regionCollection.find({houseguid: houseFiasCode}).toArray()
   const mkd = mkdsearch[0]
-  const mkdAddress = mkd.address
+  const mkdAddress = mkd?.address
   const url = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address'
   const getAskDadata = await axios({
       method: 'POST',
@@ -85,11 +85,11 @@ export async function getServerSideProps(context) {
       data: {query: mkdAddress, 'count':10}
     })
 
-  const okato = getAskDadata.data.suggestions[0]?.data.okato
-  const oktmo = getAskDadata.data.suggestions[0]?.data.oktmo
-  const postalCode = getAskDadata.data.suggestions[0]?.data.postal_code
-  const lat = getAskDadata.data.suggestions[0]?.data.geo_lat
-  const lon = getAskDadata.data.suggestions[0]?.data.geo_lon
+  const okato = getAskDadata.data?.suggestions[0]?.data?.okato
+  const oktmo = getAskDadata.data?.suggestions[0]?.data?.oktmo
+  const postalCode = getAskDadata?.data?.suggestions[0]?.data?.postal_code
+  const lat = getAskDadata.data?.suggestions[0]?.data?.geo_lat
+  const lon = getAskDadata.data?.suggestions[0]?.data?.geo_lon
 
   const db = client.db('dataHousePassports')
   const collection = db.collection(`${searchRegions}`)

@@ -6,7 +6,7 @@ export const NavLinks = () => {
     <div>
       <ul>
         <li>
-          <Link href="#">
+          <Link href="/">
             <a className="header__menu-link">
               Главная
             </a>

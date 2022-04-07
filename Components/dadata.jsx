@@ -14,7 +14,9 @@ const Dadata = () => {
   const [serverAnswer, setServerAnswer] = useState('')
   const postalcode = value?.data?.postal_code
   const regionFiasCode = value?.data?.region_fias_id
-  const houseFiasCode = value?.data?.house_fias_id || value?.data?.fias_id
+  const houseFiasCode = value?.data?.house_fias_id
+  const street = value?.data?.street
+  const house = value?.data?.house
   const lat = value?.data?.geo_lat
   const lon = value?.data?.geo_lon
   const oktmo = value?.data?.oktmo
@@ -30,8 +32,8 @@ const Dadata = () => {
   }, [])
 
 
-  const sendDataToServer = async (postalcode, regionFiasCode, houseFiasCode, lat, lon, oktmo, okato) => {
-    const searchObject = await axios.get(`/api/mkdrecdata?postalcode=${postalcode}&regionFiasCode=${regionFiasCode}&houseFiasCode=${houseFiasCode}&lat=${lat}&lon=${lon}&oktmo=${oktmo}&okato=${okato}`)
+  const sendDataToServer = async (postalcode, regionFiasCode, houseFiasCode, street, house, lat, lon, oktmo, okato) => {
+    const searchObject = await axios.get(`/api/mkdrecdata?postalcode=${postalcode}&regionFiasCode=${regionFiasCode}&houseFiasCode=${houseFiasCode}&street=${street}&house=${house}&lat=${lat}&lon=${lon}&oktmo=${oktmo}&okato=${okato}`)
     .then((result) => {
       if (result.data.error) {
         setLoading(false)
@@ -56,7 +58,7 @@ const Dadata = () => {
           type="button"
           autoComplete="off"
           onClick={() => {
-            sendDataToServer(postalcode, regionFiasCode, houseFiasCode, lat, lon, oktmo, okato)
+            sendDataToServer(postalcode, regionFiasCode, houseFiasCode, street, house, lat, lon, oktmo, okato)
             setLoading(true)
           }}
         >
