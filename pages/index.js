@@ -146,7 +146,7 @@ export default function Main() {
           <div className="map">
             <div className="map__image"></div>
               <div className="map__wrapper flex-a container">
-                <div className="map__contacts"><div class="map__contacts-title">Реестр управляющих компаний ЖКХ</div>
+                <div className="map__contacts"><div className="map__contacts-title">Реестр управляющих компаний ЖКХ</div>
                   <div className="map__contacts-content flex-b">
                     <div className="map__contacts-column">
                       <div className="map__contacts-infoblock first">
