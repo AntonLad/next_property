@@ -36,15 +36,11 @@ const Footer = () => {
               <div className="footer__links-title">Онлайн сервисы</div>
               <div className="footer__links-data">
                 <Link href="/">
-                  <a>Проверка квартиры</a>
+                  <a>Проверка недвижимости</a>
                 </Link>
                 <br />
                 <Link href="/">
-                  <a>Проверка участка</a>
-                </Link>
-                <br />
-                <Link href="/">
-                  <a>Проверка собственника</a>
+                  <a>Реестр ЖКХ</a>
                 </Link>
                 <br />
                 <Link href="/mkd">
@@ -60,9 +56,10 @@ const Footer = () => {
         </div>
         <div className="footer__content-small">
           <div className="footer__small-img" />
-          <div className="footer__small-slog">Реестр сведений о недвижимости</div>
+          <div className="footer__small-slog">Реестр многоквартирных домов</div>
           <div className="footer__small-copy">
             MKDFOND, 2022. Все права защищены.
+            <br />
             email: admin@mkdfond.ru
           </div>
         </div>
@@ -70,6 +67,8 @@ const Footer = () => {
       </div>
     </div>
   )
+
 }
 
 export default Footer
+

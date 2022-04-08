@@ -282,8 +282,8 @@ a {
 }
 
 .main__first {
-  background: #253a61;
-  padding-top: 30px;
+  background-image: url(../public/images/6724_12.jpg);
+  padding-top: 21px;
   position: relative;
 }
 
@@ -300,7 +300,7 @@ a {
   font-weight: 500;
   font-size: 18px;
   line-height: 22px;
-  color: #b5bbc1;
+  color: #ffffff;
   margin-top: 8px;
   text-align: center;
 }
@@ -308,8 +308,17 @@ a {
 .search__example {
   font-size: 11px;
   line-height: 13px;
-  color: #797d88;
+  color: #ffffff;
   margin-top: 10px;
+  font-weight: 600;
+}
+
+.search__example_main{
+  font-size: 11px;
+  line-height: 13px;
+  color: #ffffff;
+  margin-top: 10px;
+  font-weight: 600;
 }
 
 .a._blue, .a._blueback {
@@ -374,17 +383,18 @@ a {
 }
 
 .main__first-infoItem {
+  background: #253a61;
   display: inline-block;
   width: 32%;
   vertical-align: top;
-  border: 1px solid white;
+  border: 2px solid white;
   height: 250px;
   margin:5px;
 }
 
-.main__first-infoItem:hover {
+/* .main__first-infoItem:hover {
   filter: opacity(0.8);
-}
+} */
 
 .main__first-infoItem-descr {
   font-size: 13px;
@@ -397,15 +407,15 @@ a {
 }
 
 .main__first-eagle {
-  width: 287px;
-  height: 265.71px;
+  width: 400px;
+  height: 484.71px;
   display: block;
   position: absolute;
   background-image: url(../public/images/geraldika.png);
   background-size: cover;
-  bottom: 40px;
-  right: 0;
-  z-index: 0;
+  bottom: -90%;
+  /* right: 0; */
+  z-index: 1;
   opacity: 20%;
 }
 
@@ -640,6 +650,10 @@ a {
   border-radius: 2px;
 }
 
+.main__blockItem {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
 .main__informItem-title {
   font-weight: 800;
   font-size: 24px;
@@ -728,6 +742,7 @@ a {
   text-align: justify;
   margin: 0 10px;
   background-color: #F0F2F5;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .main__faqItem:nth-child(2n){
@@ -2122,4 +2137,83 @@ a {
 
 .box ul li{
   text-align: justify;
+}
+
+
+.map {
+  height: 504px;
+  position: relative;
+  border-top: 1px solid #1D1D1D;
+  border-bottom: 1px solid #1D1D1D;
+}
+
+.map__image {
+  width: 100%;
+  height: 100%;
+  background-image: url(../public/images/map3.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(1px);
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.map__contacts {
+  background: #fff;
+  padding: 33px 51px 39px 43px;
+  border-radius: 2px;
+  width: 100%;
+}
+
+.map__wrapper {
+  height: 100%;
+  z-index: 1;
+}
+
+.flex-a, .flex-ab {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.container {
+  max-width: 1110px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.map__contacts-title {
+  font-size: 20px;
+  color: #434549;
+  margin-bottom: 22px;
+  font-weight: 700;
+}
+
+.map__contacts-button {
+  width: 239px;
+  height: 42px;
+  background: #253A61;
+  color: #fff;
+  font-size: 18px;
+  align-items: center;
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.map__contacts-button:hover {
+  transition: all .3s ease;
+  color: #253A61;
+  background: #fff;
+  border: 2px solid #253A61;
+}
+
+.desc p {
+  text-align: justify;
+  margin-bottom: 20px;
 }
