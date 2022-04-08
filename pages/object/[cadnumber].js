@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic'
 import Header from '../../Components/header'
 import Footer from '../../Components/footer'
 import MenuLeft from '../../Components/menu-left'
+import Breadcrumbs from '../../Components/breadcrumbs'
 import Search from '../../Components/search'
 import Scroll from '../../Components/scroll'
 import InfoMainObject from '../../Components/info-main-object'
@@ -46,7 +47,7 @@ export default function Object({ cadastralObject, jkh}) {
   setCheck(true)
  }
 
-  const adressUrl = `https://mkdfond.ru/api/findflat?address=${addressNotes}&cadNumber=${cadNumber}`
+  const adressUrl = `/api/findflat?address=${addressNotes}&cadNumber=${cadNumber}`
   const encodeUrl = encodeURI(adressUrl)
   let askAboutFlat
   if (addressNotes) {
@@ -89,6 +90,7 @@ export default function Object({ cadastralObject, jkh}) {
         <section content-main="">
           <div className="object">
             <div className="content">
+            <Breadcrumbs cadastrObj={cadastralObject}/>
               <Search />
               <div className="object__wrap">
                 <MenuLeft cadastrObj={cadastralObject} askAboutFlat={askAboutFlat} jkhObj={jkh || null}/>

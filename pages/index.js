@@ -112,7 +112,7 @@ export default function Main() {
                     Подробнее &gt;
                   </a> */}
                 </div>
-                <div className="main__blockItem">
+                <div className="main__blockItem five">
                   <div className="main__blockItem-title">Земельные участки</div>
                   <div className="main__blockItem-descr">
                     Реестр земельных участков, ижс, промышленных зон и земель с/х назначения.
@@ -126,7 +126,7 @@ export default function Main() {
                     Подробнее &gt;
                   </a> */}
                 </div>
-                <div className="main__blockItem">
+                <div className="main__blockItem six">
                   <div className="main__blockItem-title">Кадастровая стоимость</div>
                   <div className="main__blockItem-descr">
                     В случае оспаривания стоимости объекта требуется справка о кадастровой стоимости
@@ -143,13 +143,13 @@ export default function Main() {
               </div>
             </div>
           </div>
-          <div className="map">
-            <div className="map__image"></div>
-              <div className="map__wrapper flex-a container">
-                <div className="map__contacts"><div className="map__contacts-title">Реестр управляющих компаний ЖКХ</div>
-                  <div className="map__contacts-content flex-b">
-                    <div className="map__contacts-column">
-                      <div className="map__contacts-infoblock first">
+          <div className="jkh">
+            <div className="jkh__image"></div>
+              <div className="jkh__wrapper flex-a container">
+                <div className="jkh__contacts"><div className="jkh__contacts-title">Реестр управляющих компаний ЖКХ</div>
+                  <div className="jkh__contacts-content flex-b">
+                    <div className="jkh__contacts-column">
+                      <div className="jkh__contacts-infoblock first">
                         <div className="desc">
                           <p>
                             Управляющая компания - это обязательно юридическое лицо, которое берет на себя бремя ответственности
@@ -166,7 +166,7 @@ export default function Main() {
                       </div>
                     </div>
                   </div>
-                  <a href="/" className="map__contacts-button flex-jc">Перейти в реестр жкх</a>
+                  <a href="/" className="jkh__contacts-button flex-jc">Перейти в реестр жкх</a>
                 </div>
               </div>
           </div>

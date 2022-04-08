@@ -29,6 +29,7 @@ const MenuLeft = ({ cadastrObj, askAboutFlat, jkhObj }) => {
   return (
     <div className="object__leftMenu">
       <div className="object__leftMenu-wrap">
+      <div className="menuHead">Сведения из реестра</div>
         <ul className="object__leftMenu-links">
           <li data-type="owners" className="object__leftMenu-link _success">
             <Link to="main" smooth="true" activeClass="active" spy={true} duration={500}>Информация об объекте</Link>

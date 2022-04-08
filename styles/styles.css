@@ -282,7 +282,7 @@ a {
 }
 
 .main__first {
-  background-image: url(../public/images/6724_12.jpg);
+  background-image: url(../public/images/city.png);
   padding-top: 21px;
   position: relative;
 }
@@ -308,9 +308,9 @@ a {
 .search__example {
   font-size: 11px;
   line-height: 13px;
-  color: #ffffff;
+  color: #969696;
   margin-top: 10px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .search__example_main{
@@ -421,7 +421,6 @@ a {
 
 .main__blocks {
   background: #f0f2f5;
-  padding-bottom: 50px;
 }
 .main__blocks-wrap {
   margin-top: -45px;
@@ -875,6 +874,16 @@ a {
     width: 282px;
     position: relative;
   }
+
+  .menuHead {
+    background: #253A61;
+    padding: 20px 20px 20px;
+    border-radius: 2px;
+    color:white;
+    text-align: center;
+    font-weight: 700;
+  }
+
 
   .object__leftMenu-wrap {
     position: -webkit-sticky;
@@ -2047,6 +2056,10 @@ a {
   font-weight: 600;
   text-align: center;
   padding: 23px 24px;
+  background: #253A61;
+  color: white;
+  text-align: center;
+  font-weight: 700;
 }
 
 .pledge__sidebar-statistic {
@@ -2140,14 +2153,13 @@ a {
 }
 
 
-.map {
-  height: 504px;
+.jkh {
+  height: 570px;
   position: relative;
-  border-top: 1px solid #1D1D1D;
   border-bottom: 1px solid #1D1D1D;
 }
 
-.map__image {
+.jkh__image {
   width: 100%;
   height: 100%;
   background-image: url(../public/images/map3.png);
@@ -2160,14 +2172,14 @@ a {
   top: 0;
 }
 
-.map__contacts {
+.jkh__contacts {
   background: #fff;
   padding: 33px 51px 39px 43px;
   border-radius: 2px;
   width: 100%;
 }
 
-.map__wrapper {
+.jkh__wrapper {
   height: 100%;
   z-index: 1;
 }
@@ -2184,14 +2196,14 @@ a {
   margin: 0 auto;
 }
 
-.map__contacts-title {
+.jkh__contacts-title {
   font-size: 20px;
   color: #434549;
   margin-bottom: 22px;
   font-weight: 700;
 }
 
-.map__contacts-button {
+.jkh__contacts-button {
   width: 239px;
   height: 42px;
   background: #253A61;
@@ -2206,7 +2218,7 @@ a {
   margin-top: 30px;
 }
 
-.map__contacts-button:hover {
+.jkh__contacts-button:hover {
   transition: all .3s ease;
   color: #253A61;
   background: #fff;
@@ -2216,4 +2228,30 @@ a {
 .desc p {
   text-align: justify;
   margin-bottom: 20px;
+}
+
+.five {
+  margin-bottom: -45px;
+}
+
+.six {
+  margin-bottom: -45px;
+}
+
+.object__breadcrumbs {
+  padding-top: 30px;
+}
+
+.breadcrumbs {
+  display: flex;;
+  font-size: 11px;
+  padding-bottom: 2px;
+  white-space: nowrap;
+  overflow: auto;
+}
+
+.breadcrumbs li {
+  display: flex;
+  line-height: 17px;
+  margin: 0 10px;
 }
