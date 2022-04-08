@@ -12,7 +12,7 @@ const Header = () => {
             <div className="header__logo-img" />
             <div className="header__logo-text">
               <div className="header__logo-title">mkdfond</div>
-              <div className="header__logo-descr">Сервис проверки недвижимости</div>
+              <div className="header__logo-descr">Реестр многоквартирных домов</div>
             </div>
           </a>
         </Link>

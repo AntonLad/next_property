@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import SearchIcon from '@material-ui/icons/Search'
 import CloseIcon from '@material-ui/icons/Close'
+import MainExample from './mainExample'
 import ReactLoading from 'react-loading'
 import { useRouter } from 'next/router'
 import Countdown from './countdown'
 
 
-const Search = () => {
+const Search = ({ text }) => {
+  console.log('TEXT', text)
   const router = useRouter()
   const [value, setValue] = useState('')
   const [enterText, setEnterText] = useState('')
@@ -151,39 +153,7 @@ const Search = () => {
           )}
         </div>
       </div>
-      <div className="search__example">Пример:
-        <span
-          aria-hidden="true"
-          className="a _blueback _inner js__searchExample"
-        >
-          Самара, ул Дыбенко, 30
-        </span>  или
-        <span
-          aria-hidden="true"
-          className="a _blueback _inner js__searchExample"
-          onClick={() => {
-            setEnterText('63:01:0629002:638')
-          }}
-        >  63:01:0629002:638
-        </span> или
-        <span
-          aria-hidden="true"
-          className="a _blueback _inner js__searchExample"
-          onClick={() => {
-            setEnterText('63:06:0303003:1365')
-          }}
-        >  63:06:0303003:1365
-        </span> или
-        <span
-          aria-hidden="true"
-          className="a _blueback _inner js__searchExample"
-          onClick={() => {
-            setEnterText('16:39:012701:131')
-          }}
-        >  16:39:012701:131
-        </span>
-
-      </div>
+      <MainExample />
     </div>
 
   )

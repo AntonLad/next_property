@@ -9,9 +9,9 @@ export default function Main() {
   return (
     <>
       <Head>
-        <title>Проверка квартиры перед покупкой на юридическую чистоту онлайн по кадастровому номеру | Проверить недвижимость онлайн по адресу</title>
+        <title>mkdfond.ru - информационный онлайн сервис публичных сведений из ФГИС ЕГРН | Проверка квартиры перед покупкой на юридическую чистоту онлайн по кадастровому номеру</title>
         <meta name="description" content="Проверка квартиры, участка, дома, недвижимости онлайн через ЕГРН и Росреестр по кадастровому номеру"/>
-        <meta name="keywords" content="ЕГРН, выписка из ЕГРН, проверка, росреестр, кадастровый номер"/>
+        <meta name="keywords" content="ЕГРН, проверка, росреестр, кадастровый номер"/>
       </Head>
       <div className="first">
         <Header />
@@ -142,6 +142,33 @@ export default function Main() {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="map">
+            <div className="map__image"></div>
+              <div className="map__wrapper flex-a container">
+                <div className="map__contacts"><div class="map__contacts-title">Реестр управляющих компаний ЖКХ</div>
+                  <div className="map__contacts-content flex-b">
+                    <div className="map__contacts-column">
+                      <div className="map__contacts-infoblock first">
+                        <div className="desc">
+                          <p>
+                            Управляющая компания - это обязательно юридическое лицо, которое берет на себя бремя ответственности
+                            по управлению многоквартирными домами, поддержанию санитарного и технического состояния общего
+                            домового имущества в надлежащем состоянии, доставке коммунальных ресурсов до конкретного пользователя.
+                          </p>
+                          <p>
+                            Реестр позволяет узнать, какая коммунальная управляющая компания обслуживает
+                            многоквартирный дом и получить контакты: адрес, телефон, электронный почтовый ящик.
+                            Кроме этого, с помощью данного сервиса возможно узнать сколько многоквартирных домов
+                            числится на балансе той или иной управляющей компании ЖКХ.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <a href="/" className="map__contacts-button flex-jc">Перейти в реестр жкх</a>
+                </div>
+              </div>
           </div>
           <div className="main__faq">
             <div className="content" itemScope="" itemType="http://schema.org/FAQPage">

@@ -15,7 +15,7 @@ export const NavLinks = () => {
         <li>
           <Link href="#">
             <a className="header__menu-link">
-              Проверка недвижимости
+              Реестр ЖКХ
             </a>
           </Link>
         </li>
