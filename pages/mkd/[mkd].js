@@ -6,9 +6,14 @@ import regions from '../../Components/files/regions'
 import SeoMenu from '../../Components/seoMenu'
 import Header from '../../Components/header'
 import Footer from '../../Components/footer'
-import MkdMap from '../../Components/mkdMap'
+// import MkdMap from '../../Components/mkdMap'
 import Dadata from '../../Components/dadata'
 import MkdReestr from '../../Components/mkd-reestr'
+import dynamic from 'next/dynamic'
+const DynamicMkdMap = dynamic(
+  () => import('../../Components/mkdMap'),
+  { ssr: true }
+)
 // import Scroll from '../Components/scroll'
 
 const url = process.env.MONGO_URL
@@ -45,7 +50,7 @@ export default function Object({mkd, jkh}) {
                 <div className="object__contentWrap">
                   <div className="object__content">
                     <MkdReestr mkdObj={mkd} jkhObj={jkh}/>
-                    <MkdMap mkd={mkd}/>
+                    <DynamicMkdMap mkd={mkd}/>
                   </div>
                 </div>
               </div>
@@ -67,7 +72,7 @@ export async function getServerSideProps(context) {
   const houseFiasCode = splitNumbers[1]
 
   const searchRegions = regions[regionFiasCode]
-  const regionBase = client.db('dataHousePassports')
+  const regionBase = client.db(process.env.MONGO_COLLECTION)
   const regionCollection = regionBase.collection(`${searchRegions}`)
   const mkdsearch = await regionCollection.find({houseguid: houseFiasCode}).toArray()
   const mkd = mkdsearch[0]
@@ -96,7 +101,7 @@ export async function getServerSideProps(context) {
   const lat = getAskDadata.data?.suggestions[0]?.data?.geo_lat
   const lon = getAskDadata.data?.suggestions[0]?.data?.geo_lon
 
-  const db = client.db('dataHousePassports')
+  const db = client.db(process.env.MONGO_COLLECTION)
   const collection = db.collection(`${searchRegions}`)
   await collection.updateOne({'houseguid':houseFiasCode}, { $set: {postalCode, lat, lon, oktmo, okato}}, { upsert: false })
   const mkdNewSearch = await regionCollection.find({houseguid: houseFiasCode}).toArray()

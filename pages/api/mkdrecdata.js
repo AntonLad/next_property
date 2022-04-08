@@ -22,7 +22,7 @@ export default async function mkdRec(req, res) {
   }
 
   await client.connect()
-  const db = client.db('dataHousePassports')
+  const db = client.db(process.env.MONGO_COLLECTION)
   const searchRegions = regions[objecregionFiasCodetId]
   const regionCollection = db.collection(`${searchRegions}`)
   const mkdsearch = await regionCollection.find({houseguid: houseFiasCode}).toArray()
