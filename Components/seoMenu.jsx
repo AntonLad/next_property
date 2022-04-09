@@ -1,11 +1,12 @@
 import React from 'react'
+import Link from 'next/link'
 
 const SeoMenu = () => {
   return (
     <div className="pledge__sidebar">
     <div className="pledge__sidebar-wrapper">
-      <div className="pledge__sidebar-title">Статистика реестра:</div>
-      <div className="pledge__sidebar-statistic">
+      <div className="pledge__sidebar-title">Сервисы</div>
+      {/* <div className="pledge__sidebar-statistic">
         <div className="pledge__sidebar-statistic-prop">
           <span>мкд:</span>
           <span>1 204 658</span>
@@ -18,29 +19,40 @@ const SeoMenu = () => {
           <span>Помещений:</span>
           <span>36 034 456</span>
         </div>
-      </div>
+      </div> */}
       <div className="pledge__sidebar-nav">
-        <a className="" href="#">
-          <span>Проверка на арест</span>
-        </a>
-        <a className="" href="#">
-          <span>Проверка на обременение</span>
-        </a>
-        <a className="_active" href="#">
-          <span>Проверка собственника</span>
-        </a>
-        <a className="" href="#">
-          <span>Проверка зем. участка</span>
-        </a>
-        <a className="" href="#">
-          <span>Проверка кад. стоимости</span>
-        </a>
-        <a className="" href="#">
-          <span>Узнать кад. номер по адресу</span>
-        </a>
+        <Link  href="#">
+          <a className="">
+            <span>Проверка недвижимости</span>
+          </a>
+        </Link>
+        <Link  href="#">
+          <a className="">
+            <span>Проверка собственника</span>
+          </a>
+        </Link>
+        <Link  href="#">
+          <a className="">
+            <span>Реестр капитального ремонта</span>
+          </a>
+        </Link>
+        <Link  href="/mkd">
+          <a className="">
+            <span>Реестр МКД</span>
+          </a>
+        </Link>
+        <Link  href="#">
+          <a className="">
+            <span>Реестр ЖКХ</span>
+          </a>
+        </Link>
       </div>
       <div className="pledge__sidebar-confirmation">
-        <span>Единый Реестр МКД РФ</span>
+        <Link  href="/">
+          <a className="">
+            <span>Единый Реестр МКД РФ</span>
+          </a>
+        </Link>
       </div>
     </div>
   </div>

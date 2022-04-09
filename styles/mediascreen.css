@@ -36,6 +36,18 @@
   .footer__content-small {
     width: 300px;
   }
+
+  .five {
+    margin-bottom: 0;
+  }
+
+  .six {
+    margin-bottom: 0;
+  }
+
+  .main__blocks {
+    padding-bottom: 50px;
+  }
 }
 
 @media (max-width: 1000px) {
@@ -56,6 +68,14 @@
 
   .pledge {
     padding-bottom: 0;
+  }
+
+  .object__wrap {
+    flex-direction: column-reverse;
+  }
+
+  .object__contentWrap {
+    width: 100%;
   }
 }
 
@@ -189,6 +209,16 @@
 
   .pledge__title {
     font-size: 23px;
+  }
+}
+
+@media (max-width: 550px) {
+  .jkh__image {
+    height: 0;
+  }
+
+  .jkh {
+    height: auto;
   }
 }
 

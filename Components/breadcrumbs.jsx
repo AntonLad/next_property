@@ -3,11 +3,12 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 const Breadcrumbs = ({ cadastrObj }) => {
+  console.log('Breadcrumpsprops', JSON.parse(cadastrObj))
   const router = useRouter()
   const path = router.asPath
   console.log('ROUTER', path)
   const cadObj = JSON.parse(cadastrObj)
-  const addressNotes = cadObj?.objectData?.objectAddress?.addressNotes || cadObj?.objectData?.objectAddress?.mergedAddress
+  const addressNotes = cadObj?.objectData?.objectAddress?.addressNotes || cadObj?.objectData?.objectAddress?.mergedAddress || cadObj?.address
   return (
     <div className="object__breadcrumbs">
       <ol className="breadcrumbs">

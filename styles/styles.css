@@ -2045,7 +2045,7 @@ a {
 }
 
 .pledge__sidebar-wrapper {
-  background: #fff;
+  background: #f8f8f8;
   border-radius: 4px;
   width: 100%;
   position: sticky;
@@ -2156,7 +2156,6 @@ a {
 .jkh {
   height: 570px;
   position: relative;
-  border-bottom: 1px solid #1D1D1D;
 }
 
 .jkh__image {

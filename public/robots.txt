@@ -1,0 +1,4 @@
+User-agent: *
+
+Host: https://mkdfond.ru/
+Sitemap: https://mkdfond.ru/sitemap.xml

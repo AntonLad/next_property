@@ -4,6 +4,7 @@ import { MongoClient } from 'mongodb'
 import Meta from '../../Components/meta'
 import regions from '../../Components/files/regions'
 import SeoMenu from '../../Components/seoMenu'
+import Breadcrumbs from '../../Components/breadcrumbs'
 import Header from '../../Components/header'
 import Footer from '../../Components/footer'
 // import MkdMap from '../../Components/mkdMap'
@@ -32,7 +33,7 @@ export default function Object({mkd, jkh}) {
     <>
       <Meta
         title={okato ? title : title2}
-        descritoin={`Информация о многоквартином доме, расположенного по адресу ${addressMkd}. Физический износ, оценочная стоимость, инфраструктура`}
+        descritoin={`Информация о многоквартирном доме, расположенного по адресу ${addressMkd}. Физический износ, количество квартир, адрес управляющей компании ЖКХ`}
         keywords={`${addressMkd}, индекс, окато, ОКТМО`}
       />
       <div className="first">
@@ -43,6 +44,7 @@ export default function Object({mkd, jkh}) {
         <section content-main="">
           <div className="object">
             <div className="content">
+              <Breadcrumbs cadastrObj={mkd}/>
               <Dadata />
               <div className="object__wrap">
                 <SeoMenu />

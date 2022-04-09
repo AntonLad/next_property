@@ -3,7 +3,6 @@ import { YMaps, Map, TypeSelector, ZoomControl, Placemark, Circle, Clusterer} fr
 
 
 const MkdMap = ({mkd}) => {
-  console.log('MAPPROPS', JSON.parse(mkd))
   const lat = JSON.parse(mkd).lat
   const lng = JSON.parse(mkd).lon
   return (
