@@ -21,7 +21,7 @@ const Breadcrumbs = ({ cadastrObj }) => {
             </a>
           </Link>
         </li>
-        <span class="__gt">&gt;</span>
+        <span className="__gt">&gt;</span>
         <li>
         <Link href={path} >
           <a className="a _blue __this">

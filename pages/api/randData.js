@@ -8,13 +8,17 @@ const client = new MongoClient(url, { useUnifiedTopology: true })
 export default async function randData (req, res) {
   const array = Object.values(regions)
   await client.connect()
-  const rand = Math.random()*array.length | 0  // выбираем рандомное число для индекса массива
-  const  randRegion = array[rand]  // берем объект (регион) с рандомным индексом
+  let randArr = []
+  for (let i = 0; i < 6; i += 1) {
+    const rand = Math.random()*array.length | 0  // выбираем рандомное число для индекса массива
+    const  randRegion = array[rand]  // берем объект (регион) с рандомным индексом
 
-  const db = client.db(process.env.MONGO_COLLECTION)
-  const collection = db.collection(randRegion)
-  const randomListObject = await collection.aggregate([{ $sample: {size: 6}}]).toArray() // получаем массив с тремя случайных обекта  - не работает
+    const db = client.db(process.env.MONGO_COLLECTION)
+    const collection = db.collection(randRegion)
+    const randomListObject = await collection.aggregate([{ $sample: {size: 1}}]).toArray() // получаем массив с тремя случайных обекта  - не работает
+    randArr = [...randArr, randomListObject[0] ]
+    console.log('RANDOMRESULT', randArr)
+  }
 
-  console.log('RANDOMRESULT', randomListObject)
-  return res.json(randomListObject)
+  return res.json(randArr)
 }

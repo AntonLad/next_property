@@ -2290,27 +2290,39 @@ a {
 }
 
 .oneMkd {
-  background-image: url(../public/images/house2_1.jpg);
+  background-image: url(../public/images/house2.jpg);
+  background-size: cover;
+  background-position: center center;
 }
 
 .twoMkd {
-  background-image: url(../public/images/house1.jpg);
+  background-image: url(../public/images/house7.jpg);
+  background-size: cover;
+  background-position: center center;
 }
 
 .threeMkd {
-  background-image: url(../public/images/house3_1.jpg);
+  background-image: url(../public/images/house3.jpg);
+  background-size: cover;
+  background-position: center center;
 }
 
 .fourMkd {
-  background-image: url(../public/images/house4_1.jpg);
+  background-image: url(../public/images/house4.jpg);
+  background-size: cover;
+  background-position: center center;
 }
 
 .fiveMkd {
-  background-image: url(../public/images/house5_1.jpg);
+  background-image: url(../public/images/house5.jpg);
+  background-size: cover;
+  background-position: center center;
 }
 
 .sixMkd {
-  background-image: url(../public/images/house6_1.jpg);
+  background-image: url(../public/images/house6.jpg);
+  background-size: cover;
+  background-position: center center;
 }
 
 .objectTitle {
@@ -2324,19 +2336,39 @@ a {
 }
 
 .objectAddress {
-  font-size: 20px;
-  text-align: center;
-  padding: 5px 0;
+  font-size: 18px;
+  padding: 15px 10px 5px 10px;
   font-weight: 600;
 }
 
+.objectAddress p {
+  padding: 10px;
+
+}
+
+.objectAddress p:first-child {
+  background-color:#f8f8f8;
+  height: 75px;
+}
+
 .flatCount {
-  font-size: 20px;
-  text-align: center;
-  padding: 5px 0;
+  font-size: 18px;
+  padding: 15px 10px 5px 10px;
   font-weight: 600;
 }
 
 .mkdLink {
-  width: 32%;
+  width: 49%;
+}
+
+.mkdLink:hover {
+  opacity: 0.8;
+}
+
+.objectButton {
+  text-align: center;
+}
+
+.objectButton:hover {
+  color:#0157ba;
 }
