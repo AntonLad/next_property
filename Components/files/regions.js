@@ -34,7 +34,7 @@ const regions = {
   'ee594d5e-30a9-40dc-b9f2-0add1be44ba1': 'Kurskaya Oblast',
   '6d1ebb35-70c6-4129-bd55-da3969658f5d': 'Leningradskaya Oblast',
   '1490490e-49c5-421c-9572-5673ba5d80c8': 'Lipetckaya Oblast',
-  '9c05e812-8679-4710-b8cb-5e8bd43cdf48': 'Magadaазабаnskaya Oblast',
+  '9c05e812-8679-4710-b8cb-5e8bd43cdf48': 'Magadanskaya Oblast',
   '29251dcf-00a1-4e34-98d4-5c47484a36d4': 'Moskovskaya Oblast',
   '1c727518-c96a-4f34-9ae6-fd510da3be03': 'Murmanskaya Oblast',
   '89db3198-6803-4106-9463-cbf781eff0b8': 'Nenecky AO',

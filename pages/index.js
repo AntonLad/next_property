@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Search from "../Components/search"
 import Header from "../Components/header"
 import Footer from "../Components/footer"
+import RandomObjects from '../Components/randomObjects'
 import ButtonMongo from '../Components/buttonMongo'
 
 export default function Main() {
@@ -170,6 +171,7 @@ export default function Main() {
                 </div>
               </div>
           </div>
+          <RandomObjects />
           <div className="main__faq">
             <div className="content" itemScope="" itemType="http://schema.org/FAQPage">
               <div className="main__faq-title">Как работает сервис</div>

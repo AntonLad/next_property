@@ -77,6 +77,34 @@
   .object__contentWrap {
     width: 100%;
   }
+
+  .randomObjectsFlex{
+    flex-direction: column;
+  }
+
+  .object {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .objectPhoto {
+    width: 36%;
+  }
+
+  .objectTitle{
+    display: none;
+  }
+
+  .objectAddress {
+    width: 30%;
+  }
+
+  .flatCount {
+    width: 30%;
+  }
 }
 
 

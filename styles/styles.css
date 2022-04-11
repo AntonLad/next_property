@@ -705,6 +705,7 @@ a {
 
 .main__faq {
   padding: 58px 0 90px;
+  background: #f0f2f5;
 }
 
 .main__faq-title {
@@ -2256,4 +2257,86 @@ a {
   display: flex;
   line-height: 17px;
   margin: 0 10px;
+}
+.randomObjects {
+  margin-top:50px;
+  margin-bottom: 50px;
+}
+
+.randomObjectsFlex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.randomObjectsTitle {
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 38px;
+  color: #313e51;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.mkdObject {
+  height:350px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.objectPhoto {
+  height: 200px;
+}
+
+.oneMkd {
+  background-image: url(../public/images/house2_1.jpg);
+}
+
+.twoMkd {
+  background-image: url(../public/images/house1.jpg);
+}
+
+.threeMkd {
+  background-image: url(../public/images/house3_1.jpg);
+}
+
+.fourMkd {
+  background-image: url(../public/images/house4_1.jpg);
+}
+
+.fiveMkd {
+  background-image: url(../public/images/house5_1.jpg);
+}
+
+.sixMkd {
+  background-image: url(../public/images/house6_1.jpg);
+}
+
+.objectTitle {
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+  padding: 15px 0;
+  background-color: #253A61;
+  color: white;
+  border-bottom: 5px solid white;
+}
+
+.objectAddress {
+  font-size: 20px;
+  text-align: center;
+  padding: 5px 0;
+  font-weight: 600;
+}
+
+.flatCount {
+  font-size: 20px;
+  text-align: center;
+  padding: 5px 0;
+  font-weight: 600;
+}
+
+.mkdLink {
+  width: 32%;
 }
