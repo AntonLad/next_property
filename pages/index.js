@@ -173,7 +173,7 @@ export default function Main() {
           </div>
           <RandomObjects />
           <div className="main__faq">
-            <div className="content" itemScope="" itemType="http://schema.org/FAQPage">
+            <div className="content">
               <div className="main__faq-title">Как работает сервис</div>
               <div className="main__faq-wrap">
                 <div className="main__faqItem _open">
