@@ -297,4 +297,27 @@
   .pledge__instruction-title {
     font-size: 18px;
   }
+
+  .searchIcon {
+    height: 50px;
+    width: 50px;
+  }
+
+  .searchIcon svg {
+    top: 25%;
+    font-size: 28px;
+    left:28%;
+  }
+
+  .react-dadata__input {
+    height: 50px;
+  }
+
+  .pledge__single{
+    padding: 30px 15px;
+  }
+
+  .pledge__instruction {
+    padding: 30px 15px;
+  }
 }

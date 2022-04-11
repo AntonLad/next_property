@@ -50,21 +50,18 @@ const Mkd = ({ cadastrObj }) => {
   }
 
   const buildingState = (value) => {
-    if ( value <= 20 ) { return <span className="greenState">Хорошее</span> }
-    if ( value <= 40 ) { return <span className="yellowState">Удовлетворительное</span> }
-    if ( value <= 60 ) { return <span className="orangeState">Неудовлетворительное</span> }
-    return <span className="redState">Критическое</span>
+    if ( value > 60 ) { return <span className="redState">Критическое</span> }
   }
 
   const flor = (fl) => {
     if (fl >= 5 && fl <=20) {return 'этажей'}
     const regexp = /1$/g
-    const checker = regexp.test(fl) 
+    const checker = regexp.test(fl)
     if (checker) {return 'этаж'}
     const regexp2 = /2$|3$|4$/g
     const checker2 = regexp2.test(fl)
     if (checker2) {return 'этажа'}
-    return 'этажей' 
+    return 'этажей'
   }
 
   const paramInfo = {

@@ -6,9 +6,11 @@ const Breadcrumbs = ({ cadastrObj }) => {
   console.log('Breadcrumpsprops', JSON.parse(cadastrObj))
   const router = useRouter()
   const path = router.asPath
+  const cadNumber = router.query.cadnumber
   console.log('ROUTER', path)
+  console.log('cadNumber', cadNumber)
   const cadObj = JSON.parse(cadastrObj)
-  const addressNotes = cadObj?.objectData?.objectAddress?.addressNotes || cadObj?.objectData?.objectAddress?.mergedAddress || cadObj?.address
+  const addressNotes = cadObj?.objectData?.objectAddress?.mergedAddress || cadObj?.address
   return (
     <div className="object__breadcrumbs">
       <ol className="breadcrumbs">

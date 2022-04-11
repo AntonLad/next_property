@@ -22,7 +22,6 @@ const client = new MongoClient(url, { useUnifiedTopology: true })
 
 export default function Object({mkd, jkh}) {
   const mkdHouse = JSON.parse(mkd)
-  const jkhInfo = JSON.parse(jkh)
   const addressMkd = mkdHouse.address
   const okato = mkdHouse.okato
   const oktmo = mkdHouse.oktmo

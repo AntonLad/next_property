@@ -2,17 +2,22 @@ import React, { useState } from 'react'
 import CloseIcon from '@material-ui/icons/Close'
 
 const MkdReestr = ({ mkdObj, jkhObj }) => {
+  const data = new Date()
+  const year = data.getFullYear()
+  const month = `0${data.getMonth()+1}`
+  const monthReal = month.length > 2 ? month.slice(1) : month
+  const day = data.getDate()
 
   const mkdInfo = JSON.parse(mkdObj)
   const jkhInfo = JSON.parse(jkhObj)
 
-  const { address, built_year, cold_water_type, drainage_type, 
-    electrical_type, elevators_count, energy_efficiency, entrance_count, exploitation_start_year, project_type, house_type, 
+  const { address, built_year, cold_water_type, drainage_type,
+    electrical_type, elevators_count, energy_efficiency, entrance_count, exploitation_start_year, project_type, house_type,
     is_alarm, method_of_forming_overhaul_fund, floor_count_max, floor_count_min, area_non_residential, parking_square,
     playground, sportsground, other_beautification, foundation_type, floor_type, wall_material, chute_type, chute_count,
     heating_type, hot_water_type, quarters_count, living_quarters_count, unliving_quarters_count, area_total, area_residential,
     sewerage_type, gas_type, ventilation_type, firefighting_type } = mkdInfo
-   
+
   const paramInfo = {
     'Адрес многоквартирного дома:': address,
     'Код ОКАТО:': mkdInfo?.okato,
@@ -51,7 +56,7 @@ const MkdReestr = ({ mkdObj, jkhObj }) => {
     'Газоснабжение': gas_type,
     'Вентиляция': ventilation_type,
     'Системы пожаротушения': firefighting_type,
-    'Тип дренажной системы:': drainage_type, 
+    'Тип дренажной системы:': drainage_type,
   }
   const paramInfoJkh = {
     'Наименование:': jkhInfo?.name_full,
@@ -74,7 +79,7 @@ const MkdReestr = ({ mkdObj, jkhObj }) => {
       )
     })
   }
-  
+
   const outputObjectJkh = () => {
     return Object.keys(paramInfoJkh).map((it) => {
       return paramInfoJkh[it] && (
@@ -89,7 +94,10 @@ const MkdReestr = ({ mkdObj, jkhObj }) => {
   return (
     <div>
       <div data-content="mkd" id="mkd-info" className="object__block">
-        <div className="object__block-wrap">        
+        <div className="object__content-top">
+          <div className="object__content-top-link ">{`Дата запроса:  ${day}.${monthReal}.${year}`}</div>
+        </div>
+        <div className="object__block-wrap">
           <div className="object__block-title _mkd">Информация о МКД</div>
           <div className="object__blockTable _first">
             {outputObject()}
@@ -98,7 +106,7 @@ const MkdReestr = ({ mkdObj, jkhObj }) => {
       </div>
       {jkhInfo && (
         <div data-content="mkd" id="mkd-info" className="object__block">
-          <div className="object__block-wrap">        
+          <div className="object__block-wrap">
             <div className="object__block-title _mkd">Информация об управляющей компании</div>
             <div className="object__blockTable _first">
               {outputObjectJkh()}

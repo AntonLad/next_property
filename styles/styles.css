@@ -994,7 +994,6 @@ a {
     line-height: 36px;
     margin-left: 50px;
     padding-left: 10px;
-    text-decoration: 2px underline;
     /* background-color: #DFFCE1; */
   }
   .object__block-title:before {
@@ -2037,6 +2036,10 @@ a {
 
 .pledge__instruction-title {
   padding-bottom: 15px;
+}
+
+.pledge__instruction-text {
+  text-align: justify;
 }
 
 .pledge__sidebar {

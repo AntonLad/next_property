@@ -68,10 +68,7 @@ const Dadata = () => {
         </button>
       </div>
       <div className="pledge__form-examples"> Пример:&nbsp;&nbsp;
-        <span
-          className="a _blue _inner js__pledgeSearchExample"
-          >г. Самара, ул Дыбенко, 30
-        </span>
+        <span>г. Самара, ул Дыбенко, 30</span>
       </div>
       {serverAnswer?.error && (
         <div className="dataErrorResult">
