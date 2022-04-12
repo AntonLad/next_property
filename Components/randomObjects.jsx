@@ -32,62 +32,62 @@ const RandomObjects = () => {
                 <div className="objectPhoto oneMkd" />
                 <div className="objectAddress">
                   <p className=''>{oneMkd?.address}</p>
-                  <p className="objectButton">Посмотреть объект>>></p>
+                  <p className="objectButton">Посмотреть объект</p>
                 </div>
               </div>
             </a>
           </Link>
-          <Link href={`https:mkdfond.ru/mkd/${twoMkd?.region_id}-mkd-${twoMkd?.houseguid}`}>
+          <Link href={`/mkd/${twoMkd?.region_id}-mkd-${twoMkd?.houseguid}`}>
             <a className="mkdLink">
               <div className="mkdObject">
                 <div className="objectPhoto twoMkd" />
                 <div className="objectAddress">
                   <p className=''>{twoMkd?.address}</p>
-                  <p className="objectButton">Посмотреть объект>>></p>
+                  <p className="objectButton">Посмотреть объект</p>
                 </div>
               </div>
             </a>
           </Link>
-          <Link href={`https:mkdfond.ru/mkd/${threeMkd?.region_id}-mkd-${threeMkd?.houseguid}`}>
+          <Link href={`/mkd/${threeMkd?.region_id}-mkd-${threeMkd?.houseguid}`}>
             <a className="mkdLink">
               <div className="mkdObject">
                 <div className="objectPhoto threeMkd" />
                 <div className="objectAddress">
                   <p>{threeMkd?.address}</p>
-                  <p className="objectButton">Посмотреть объект>>></p>
+                  <p className="objectButton">Посмотреть объект</p>
                 </div>
               </div>
             </a>
           </Link>
-          <Link href={`https:mkdfond.ru/mkd/${fourMkd?.region_id}-mkd-${fourMkd?.houseguid}`}>
+          <Link href={`/mkd/${fourMkd?.region_id}-mkd-${fourMkd?.houseguid}`}>
             <a className="mkdLink">
               <div className="mkdObject">
                 <div className="objectPhoto fourMkd" />
                 <div className="objectAddress">
                   <p className=''>{fourMkd?.address}</p>
-                  <p className="objectButton">Посмотреть объект>>></p>
+                  <p className="objectButton">Посмотреть объект</p>
                 </div>
               </div>
             </a>
           </Link>
-          <Link href={`https:mkdfond.ru/mkd/${fiveMkd?.region_id}-mkd-${fiveMkd?.houseguid}`}>
+          <Link href={`/mkd/${fiveMkd?.region_id}-mkd-${fiveMkd?.houseguid}`}>
            <a className="mkdLink">
             <div className="mkdObject">
               <div className="objectPhoto fiveMkd" />
               <div className="objectAddress">
                 <p className=''>{fiveMkd?.address}</p>
-                <p className="objectButton">Посмотреть объект>>></p>
+                <p className="objectButton">Посмотреть объект</p>
               </div>
             </div>
             </a>
           </Link>
-          <Link href={`https:mkdfond.ru/mkd/${sixMkd?.region_id}-mkd-${sixMkd?.houseguid}`}>
+          <Link href={`/mkd/${sixMkd?.region_id}-mkd-${sixMkd?.houseguid}`}>
             <a className="mkdLink">
               <div className="mkdObject">
                 <div className="objectPhoto sixMkd" />
                 <div className="objectAddress">
                   <p className=''>{sixMkd?.address}</p>
-                  <p className="objectButton">Посмотреть объект>>></p>
+                  <p className="objectButton">Посмотреть объект</p>
                 </div>
               </div>
             </a>

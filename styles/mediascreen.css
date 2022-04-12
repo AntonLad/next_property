@@ -99,11 +99,38 @@
   }
 
   .objectAddress {
-    width: 30%;
+    padding-top:20px
   }
 
   .flatCount {
     width: 30%;
+  }
+
+  .mkdLink {
+    width: 100%;
+  }
+
+  .mkdObject {
+    height: auto;
+    display: flex;
+  }
+
+  .objectAddress p:first-child {
+    height: auto;
+  }
+
+  .objectAddress {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .objectPhoto {
+    width: 100%;
   }
 }
 
@@ -247,6 +274,10 @@
 
   .jkh {
     height: auto;
+  }
+
+  .mkdObject {
+    display: block;
   }
 }
 

@@ -47,7 +47,7 @@ export default function Object({ cadastralObject, jkh}) {
   setCheck(true)
  }
 
-  const adressUrl = `https:mkdfond.ru/api/findflat?address=${addressNotes}&cadNumber=${cadNumber}`
+  const adressUrl = `/api/findflat?address=${addressNotes}&cadNumber=${cadNumber}`
   const encodeUrl = encodeURI(adressUrl)
   let askAboutFlat
   if (addressNotes) {
