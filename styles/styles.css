@@ -2250,7 +2250,6 @@ a {
   display: flex;;
   font-size: 11px;
   padding-bottom: 2px;
-  white-space: nowrap;
   overflow: auto;
 }
 
