@@ -6,6 +6,7 @@ import regions from '../../Components/files/regions'
 import SeoMenu from '../../Components/seoMenu'
 import Breadcrumbs from '../../Components/breadcrumbs'
 import Header from '../../Components/header'
+import RandomMkdObjects from '../../Components/randomMkdObjects'
 import Footer from '../../Components/footer'
 // import MkdMap from '../../Components/mkdMap'
 import Dadata from '../../Components/dadata'
@@ -52,6 +53,7 @@ export default function Object({mkd, jkh}) {
                   <div className="object__content">
                     <MkdReestr mkdObj={mkd} jkhObj={jkh}/>
                     <DynamicMkdMap mkd={mkd}/>
+                    <RandomMkdObjects />
                   </div>
                 </div>
               </div>

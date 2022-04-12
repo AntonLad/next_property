@@ -26,7 +26,7 @@ const RandomObjects = () => {
       <div className="content">
         <div className="randomObjectsTitle">Примеры запросов в реестр МКД</div>
         <div className="randomObjectsFlex">
-          <Link href={`https:mkdfond.ru/mkd/${oneMkd?.region_id}-mkd-${oneMkd?.houseguid}`}>
+          <Link href={`/mkd/${oneMkd?.region_id}-mkd-${oneMkd?.houseguid}`}>
             <a className="mkdLink">
               <div className="mkdObject">
                 <div className="objectPhoto oneMkd" />
@@ -37,7 +37,7 @@ const RandomObjects = () => {
               </div>
             </a>
           </Link>
-          <Link href={`https:mkdfond.ru/mkd/${twoMkd?.region_id}-mkd-${twoMkd?.houseguid}`}>
+          <Link href={`/mkd/${twoMkd?.region_id}-mkd-${twoMkd?.houseguid}`}>
             <a className="mkdLink">
               <div className="mkdObject">
                 <div className="objectPhoto twoMkd" />
@@ -48,7 +48,7 @@ const RandomObjects = () => {
               </div>
             </a>
           </Link>
-          <Link href={`https:mkdfond.ru/mkd/${threeMkd?.region_id}-mkd-${threeMkd?.houseguid}`}>
+          <Link href={`/mkd/${threeMkd?.region_id}-mkd-${threeMkd?.houseguid}`}>
             <a className="mkdLink">
               <div className="mkdObject">
                 <div className="objectPhoto threeMkd" />
@@ -59,7 +59,7 @@ const RandomObjects = () => {
               </div>
             </a>
           </Link>
-          <Link href={`https:mkdfond.ru/mkd/${fourMkd?.region_id}-mkd-${fourMkd?.houseguid}`}>
+          <Link href={`/mkd/${fourMkd?.region_id}-mkd-${fourMkd?.houseguid}`}>
             <a className="mkdLink">
               <div className="mkdObject">
                 <div className="objectPhoto fourMkd" />
@@ -70,7 +70,7 @@ const RandomObjects = () => {
               </div>
             </a>
           </Link>
-          <Link href={`https:mkdfond.ru/mkd/${fiveMkd?.region_id}-mkd-${fiveMkd?.houseguid}`}>
+          <Link href={`/mkd/${fiveMkd?.region_id}-mkd-${fiveMkd?.houseguid}`}>
            <a className="mkdLink">
             <div className="mkdObject">
               <div className="objectPhoto fiveMkd" />
@@ -81,7 +81,7 @@ const RandomObjects = () => {
             </div>
             </a>
           </Link>
-          <Link href={`https:mkdfond.ru/mkd/${sixMkd?.region_id}-mkd-${sixMkd?.houseguid}`}>
+          <Link href={`/mkd/${sixMkd?.region_id}-mkd-${sixMkd?.houseguid}`}>
             <a className="mkdLink">
               <div className="mkdObject">
                 <div className="objectPhoto sixMkd" />

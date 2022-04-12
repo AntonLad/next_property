@@ -17,7 +17,6 @@ export default async function randData (req, res) {
     const collection = db.collection(randRegion)
     const randomListObject = await collection.aggregate([{ $sample: {size: 1}}]).toArray() // получаем массив с тремя случайных обекта  - не работает
     randArr = [...randArr, randomListObject[0] ]
-    console.log('RANDOMRESULT', randArr)
   }
 
   return res.json(randArr)
