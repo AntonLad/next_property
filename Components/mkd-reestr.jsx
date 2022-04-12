@@ -17,6 +17,10 @@ const MkdReestr = ({ mkdObj, jkhObj }) => {
     playground, sportsground, other_beautification, foundation_type, floor_type, wall_material, chute_type, chute_count,
     heating_type, hot_water_type, quarters_count, living_quarters_count, unliving_quarters_count, area_total, area_residential,
     sewerage_type, gas_type, ventilation_type, firefighting_type } = mkdInfo
+  
+  let name = jkhInfo?.name_full
+  const nameArr = name.split('')
+  nameArr[0] === '#' ? name = jkhInfo?.name_short : name = jkhInfo?.name_full  // убираем варинты не коректного полного имени типа ###############
 
   const paramInfo = {
     'Адрес многоквартирного дома:': address,
@@ -59,7 +63,7 @@ const MkdReestr = ({ mkdObj, jkhObj }) => {
     'Тип дренажной системы:': drainage_type,
   }
   const paramInfoJkh = {
-    'Наименование:': jkhInfo?.name_full,
+    'Наименование:': name,
     'Адрес управляющей компании (ЖКХ, ТСЖ):': jkhInfo?.actual_address,
     'ИНН организации:': jkhInfo?.inn,
     'Количество домов под управлением:': jkhInfo?.count_mkd,

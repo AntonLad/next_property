@@ -26,48 +26,46 @@ const RandomMkdObjects = () => {
       <div className="contentWrap">
         <div className="randomObjectsTitle1">Недавно запрашиваемые объекты</div>
         <div className="object__blockTable _first">
-          <Link href={`https:mkdfond.ru/mkd/${oneMkd?.region_id}-mkd-${oneMkd?.houseguid}`}>
-            <a className="mkdLink1">
+            <a href={`/mkd/${oneMkd?.region_id}-mkd-${oneMkd?.houseguid}`} className="mkdLink1">
               <div className="blockTableTr">
                 <div className="blockTableTd">{oneMkd?.address}</div>
               </div>
             </a>
-          </Link>
-          <Link href={`https:mkdfond.ru/mkd/${twoMkd?.region_id}-mkd-${twoMkd?.houseguid}`}>
-            <a className="mkdLink1">
+          {/* <Link href={`/mkd/${twoMkd?.region_id}-mkd-${twoMkd?.houseguid}`}> */}
+            <a href={`/mkd/${twoMkd?.region_id}-mkd-${twoMkd?.houseguid}`} className="mkdLink1">
               <div className="blockTableTr">
                 <div className="blockTableTd">{twoMkd?.address}</div>
               </div>
             </a>
-          </Link>
-          <Link href={`https:mkdfond.ru/mkd/${threeMkd?.region_id}-mkd-${threeMkd?.houseguid}`}>
-            <a className="mkdLink1">
+          {/* </Link> */}
+          {/* <Link href={`/mkd/${threeMkd?.region_id}-mkd-${threeMkd?.houseguid}`}> */}
+            <a href={`/mkd/${threeMkd?.region_id}-mkd-${threeMkd?.houseguid}`} className="mkdLink1">
               <div className="blockTableTr">
                 <div className="blockTableTd">{threeMkd?.address}</div>
               </div>
             </a>
-          </Link>
-          <Link href={`https:mkdfond.ru/mkd/${fourMkd?.region_id}-mkd-${fourMkd?.houseguid}`}>
-            <a className="mkdLink1">
+          {/* </Link> */}
+          {/* <Link href={`/mkd/${fourMkd?.region_id}-mkd-${fourMkd?.houseguid}`}> */}
+            <a href={`/mkd/${fourMkd?.region_id}-mkd-${fourMkd?.houseguid}`} className="mkdLink1">
               <div className="blockTableTr">
                 <div className="blockTableTd">{fourMkd?.address}</div>
               </div>
             </a>
-          </Link>
-          <Link href={`https:mkdfond.ru/mkd/${fiveMkd?.region_id}-mkd-${fiveMkd?.houseguid}`}>
-            <a className="mkdLink1">
+          {/* </Link> */}
+          {/* <Link href={`/mkd/${fiveMkd?.region_id}-mkd-${fiveMkd?.houseguid}`}> */}
+            <a href={`/mkd/${fiveMkd?.region_id}-mkd-${fiveMkd?.houseguid}`} className="mkdLink1">
               <div className="blockTableTr">
                 <div className="blockTableTd">{fiveMkd?.address}</div>
               </div>
             </a>
-          </Link>
-          <Link href={`https:mkdfond.ru/mkd/${sixMkd?.region_id}-mkd-${sixMkd?.houseguid}`}>
-            <a className="mkdLink1">
+          {/* </Link> */}
+          {/* <Link href={`/mkd/${sixMkd?.region_id}-mkd-${sixMkd?.houseguid}`}> */}
+            <a href={`/mkd/${sixMkd?.region_id}-mkd-${sixMkd?.houseguid}`} className="mkdLink1">
               <div className="blockTableTr">
                 <div className="object__blockTableTd">{sixMkd?.address}</div>
               </div>
             </a>
-          </Link>
+          {/* </Link> */}
         </div>
       </div>
     </div>

@@ -113,6 +113,7 @@ export async function getServerSideProps(context) {
   const jkhBase = regionBase.collection('JKHBase')
   const company = await jkhBase.find({id: jkhCompanyId}).toArray()
   const companyJkh = company[0]
+  
     return {
       props: {mkd: JSON.stringify(newMkd), jkh: JSON.stringify(companyJkh) || null}
     }
