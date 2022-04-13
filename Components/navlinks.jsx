@@ -13,7 +13,7 @@ export const NavLinks = () => {
           </Link>
         </li>
         <li>
-          <Link href="#">
+          <Link href="/jkh">
             <a className="header__menu-link">
               Реестр ЖКХ
             </a>

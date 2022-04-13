@@ -1,9 +1,9 @@
-import Link from 'next/link'
 import Head from 'next/head'
 import Search from "../Components/search"
 import Header from "../Components/header"
 import Footer from "../Components/footer"
 import RandomObjects from '../Components/randomObjects'
+import DadataCompany from '../Components/dadataCompany'
 import ButtonMongo from '../Components/buttonMongo'
 
 export default function Main() {
@@ -153,21 +153,20 @@ export default function Main() {
                       <div className="jkh__contacts-infoblock first">
                         <div className="desc">
                           <p>
-                            Управляющая компания - это обязательно юридическое лицо, которое берет на себя бремя ответственности
-                            по управлению многоквартирными домами, поддержанию санитарного и технического состояния общего
-                            домового имущества в надлежащем состоянии, доставке коммунальных ресурсов до конкретного пользователя.
-                          </p>
-                          <p>
                             Реестр позволяет узнать, какая коммунальная управляющая компания обслуживает
                             многоквартирный дом и получить контакты: адрес, телефон, электронный почтовый ящик.
                             Кроме этого, с помощью данного сервиса возможно узнать сколько многоквартирных домов
-                            числится на балансе той или иной управляющей компании ЖКХ.
+                            числится на балансе.
+                          </p>
+                          <p>
+                            Для поиска, введите ИНН, ОГРН или адрес управляющей компании.
                           </p>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <a href="/" className="jkh__contacts-button flex-jc">Перейти в реестр жкх</a>
+                  <DadataCompany />
+                  <a href="/jkh" className="jkh__contacts-button flex-jc">Перейти в реестр ЖХК</a>
                 </div>
               </div>
           </div>

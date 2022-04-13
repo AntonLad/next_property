@@ -2,6 +2,7 @@ import React from 'react'
 
 const Jkh = ({ jkhObj }) => {
   const jkh = JSON.parse(jkhObj)
+  console.log('JKHPROPS', jkh)
   const { name_full, inn, legal_address, actual_address, phone, email, site, count_mkd, area_total  } = jkh ?? {}
   const paramInfo = {
     'Наименование': name_full,
@@ -33,9 +34,9 @@ const Jkh = ({ jkhObj }) => {
             Управляющая компания
           </div>
         <div className="object__blockTable">
-          {outputObject()}          
+          {outputObject()}
         </div>
-      </div>  
+      </div>
     </div>
   )
 }

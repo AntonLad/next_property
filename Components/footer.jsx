@@ -39,7 +39,7 @@ const Footer = () => {
                   <a>Проверка недвижимости</a>
                 </Link>
                 <br />
-                <Link href="/">
+                <Link href="/jkh">
                   <a>Реестр ЖКХ</a>
                 </Link>
                 <br />

@@ -41,7 +41,7 @@ const SeoMenu = () => {
             <span>Реестр МКД</span>
           </a>
         </Link>
-        <Link  href="#">
+        <Link  href="/jkh">
           <a className="">
             <span>Реестр ЖКХ</span>
           </a>
