@@ -3,6 +3,7 @@ import regions from '../../Components/files/regions'
 const { readFile, writeFile, stat, unlink } = require('fs').promises
 const { create } = require('xmlbuilder2')
 
+
 // функция по созданию файлов sitemap
 
 // const url = process.env.MONGO_URL

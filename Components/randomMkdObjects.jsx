@@ -60,11 +60,14 @@ const RandomMkdObjects = () => {
             </a>
           {/* </Link> */}
           {/* <Link href={`/mkd/${sixMkd?.region_id}-mkd-${sixMkd?.houseguid}`}> */}
-            <a href={`/mkd/${sixMkd?.region_id}-mkd-${sixMkd?.houseguid}`} className="mkdLink1">
+            {sixMkd && (
+              <a href={`/mkd/${sixMkd?.region_id}-mkd-${sixMkd?.houseguid}`} className="mkdLink1">
               <div className="blockTableTr">
                 <div className="object__blockTableTd">{sixMkd?.address}</div>
               </div>
             </a>
+            )}
+            
           {/* </Link> */}
         </div>
       </div>
