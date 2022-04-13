@@ -64,6 +64,9 @@ const DadataCompany = () => {
           </div>
         </button>
       </div>
+      <div className="pledge__form-examples"> Пример:&nbsp;&nbsp;
+        <span>КСК "Сергиев Посад"</span>
+      </div>
       {serverAnswer?.error && (
         <div className="dataErrorResult1">
           <div className="response">
