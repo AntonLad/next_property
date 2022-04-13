@@ -4,12 +4,11 @@ import { useRouter } from 'next/router'
 
 const Breadcrumbs = ({ cadastrObj }) => {
   const router = useRouter()
-  const path = router.asPath
-  const cadNumber = router.query.cadnumber
-  console.log('ROUTER', path)
-  console.log('cadNumber', cadNumber)
+  const path = router?.asPath
+  const path2 = router?.query
+
   const cadObj = JSON.parse(cadastrObj)
-  const addressNotes = cadObj?.objectData?.objectAddress?.mergedAddress || cadObj?.address
+  const addressNotes = cadObj?.objectData?.objectAddress?.mergedAddress || cadObj?.address || path2?.jkh
   return (
     <div className="object__breadcrumbs">
       <ol className="breadcrumbs">
@@ -22,7 +21,7 @@ const Breadcrumbs = ({ cadastrObj }) => {
         </li>
         <span className="__gt">&gt;</span>
         <li>
-        <Link href={path} >
+        <Link href={path || path2} >
           <a className="a _blue __this">
             <span>{addressNotes}</span>
           </a>
