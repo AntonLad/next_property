@@ -12,6 +12,8 @@ import Footer from '../../Components/footer'
 import Dadata from '../../Components/dadata'
 import MkdReestr from '../../Components/mkd-reestr'
 import dynamic from 'next/dynamic'
+
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0
 const DynamicMkdMap = dynamic(
   () => import('../../Components/mkdMap'),
   { ssr: true }
@@ -21,7 +23,7 @@ const DynamicMkdMap = dynamic(
 const url = process.env.MONGO_URL
 const client = new MongoClient(url, { useUnifiedTopology: true })
 
-export default function Object({mkd, jkh}) {
+export default function Object({mkd, jkh, flats}) {
   const mkdHouse = JSON.parse(mkd)
   const addressMkd = mkdHouse.address
   const okato = mkdHouse.okato
@@ -68,23 +70,31 @@ export default function Object({mkd, jkh}) {
 
 
 export async function getServerSideProps(context) {
+
+  // получаем данные из URL в виде фиас кода региона и мкд
   const fiasNumbers = context.params.mkd
   await client.connect()
   const splitNumbers = fiasNumbers.split('-mkd-')
   const regionFiasCode = splitNumbers[0]
   const houseFiasCode = splitNumbers[1]
 
+  // подключаемся к базе и ищем мкд по фиас коду
   const searchRegions = regions[regionFiasCode]
   const regionBase = client.db(process.env.MONGO_COLLECTION)
   const regionCollection = regionBase.collection(`${searchRegions}`)
   const mkdsearch = await regionCollection.find({houseguid: houseFiasCode}).toArray()
   const mkd = mkdsearch[0]
+
+  // если мкд не найден, возвращаем 404 ошибку
   if (!mkd) {
     return {
       notFound: true
     }
   }
-  const mkdAddress = mkd?.address
+
+  //отправляем в дадату адрес объекта, чтобы получить ОКАТО, индекс, ОКТМО и координаты
+  const mkdAddress = `${mkd?.formalname_city} ${mkd.formalname_street} ${mkd.house_number}` + (mkd.building ? mkd.building : '') + (mkd.block ? mkd.block : '') + (mkd.letter ? mkd.letter : '')
+  console.log('SHIT', mkdAddress)
   const url = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address'
   const getAskDadata = await axios({
       method: 'POST',
@@ -104,17 +114,42 @@ export async function getServerSideProps(context) {
   const lat = getAskDadata.data?.suggestions[0]?.data?.geo_lat
   const lon = getAskDadata.data?.suggestions[0]?.data?.geo_lon
 
+  // дописываем в объект ОКАТО, индекс, ОКТМО и координаты
   const db = client.db(process.env.MONGO_COLLECTION)
   const collection = db.collection(`${searchRegions}`)
   await collection.updateOne({'houseguid':houseFiasCode}, { $set: {postalCode, lat, lon, oktmo, okato}}, { upsert: false })
+
+  // ищем в базе обновленный мкд
   const mkdNewSearch = await regionCollection.find({houseguid: houseFiasCode}).toArray()
   const newMkd = mkdNewSearch[0]
-  const jkhCompanyId = mkdsearch?.[0]?.management_organization_id
+
+  // ищем в базе УК
+  const jkhCompanyId = mkd?.management_organization_id
   const jkhBase = regionBase.collection('JKHBase')
   const company = await jkhBase.find({id: jkhCompanyId}).toArray()
   const companyJkh = company[0]
-  
+
+  // делаем запрос в Рорсеестр чтобы получить квартиры МКД
+  const kladrObjectCode = getAskDadata.data?.suggestions[0]?.data?.settlement_kladr_id || getAskDadata.data?.suggestions[0]?.data?.city_kladr_id
+  const kladrCode = parseInt(kladrObjectCode)
+  const findSettlement = regionBase.collection('Reestr_geo')
+  const settlement = await findSettlement.find({settlement_code: kladrCode}).toArray()
+  const dataOfObject = settlement[0]
+  console.log('НАЙДЕННЫЙ ОБЪЕКТ', dataOfObject)
+  const macroRegionId = dataOfObject?.macroRegionId
+  const regionId = dataOfObject?.regionId
+  const street = mkd?.formalname_street
+  const houseNumber = mkd?.house_number
+  const building = mkd?.building
+  const block = mkd?.block
+  const letter = mkd?.letter
+
+  const askReestrUrl = `https://rosreestr.gov.ru/fir_lite_rest/api/gkn/address/fir_objects?macroRegionId=${macroRegionId}&regionId=${regionId}&street=${street}&house=${houseNumber}&building=${building}&structure=${block}`
+  const flatList = await axios(encodeURI(askReestrUrl))
+  console.log('FLATLIST', flatList.data.length)
+
+
     return {
-      props: {mkd: JSON.stringify(newMkd), jkh: JSON.stringify(companyJkh) || null}
+      props: {mkd: JSON.stringify(newMkd), jkh: JSON.stringify(companyJkh), flatList: JSON.stringify(flatList)|| null}
     }
 }
