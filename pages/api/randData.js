@@ -16,7 +16,7 @@ export default async function randData (req, res) {
     
     const collection = db.collection(randRegion)
     const randomListObject = await collection.aggregate([{ $sample: {size: 1}}]).toArray() // получаем массив с тремя случайных обекта  - не работает
-    console.log('RANDOMOBJECT', randomListObject?.[0])
+    // console.log('RANDOMOBJECT', randomListObject?.[0])
     if (randomListObject?.[0]) {
       await randomListObject?.[0].houseguid ? randArr = [...randArr, randomListObject[0]] : i -=1  // проверяем есть ли фиас дома - да - вносим в массив, нет - уменьшаем счетчик
     } 

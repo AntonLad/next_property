@@ -150,6 +150,6 @@ export async function getServerSideProps(context) {
 
 
     return {
-      props: {mkd: JSON.stringify(newMkd), jkh: JSON.stringify(companyJkh), flatList: JSON.stringify(flatList)|| null}
+      props: {mkd: JSON.stringify(newMkd), jkh: JSON.stringify(companyJkh) || null, flatList: JSON.stringify(flatList.data) || null}
     }
 }
