@@ -9,7 +9,6 @@ export default async function mkdRec(req, res) {
   const postalcode = req.query.postalcode
   const objecregionFiasCodetId = req.query.regionFiasCode
   const houseFiasCode = req.query.houseFiasCode
-  console.log('HOUSEFIASCODE', houseFiasCode)
   const street = req.query.street
   const house = req.query.house
   const lat = req.query.lat

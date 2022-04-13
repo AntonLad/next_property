@@ -6,7 +6,6 @@ const client = new MongoClient(url, { useUnifiedTopology: true })
 
 export default async function dadata(req, res) {
   const cadNumber = req.query.cadNumber
-  console.log('DADATACADNUMBER', cadNumber)
   await client.connect()
   const db = client.db(process.env.MONGO_COLLECTION)
   const collection = db.collection('searchingObjects')

@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 const Breadcrumbs = ({ cadastrObj }) => {
-  // console.log('Breadcrumpsprops', JSON.parse(cadastrObj))
   const router = useRouter()
   const path = router.asPath
   const cadNumber = router.query.cadnumber

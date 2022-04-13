@@ -10,16 +10,12 @@ const RandomMkdObjects = () => {
     setRandom(randomMkd)
   }, [])
 
-
-  console.log('RANDOMMKD', random.data)
   const oneMkd = random?.data?.[0]
   const twoMkd = random?.data?.[1]
   const threeMkd = random?.data?.[2]
   const fourMkd = random?.data?.[3]
   const fiveMkd = random?.data?.[4]
   const sixMkd = random?.data?.[5]
-  console.log('ONE', oneMkd)
-
 
   return (
     <div className="randomObjects1">
@@ -67,7 +63,7 @@ const RandomMkdObjects = () => {
               </div>
             </a>
             )}
-            
+
           {/* </Link> */}
         </div>
       </div>
