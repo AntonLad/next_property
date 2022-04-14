@@ -50,8 +50,8 @@ const MkdReestr = ({ mkdObj, jkhObj }) => {
     'Общая площадь квартир:': area_residential && `${area_residential} кв.м.`,
     'Общая площадь нежилых помещений:': area_non_residential && `${area_non_residential} кв.м.`,
     'Площадь парковки:': parking_square && `${parking_square} кв.м.`,
-    'Детская площадка:': playground && `${playground} кв.м.`,
-    'Спортивная площадка:': sportsground && `${sportsground} кв.м.`,
+    'Детская площадка:': playground && (playground === 500 ? 'Отсутствует' : 'Есть'),
+    'Спортивная площадка:': sportsground && (sportsground === 500 ? 'Отсутствует' : 'Есть'),
     'Элементы благоустройства:': other_beautification,
     'Тип фундамента:': foundation_type,
     'Тип перекрытий:': floor_type,
@@ -65,7 +65,7 @@ const MkdReestr = ({ mkdObj, jkhObj }) => {
     'Водоотведение': sewerage_type,
     'Газоснабжение': gas_type,
     'Вентиляция': ventilation_type,
-    'Системы пожаротушения': firefighting_type,
+    'Система пожаротушения': firefighting_type,
     'Тип дренажной системы:': drainage_type,
   }
   const paramInfoJkh = {
