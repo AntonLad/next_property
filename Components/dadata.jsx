@@ -52,7 +52,7 @@ const Dadata = () => {
   return (
     <>
       <div className="searchInputs">
-        <AddressSuggestions token="70b8dda637580dd14625d9296f24945f2a6fc4f9" value={value} onChange={setValue} placeholder="тест"/>
+        <AddressSuggestions token="70b8dda637580dd14625d9296f24945f2a6fc4f9" value={value} onChange={setValue}/>
         <button
           className="searchButton"
           type="button"

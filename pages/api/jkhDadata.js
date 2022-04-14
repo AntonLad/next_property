@@ -13,6 +13,7 @@ export default async function jkhRec(req, res) {
   const oktmo = req.query.oktmo
   const lat = req.query.lat
   const lon = req.query.lon
+  const regionFiasCode = req.query.regionFiasCode
 
   await client.connect()
   const db = client.db(process.env.MONGO_COLLECTION)
@@ -21,7 +22,7 @@ export default async function jkhRec(req, res) {
   const jkh = jkhSearch[0]
 
   if (jkh) {
-    await collection.updateOne({'inn':inn}, { $set: {ogrn, okpo, okato, oktmo, lat, lon}}, { upsert: false })
+    await collection.updateOne({'inn':inn}, { $set: {ogrn, okpo, okato, oktmo, lat, lon, regionFiasCode}}, { upsert: false })
     return res.json('file rec sucsess')
   }
 

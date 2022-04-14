@@ -8,6 +8,7 @@ import Jkh from '../../Components/info-jkh'
 import RandomMkdObjects from '../../Components/randomMkdObjects'
 import Footer from '../../Components/footer'
 import DadataCompany from '../../Components/dadataCompany'
+import regions from '../../Components/files/regions'
 import dynamic from 'next/dynamic'
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0
@@ -20,7 +21,7 @@ const DynamicMkdMap = dynamic(
 const url = process.env.MONGO_URL
 const client = new MongoClient(url, { useUnifiedTopology: true })
 
-export default function Object({jkh}) {
+export default function Object({jkh, mkdList}) {
   const jkhCompamy = JSON.parse(jkh)
   const nameJkh = jkhCompamy?.name_short
   const addressJkh = jkhCompamy?.legal_address
@@ -77,13 +78,29 @@ export async function getServerSideProps(context) {
   const collection = db.collection('JKHBase')
   const jkhSearch = await collection.find({inn: inn}).toArray()
   const jkhCompamy = jkhSearch[0]
-  // если мкд не найден, возвращаем 404 ошибку
+
+  // если ЖКХ не найден, возвращаем 404 ошибку
   if (!jkhCompamy) {
     return {
       notFound: true
     }
   }
+
+  // ищем дома, которыми управляет ЖКХ
+  const jkhId = jkhCompamy.id
+  const regionFiasCode = jkhCompamy.regionFiasCode
+  const searchRegions = regions[regionFiasCode]
+  const regionCollection = db.collection(`${searchRegions}`)
+  const mkdList = await regionCollection.find({management_organization_id: jkhId}).toArray()
+  console.log('MKDLIST', mkdList.length)
+  if (mkdList.length > 10) {
+    const slicedMkdList = mkdList.slice(0,10)
     return {
-      props: {jkh: JSON.stringify(jkhCompamy) || null}
+      props: {jkh: JSON.stringify(jkhCompamy) || null, mkdList: JSON.stringify(slicedMkdList)}
+    }
+  }
+
+    return {
+      props: {jkh: JSON.stringify(jkhCompamy) || null, mkdList: JSON.stringify(mkdList)}
     }
 }

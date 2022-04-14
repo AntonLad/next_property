@@ -14,9 +14,9 @@ const Footer = () => {
                   <a>Главная</a>
                 </Link>
                 <br />
-                <Link href="/">
+                {/* <Link href="/">
                   <a>Контакты</a>
-                </Link>
+                </Link> */}
                 <br />
                 <Link href="/privacy-policy">
                   <a>Политика конфиденциальности</a>

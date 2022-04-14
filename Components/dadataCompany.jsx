@@ -14,11 +14,11 @@ const DadataCompany = () => {
   console.log('DADATAANSWER', value)
   const inn = value?.data?.inn
   const ogrn = value?.data?.ogrn
-  const okpo = value?.data?.okpo
   const okato = value?.data?.okato
   const oktmo = value?.data?.oktmo
   const lat = value?.data?.address.data.geo_lat
   const lon = value?.data?.address.data.geo_lon
+  const regionFiasCode = value?.data?.address.data.region_fias_id
 
   const clearToolTips = () => {
     setServerAnswer('')
@@ -29,8 +29,8 @@ const DadataCompany = () => {
     return () => document.removeEventListener('click', clearToolTips)
   }, [])
 
-  const sendDataToServer = async (inn, ogrn, okpo, okato, oktmo, lat, lon) => {
-    const searchObject = await axios.get(`/api/jkhDadata?inn=${inn}&ogrn=${ogrn}&okpo=${okpo}&okato=${okato}&oktmo=${oktmo}&lat=${lat}&lon=${lon}`)
+  const sendDataToServer = async (inn, ogrn, okato, oktmo, lat, lon, regionFiasCode) => {
+    const searchObject = await axios.get(`/api/jkhDadata?inn=${inn}&ogrn=${ogrn}&okato=${okato}&oktmo=${oktmo}&lat=${lat}&lon=${lon}&regionFiasCode=${regionFiasCode}`)
     .then((result) => {
       if (result.data.error) {
         setLoading(false)
@@ -55,7 +55,7 @@ const DadataCompany = () => {
           type="button"
           autoComplete="off"
           onClick={() => {
-            sendDataToServer(inn, ogrn, okpo, okato, oktmo, lat, lon)
+            sendDataToServer(inn, ogrn, okato, oktmo, lat, lon, regionFiasCode)
             setLoading(true)
           }}
         >

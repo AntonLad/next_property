@@ -34,11 +34,11 @@ export const NavLinks = () => {
           </Link>
         </li>
         <li>
-          <Link  href="#">
+          {/* <Link  href="#">
             <a className="header__menu-link">
               Контакты
             </a>
-          </Link>
+          </Link> */}
         </li>
       </ul>
     </div>
